@@ -30,9 +30,11 @@ Each component is wrapped in a CSS class corresponding to its name, e.g., `Activ
 
 ## Console Props
 
-* `sceneComponents` - A hash identifying the component to use for each type of scene, e.g., `'Activity' => ActivityScene`.
+The following props are passed int
+* `sceneComponents` - A hash identifying the component to use for each type of scene, e.g., `Activity: ActivityScene`.
 * `outputComponent` - The component for displaying the current state and history (`Output` by default).
 * `stateImageKey` - A key in the game state that corresponds to the current scene's image. If an image exists, `Output` displays it via the `StateImage` component.
+* `driver` - Required. The Gamefic driver that connects the app to the engine. The ReactApp platform installs and configures an Opal engine with an OpalDriver by default.
 
 ## Shared Props
 
