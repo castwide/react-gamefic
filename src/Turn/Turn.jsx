@@ -2,7 +2,6 @@ import React from 'react';
 
 export class Turn extends React.Component {
 	render() {
-		console.log(JSON.stringify(this.props.state));
 		var kbd;
 		if (this.props.state.lastCommand) {
 			kbd = <p><kbd>C: {this.props.state.lastCommand}</kbd></p>;

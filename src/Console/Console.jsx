@@ -35,7 +35,6 @@ export class Console extends React.Component {
 	}
   
 	render () {
-		console.log('Yep, we usin the linked one! And the scene is ' + this.state.scene + '...' + this.props.sceneComponents[this.state.scene]);
 		var props = {
 			state: this.state,
 			history: this.history,
@@ -74,5 +73,6 @@ Console.defaultProps = {
 };
 
 Console.propTypes = {
-	driver: PropTypes.object.isRequired
+	driver: PropTypes.object.isRequired,
+	consoleDidUpdate: PropTypes.func
 }
