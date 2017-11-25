@@ -3,6 +3,7 @@ import {ActiveScene} from '../ActiveScene';
 import {MultipleChoiceScene} from '../MultipleChoiceScene';
 import {PauseScene} from '../PauseScene';
 import {YesOrNoScene} from '../YesOrNoScene';
+import {Output} from '../Output';
 import PropTypes from 'prop-types';
 
 export class Console extends React.Component {
@@ -31,42 +32,33 @@ export class Console extends React.Component {
 	}
   
 	render () {
+		console.log('Yep, we usin the linked one! And the scene is ' + this.state.scene + '...' + this.props.sceneComponents[this.state.scene]);
 		var props = {
 			state: this.state,
 			history: this.history,
-			showHistory: this.props.showHistory,
-			handleCommand: this.handleCommand.bind(this)
+			handleCommand: this.handleCommand.bind(this),
+			stateImageKey: this.props.stateImageKey
 		}
-		if (this.state.scene == 'MultipleChoice') {
+		if (this.state.scene) {
+			return React.createElement(this.props.sceneComponents[this.state.scene], props, null);
+		} else {
+			// TODO: Should this return some kind of noop scene?
 			return (
-				<div className="Console">
-					<MultipleChoiceScene {...props} />
-				</div>
+			<ActiveScene {...props} />
 			);
-	  	} else if (this.state.scene == 'Pause') {
-			return (
-				<div className="Console">
-					<PauseScene {...props} />
-				</div>
-			);
-	  	} else if (this.state.scene == 'YesOrNo') {
-			return (
-				<div className="Console">
-					<YesOrNoScene {...props} />
-				</div>
-			);
-	  	} else {
-			return (
-				<div className="Console">
-					<ActiveScene {...props} />
-				</div>
-			);
-	  	}
+		}
 	}
 }
 
 Console.defaultProps = {
-	showHistory: true
+	sceneComponents: {
+		Activity: ActiveScene,
+		Pause: PauseScene,
+		MultipleChoice: MultipleChoiceScene,
+		YesOrNo: YesOrNoScene
+	},
+	outputComponent: Output,
+	stateImageKey: null
 };
 
 Console.propTypes = {
