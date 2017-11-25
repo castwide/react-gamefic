@@ -30,7 +30,8 @@ Each component is wrapped in a CSS class corresponding to its name, e.g., `Activ
 
 ## Console Props
 
-The following props are passed int
+The following props are passed into the Console component when the application starts.
+
 * `sceneComponents` - A hash identifying the component to use for each type of scene, e.g., `Activity: ActivityScene`.
 * `outputComponent` - The component for displaying the current state and history (`Output` by default).
 * `stateImageKey` - A key in the game state that corresponds to the current scene's image. If an image exists, `Output` displays it via the `StateImage` component.
@@ -38,7 +39,7 @@ The following props are passed int
 
 ## Shared Props
 
-The following props are passed to most components. (The one exception is the `Turn` component, which only receives a game state.)
+The following props are passed to most internal components. (The one exception is the `Turn` component, which only receives a game state.)
 
 * `state` - A hash received from the game engine describing the current state of the game.
 * `history` - An chronological array of game states.
