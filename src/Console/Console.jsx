@@ -39,12 +39,14 @@ export class Console extends React.Component {
 			handleCommand: this.handleCommand.bind(this),
 			stateImageKey: this.props.stateImageKey
 		}
-		if (this.state.scene) {
+		if (this.state.scene && this.props.sceneComponents[this.state.scene]) {
 			return React.createElement(this.props.sceneComponents[this.state.scene], props, null);
 		} else {
-			// TODO: Should this return some kind of noop scene?
+			if (this.state.scene) {
+				console.warn('Warning: The "' + this.state.scene + '" scene type is not assigned to a component');
+			}
 			return (
-			<ActivityScene {...props} />
+				<ActivityScene {...props} />
 			);
 		}
 	}

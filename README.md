@@ -32,7 +32,7 @@ Each component is wrapped in a CSS class corresponding to its name, e.g., `Activ
 
 The following props are passed into the Console component when the application starts.
 
-* `sceneComponents` - A hash identifying the component to use for each type of scene, e.g., `Activity: ActivityScene`.
+* `sceneComponents` - A hash identifying the component to use for each type of scene, e.g., `Activity: ActivityScene`. If the game includes any custom states, they can be assigned to components here. If a scene type is not assigned to a component, `Console` emits a warning and defaults to `ActivityScene`.
 * `outputComponent` - The component for displaying the current state and history (`Output` by default).
 * `stateImageKey` - A key in the game state that corresponds to the current scene's image. If an image exists, `Output` displays it via the `StateImage` component.
 * `driver` - Required. The Gamefic driver that connects the app to the engine. The ReactApp platform installs and configures an Opal engine with an OpalDriver by default.
