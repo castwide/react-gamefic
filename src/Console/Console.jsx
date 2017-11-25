@@ -19,6 +19,9 @@ export class Console extends React.Component {
   
 	componentDidUpdate() {
 		this.history.push(Object.assign({}, this.state));
+		if (this.props.consoleDidUpdate) {
+			this.props.consoleDidUpdate();
+		}
 	}
 
 	handleCommand(input) {
@@ -37,16 +40,23 @@ export class Console extends React.Component {
 			state: this.state,
 			history: this.history,
 			handleCommand: this.handleCommand.bind(this),
-			stateImageKey: this.props.stateImageKey
+			stateImageKey: this.props.stateImageKey,
+			outputComponent: this.props.outputComponent
 		}
 		if (this.state.scene && this.props.sceneComponents[this.state.scene]) {
-			return React.createElement(this.props.sceneComponents[this.state.scene], props, null);
+			return (
+				<div className="Console">
+					{React.createElement(this.props.sceneComponents[this.state.scene], props, null)}
+				</div>
+			);
 		} else {
 			if (this.state.scene) {
 				console.warn('Warning: The "' + this.state.scene + '" scene type is not assigned to a component');
 			}
 			return (
-				<ActivityScene {...props} />
+				<div className="Console">
+					<ActivityScene {...props} />
+				</div>
 			);
 		}
 	}

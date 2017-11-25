@@ -59,3 +59,7 @@ The following props are passed to most internal components. (The one exception i
 * `StateImage` - The scene's image if one exists in the game state's stateImageKey property.
 * `Turn` - The display for a single turn's output. Used in History and Output.
 * `YesOrNoScene` - The top-level component for Yes-or-No scenes.
+
+## Listening for Game Updates
+
+The `Console` accepts a callback in the `consoleDidUpdate` prop that gets called after component updates, i.e., anytime the game state changes.
