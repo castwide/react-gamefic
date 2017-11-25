@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActiveScene} from '../ActiveScene';
+import {ActivityScene} from '../ActivityScene';
 import {MultipleChoiceScene} from '../MultipleChoiceScene';
 import {PauseScene} from '../PauseScene';
 import {YesOrNoScene} from '../YesOrNoScene';
@@ -44,7 +44,7 @@ export class Console extends React.Component {
 		} else {
 			// TODO: Should this return some kind of noop scene?
 			return (
-			<ActiveScene {...props} />
+			<ActivityScene {...props} />
 			);
 		}
 	}
@@ -52,7 +52,7 @@ export class Console extends React.Component {
 
 Console.defaultProps = {
 	sceneComponents: {
-		Activity: ActiveScene,
+		Activity: ActivityScene,
 		Pause: PauseScene,
 		MultipleChoice: MultipleChoiceScene,
 		YesOrNo: YesOrNoScene
