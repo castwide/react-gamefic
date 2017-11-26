@@ -12,6 +12,7 @@ export class Console extends React.Component {
 		this.state = {};
 		this.history = [];
 		this.lastCommand = null;
+		this.lastPrompt = null;
 		this.props.driver.start().then((response) => {
 			this.setState(response);
 		});
@@ -25,11 +26,13 @@ export class Console extends React.Component {
 	}
 
 	handleCommand(input) {
+		this.lastPrompt = this.state.prompt;
 		this.props.driver.receive(input).then((newState) => {
 			Object.keys(this.state).forEach((k) => {
 				newState[k] = newState[k] || null;
 			});
 			newState.lastCommand = input;
+			newState.lastPrompt = this.lastPrompt;
 			this.setState(newState);
 		});
 	}

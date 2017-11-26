@@ -4,7 +4,7 @@ export class Turn extends React.Component {
 	render() {
 		var kbd;
 		if (this.props.state.lastCommand) {
-			kbd = <p><kbd>C: {this.props.state.lastCommand}</kbd></p>;
+			kbd = <p><kbd>{this.props.state.lastPrompt} {this.props.state.lastCommand}</kbd></p>;
 		}
 		return (
 			<div className={'Turn ' + this.props.time}>
