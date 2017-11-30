@@ -5,6 +5,7 @@
   "main": "build/index.js",
   "files": [
     "build/",
+    "styles/",
     "README.md",
     "LICENSE"
   ],
