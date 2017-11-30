@@ -20,6 +20,9 @@ export class Console extends React.Component {
   
 	componentDidUpdate() {
 		this.history.push(Object.assign({}, this.state));
+		if (this.props.autoScroll) {
+			this.bottomElement.scrollIntoView({ behavior: 'smooth'});
+		}
 		if (this.props.consoleDidUpdate) {
 			this.props.consoleDidUpdate();
 		}
@@ -49,6 +52,7 @@ export class Console extends React.Component {
 			return (
 				<div className="Console">
 					{React.createElement(this.props.sceneComponents[this.state.scene], props, null)}
+					<div ref={(el) => this.bottomElement = el}></div>
 				</div>
 			);
 		} else {
@@ -71,11 +75,13 @@ Console.defaultProps = {
 		MultipleChoice: MultipleChoiceScene,
 		YesOrNo: YesOrNoScene
 	},
+	autoScroll: false,
 	outputComponent: Output,
 	stateImageKey: null
 };
 
 Console.propTypes = {
 	driver: PropTypes.object.isRequired,
-	consoleDidUpdate: PropTypes.func
+	autoScroll: PropTypes.bool,
+	consoleDidUpdate: PropTypes.func,
 }
