@@ -1,5 +1,40 @@
 html {
-	background-color: black;
 	color: green;
 	font-family: monospace;
+	margin: 0;
+	padding: 0;
+}
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #030303;
+}
+a {
+	color: inherit;
+}
+.Console {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 1em;
+	background-color: black;
+	height: calc(100vh - 2em);
+	overflow: auto;
+}
+.CommandForm {
+	display: flex;
+}
+.CommandForm label {
+	margin-right: 1em;
+	font-family: inherit;
+}
+.CommandForm input {
+	flex-grow: 100;
+	background-color: inherit;
+	border: none;
+	border-bottom: 1px solid green;
+	color: green;
+	font-family: inherit;
+}
+.YesOrNoScene .CommandLink {
+	/*display: none;*/
 }
