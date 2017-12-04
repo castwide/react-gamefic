@@ -8,6 +8,7 @@ import {PauseScene} from './PauseScene';
 import {StateImage} from './StateImage';
 import {Turn} from './Turn';
 import {YesOrNoScene} from './YesOrNoScene';
+import 'normalize.css';
 
 export {
 	CommandForm,
