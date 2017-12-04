@@ -6,8 +6,8 @@ export class Turn extends React.Component {
 		var that = this;
 		return this.props.state.options.map((opt, index) => {
 		  return (
-			<li key={index}>
-			  <CommandLink command={opt} handleCommand={that.props.handleCommand} />
+			<li>
+				<CommandLink key={index} command={opt} handleCommand={that.props.handleCommand} />
 			</li>
 		  );
 		});
