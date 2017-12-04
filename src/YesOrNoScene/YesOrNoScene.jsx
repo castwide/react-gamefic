@@ -8,10 +8,12 @@ export class YesOrNoScene extends React.Component {
 		return (
 			<div className="YesOrNoScene">
 				{React.createElement(this.props.outputComponent, this.props, null)}
-				<ul>
-					<li><CommandLink command="Yes" handleCommand={this.props.handleCommand} /></li>
-					<li><CommandLink command="No" handleCommand={this.props.handleCommand} /></li>
-				</ul>
+				<nav>
+					<ul>
+						<li><CommandLink command="Yes" handleCommand={this.props.handleCommand} /></li>
+						<li><CommandLink command="No" handleCommand={this.props.handleCommand} /></li>
+					</ul>
+				</nav>
 				<CommandForm {...this.props} />
 			</div>
 		);

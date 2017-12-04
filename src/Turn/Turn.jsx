@@ -20,7 +20,7 @@ export class Turn extends React.Component {
 		}
 		var ol;
 		if (this.props.state.scene == 'MultipleChoice') {
-			ol = <ol>{this.optionList()}</ol>;
+			ol = <nav><ol>{this.optionList()}</ol></nav>;
 		}
 		return (
 			<div className={'Turn ' + this.props.time}>
