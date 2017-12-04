@@ -34,7 +34,5 @@ a {
 	border-bottom: 1px solid green;
 	color: green;
 	font-family: inherit;
-}
-.YesOrNoScene .CommandLink {
-	/*display: none;*/
+	font-size: inherit;
 }
