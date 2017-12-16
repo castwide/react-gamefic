@@ -15,7 +15,7 @@ export class Turn extends React.Component {
 
 	render() {
 		var kbd;
-		if (this.props.state.lastCommand) {
+		if (this.props.state.lastPrompt || this.props.state.lastCommand) {
 			kbd = <p><kbd>{this.props.state.lastPrompt} {this.props.state.lastCommand}</kbd></p>;
 		}
 		var ol;
