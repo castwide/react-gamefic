@@ -35,7 +35,7 @@ The following props are passed into the Console component when the application s
 * `sceneComponents` - A hash identifying the component to use for each type of scene, e.g., `Activity: ActivityScene`. If the game includes any custom states, they can be assigned to components here. If a scene type is not assigned to a component, `Console` emits a warning and defaults to `ActivityScene`.
 * `outputComponent` - The component for displaying the current state and history (`Output` by default).
 * `stateImageKey` - A key in the game state that corresponds to the current scene's image. If an image exists, `Output` displays it via the `StateImage` component.
-* `driver` - Required. The Gamefic driver that connects the app to the engine. The ReactApp platform installs and configures an Opal engine with an OpalDriver by default.
+* `driver` - Required. The Gamefic driver that connects the app to the engine. Gamefic's ReactApp platform installs and configures an Opal engine with an OpalDriver by default.
 
 ## Shared Props
 
@@ -63,3 +63,16 @@ The following props are passed to most internal components. (The one exception i
 ## Listening for Game Updates
 
 The `Console` accepts a callback in the `consoleDidUpdate` prop that gets called after component updates, i.e., anytime the game state changes.
+
+## Built-in Styles
+
+The react-gamefic package includes several styles that can be imported into projects. To import the `terminal` style, for example:
+
+    import 'react-gamefic/styles/terminal'; // Import the built-in style first
+    import './style.css';                   // Import your own style second to give your customizations priority
+
+The following styles are available:
+
+* `normal`: A minimal foundation for responsiveness and readability. (Most?) other styles import `normal`.
+* `ebook`: A simple black-on-white text style.
+* `terminal`: A green-on-black style designed to emulate command-line terminals.
