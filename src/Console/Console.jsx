@@ -30,16 +30,18 @@ export class Console extends React.Component {
 
 	handleCommand(input) {
 		this.lastPrompt = this.state.prompt;
+		this.containerElement.className = 'Console working';
 		this.props.driver.receive(input).then((newState) => {
 			Object.keys(this.state).forEach((k) => {
 				newState[k] = newState[k] || null;
 			});
 			newState.lastCommand = input;
 			newState.lastPrompt = this.lastPrompt;
+			this.containerElement.className = 'Console';
 			this.setState(newState);
 		});
 	}
-  
+
 	render () {
 		var props = {
 			state: this.state,
@@ -50,7 +52,7 @@ export class Console extends React.Component {
 		}
 		if (this.state.scene && this.props.sceneComponents[this.state.scene]) {
 			return (
-				<div className="Console">
+				<div className="Console" ref={(el) => this.containerElement = el}>
 					{React.createElement(this.props.sceneComponents[this.state.scene], props, null)}
 					<div ref={(el) => this.bottomElement = el}></div>
 				</div>
@@ -60,7 +62,7 @@ export class Console extends React.Component {
 				console.warn('Warning: The "' + this.state.scene + '" scene type is not assigned to a component');
 			}
 			return (
-				<div className="Console">
+				<div className="Console" ref={(el) => this.containerElement = el}>
 					<ActivityScene {...props} />
 				</div>
 			);

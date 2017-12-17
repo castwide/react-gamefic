@@ -1,6 +1,7 @@
 html {
 	margin: 0;
 	padding: 0;
+	font-size: 14pt;
 }
 body {
 	margin: 0;
@@ -15,6 +16,7 @@ body {
 }
 .CommandForm {
 	display: flex;
+	margin-bottom: 1em;
 }
 .CommandForm label {
 	margin-right: 1em;
@@ -28,6 +30,9 @@ body {
 	color: black;
 	font-family: inherit;
 	font-size: inherit;
+}
+.Console.working .CommandForm {
+	visibility: hidden;
 }
 .PauseScene > nav {
 	display: none;

@@ -3,14 +3,41 @@ import {CommandLink} from '../CommandLink';
 
 export class Turn extends React.Component {
 	optionList() {
-		var that = this;
 		return this.props.state.options.map((opt, index) => {
-		  return (
-			<li>
-				<CommandLink key={index} command={opt} handleCommand={that.props.handleCommand} />
-			</li>
-		  );
+			return (
+				<li key={index}>
+					<CommandLink command={opt} handleCommand={this.props.handleCommand} />
+				</li>				
+			);
 		});
+	}
+
+	nodeIsCommandWidget(node) {
+		if (node.nodeName.toLowerCase() == 'a' && node.classList.contains('gamefic-command')) {
+			return true;
+		}
+		if (node.nodeName.toLowerCase() == 'button' && node.classList.contains('gamefic-command')) {
+			return true;
+		}
+		return false;
+	}
+
+	findAnchor(node) {
+		while (!this.nodeIsCommandWidget(node)) {
+			if (!node.parentNode) return false;
+			node = node.parentNode;
+		}
+		return node;
+	}
+
+	clickCaptureHandler(event) {
+		if (this.props.time == 'Present') {
+			var a = this.findAnchor(event.target);
+			if (a) {
+				event.stopPropagation();
+				this.props.handleCommand(a.getAttribute('data-command'));
+			}
+		}
 	}
 
 	render() {
@@ -23,7 +50,7 @@ export class Turn extends React.Component {
 			ol = <nav><ol>{this.optionList()}</ol></nav>;
 		}
 		return (
-			<div className={'Turn ' + this.props.time}>
+			<div className={'Turn ' + this.props.time} onClickCapture={(event) => this.clickCaptureHandler(event)}>
 				{kbd}
 				<div dangerouslySetInnerHTML={{ __html: this.props.state.output }}></div>
 				{ol}

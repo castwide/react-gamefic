@@ -69,7 +69,7 @@ The `Console` accepts a callback in the `consoleDidUpdate` prop that gets called
 The react-gamefic package includes several styles that can be imported into projects. To import the `terminal` style, for example:
 
     import 'react-gamefic/styles/terminal'; // Import the built-in style first
-    import './style.css';                   // Import your own style second to give your customizations priority
+    import './style.css';                   // Import your own style second to add your customizations
 
 The following styles are available:
 

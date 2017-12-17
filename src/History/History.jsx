@@ -5,7 +5,7 @@ export class History extends React.Component {
 	renderTurns() {
 		return this.props.history.map((opt, index) => {
 		  return (
-			<Turn key={index} time={index < this.props.history.length - 1 ? 'Past' : 'Present'} handleCommand={this.props.handleCommand} state={opt} />
+			<Turn key={index} time={index < this.props.history.length ? 'Past' : 'Present'} handleCommand={this.props.handleCommand} state={opt} />
 		  );
 		});
 	}
