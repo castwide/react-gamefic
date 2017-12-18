@@ -30,7 +30,7 @@ export class Turn extends React.Component {
 		return node;
 	}
 
-	clickCaptureHandler(event) {
+	handleClickCapture(event) {
 		var a = this.findCommandWidget(event.target);
 		if (a) {
 			event.stopPropagation();
@@ -51,7 +51,7 @@ export class Turn extends React.Component {
 			ol = <nav><ol>{this.optionList()}</ol></nav>;
 		}
 		return (
-			<div className={'Turn ' + this.props.time} onClickCapture={(event) => this.clickCaptureHandler(event)}>
+			<div className={'Turn ' + this.props.time} onClickCapture={(event) => this.handleClickCapture(event)}>
 				{kbd}
 				<div dangerouslySetInnerHTML={{ __html: this.props.state.output }}></div>
 				{ol}
