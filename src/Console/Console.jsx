@@ -13,9 +13,8 @@ export class Console extends React.Component {
 		this.history = [];
 		this.lastCommand = null;
 		this.lastPrompt = null;
-		this.props.driver.start().then((response) => {
-			this.setState(response);
-		});
+		this.props.driver.onUpdate(this.handleUpdate.bind(this));
+		this.props.driver.start();
 	}
   
 	componentDidUpdate() {
@@ -28,18 +27,19 @@ export class Console extends React.Component {
 		}
 	}
 
-	handleCommand(input) {
+	handleUpdate(newState) {
 		this.lastPrompt = this.state.prompt;
 		this.containerElement.className = 'Console working';
-		this.props.driver.receive(input).then((newState) => {
-			Object.keys(this.state).forEach((k) => {
-				newState[k] = newState[k] || null;
-			});
-			newState.lastCommand = input;
-			newState.lastPrompt = this.lastPrompt;
-			this.containerElement.className = 'Console';
-			this.setState(newState);
+		Object.keys(this.state).forEach((k) => {
+			newState[k] = newState[k] || null;
 		});
+		this.containerElement.className = 'Console';
+		this.setState(newState);
+	}
+
+	handleCommand(input) {
+		this.containerElement.className = 'Console working';
+		this.props.driver.receive(input)
 	}
 
 	render () {

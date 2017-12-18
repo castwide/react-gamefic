@@ -22,7 +22,7 @@ export class Turn extends React.Component {
 		return false;
 	}
 
-	findAnchor(node) {
+	findCommandWidget(node) {
 		while (!this.nodeIsCommandWidget(node)) {
 			if (!node.parentNode) return false;
 			node = node.parentNode;
@@ -31,10 +31,11 @@ export class Turn extends React.Component {
 	}
 
 	clickCaptureHandler(event) {
-		if (this.props.time == 'Present') {
-			var a = this.findAnchor(event.target);
-			if (a) {
-				event.stopPropagation();
+		var a = this.findCommandWidget(event.target);
+		if (a) {
+			event.stopPropagation();
+			event.preventDefault();
+			if (this.props.time == 'Present') {
 				this.props.handleCommand(a.getAttribute('data-command'));
 			}
 		}
@@ -42,8 +43,8 @@ export class Turn extends React.Component {
 
 	render() {
 		var kbd;
-		if (this.props.state.lastPrompt || this.props.state.lastCommand) {
-			kbd = <p><kbd>{this.props.state.lastPrompt} {this.props.state.lastCommand}</kbd></p>;
+		if (this.props.state.last_prompt || this.props.state.last_input) {
+			kbd = <p><kbd>{this.props.state.last_prompt} {this.props.state.last_input}</kbd></p>;
 		}
 		var ol;
 		if (this.props.state.scene == 'MultipleChoice') {
