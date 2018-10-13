@@ -14,9 +14,12 @@ export class Console extends React.Component {
 		this.lastCommand = null;
 		this.lastPrompt = null;
 		this.props.driver.onUpdate(this.handleUpdate.bind(this));
+	}
+	  
+	componentDidMount() {
 		this.props.driver.start();
 	}
-  
+
 	componentDidUpdate() {
 		this.history.push(Object.assign({}, this.state));
 		if (this.props.autoScroll) {
@@ -39,7 +42,7 @@ export class Console extends React.Component {
 
 	handleCommand(input) {
 		this.containerElement.className = 'Console working';
-		this.props.driver.receive(input)
+		this.props.driver.receive(input);
 	}
 
 	render () {
