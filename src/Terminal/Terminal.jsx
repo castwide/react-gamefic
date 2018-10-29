@@ -35,7 +35,7 @@ export class Terminal extends React.Component {
 		}
 		if (this.state.scene && this.props.sceneComponents[this.state.scene]) {
 			return (
-				<div className="Console" ref={(el) => this.containerElement = el}>
+				<div className="Terminal" ref={(el) => this.containerElement = el}>
 					{React.createElement(this.props.sceneComponents[this.state.scene], props, null)}
 					<div ref={(el) => this.bottomElement = el}></div>
 				</div>
@@ -45,7 +45,7 @@ export class Terminal extends React.Component {
 				console.warn('Warning: The "' + this.state.scene + '" scene type is not assigned to a component');
 			}
 			return (
-				<div className="Console" ref={(el) => this.containerElement = el}>
+				<div className="Terminal" ref={(el) => this.containerElement = el}>
 					<ActivityScene {...props} />
 				</div>
 			);

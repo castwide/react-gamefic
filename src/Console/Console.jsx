@@ -63,7 +63,7 @@ export class Console extends React.Component {
 			return React.cloneElement(child, {state: this.state});
 		});
 		return (
-			<div onClickCapture={(event) => this.handleClickCapture(event)} onSubmitCapture={(event) => this.handleSubmitCapture(event)}>
+			<div className="Console" onClickCapture={(event) => this.handleClickCapture(event)} onSubmitCapture={(event) => this.handleSubmitCapture(event)}>
 				{propKids}
 			</div>
 		);

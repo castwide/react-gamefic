@@ -10,7 +10,7 @@ export class CommandLink extends React.Component {
 
 	render() {
 		return (
-			<a onClickCapture={(event) => this.handleClickCapture(event)} data-command={this.props.command}>{this.props.text || this.props.command}</a>
+			<a className="CommandLink" onClickCapture={(event) => this.handleClickCapture(event)} data-command={this.props.command}>{this.props.text || this.props.command}</a>
 		);
 	}
 }
