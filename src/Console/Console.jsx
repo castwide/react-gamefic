@@ -44,12 +44,16 @@ export class Console extends React.Component {
 	handleClickCapture(event) {
 		var a = this.findCommandWidget(event.target);
 		if (a) {
+			event.preventDefault();
+			event.stopPropagation();
 			this.handleCommand(a.getAttribute('data-command'));
 		}
 	}
 
 	handleSubmitCapture(event) {
 		if (event.target.hasAttribute('data-command') && event.target.getAttribute('data-command') != '') {
+			event.preventDefault();
+			event.stopPropagation();
 			this.handleCommand(event.target.getAttribute('data-command'));
 		}
 	}
