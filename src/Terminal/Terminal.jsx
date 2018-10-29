@@ -19,7 +19,7 @@ export class Terminal extends React.Component {
 	}
 
 	componentDidUpdate() {
-		this.history.push(Object.assign({}, this.state));
+		this.history.push(Object.assign({}, this.props.state));
 		if (this.props.autoScroll) {
 			this.bottomElement.scrollIntoView({ behavior: 'smooth'});
 		}
@@ -27,7 +27,7 @@ export class Terminal extends React.Component {
 
 	render () {
 		var props = {
-			state: this.state,
+			state: this.props.state,
 			history: this.history,
 			handleCommand: this.props.handleCommand,
 			stateImageKey: this.props.stateImageKey,
