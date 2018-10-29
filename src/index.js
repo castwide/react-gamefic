@@ -10,9 +10,10 @@ import {Turn} from './Turn';
 import {YesOrNoScene} from './YesOrNoScene';
 
 export {
+	Console,
+	Terminal,
 	CommandForm,
 	CommandLink,
-	Console,
 	History,
 	MultipleChoiceScene,
 	Output,
