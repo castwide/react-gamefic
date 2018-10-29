@@ -6,10 +6,8 @@ export class CommandForm extends React.Component {
 		this.state = { working: false };
 	}
   
-	handleSubmit(event) {
-		event.preventDefault();
-		var input = this.textInput.value;
-		this.props.handleCommand(input);
+	handleChangeCapture(event) {
+		this.formElement.setAttribute('data-command', this.textInput.value);
 	}
   
 	componentDidUpdate() {
@@ -22,15 +20,11 @@ export class CommandForm extends React.Component {
 		this.textInput.focus();
 	}
   
-	formClassName() {
-		return 'CommandForm' + (this.state.working ? ' working' : '');
-	}
-
 	render() {
 	  return (
-			<form className={this.formClassName()} action="#" onSubmit={(event) => this.handleSubmit(event)}>
-				<label>{this.props.state.prompt}</label>
-				<input type="text" ref={(input) => {this.textInput = input}} />
+			<form action="#" ref={(form) => {this.formElement = form}}>
+				<label>{this.props.prompt}</label>
+				<input type="text" ref={(input) => {this.textInput = input}} onChangeCapture={(event) => this.handleChangeCapture(event)} />
 			</form>
 	  );
 	}
