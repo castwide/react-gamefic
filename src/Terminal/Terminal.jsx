@@ -29,7 +29,7 @@ export class Terminal extends React.Component {
 		var props = {
 			state: this.state,
 			history: this.history,
-			handleCommand: this.handleCommand.bind(this),
+			handleCommand: this.props.handleCommand,
 			stateImageKey: this.props.stateImageKey,
 			outputComponent: this.props.outputComponent
 		}
@@ -53,7 +53,7 @@ export class Terminal extends React.Component {
 	}
 }
 
-Console.defaultProps = {
+Terminal.defaultProps = {
 	sceneComponents: {
 		Activity: ActivityScene,
 		Pause: PauseScene,
@@ -65,6 +65,6 @@ Console.defaultProps = {
 	stateImageKey: null
 };
 
-Console.propTypes = {
+Terminal.propTypes = {
 	autoScroll: PropTypes.bool
 }

@@ -1,6 +1,7 @@
 import {CommandForm} from './CommandForm';
 import {CommandLink} from './CommandLink';
 import {Console} from './Console';
+import {Terminal} from './Terminal';
 import {History} from './History';
 import {MultipleChoiceScene} from './MultipleChoiceScene';
 import {Output} from './Output';

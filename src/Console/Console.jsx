@@ -18,9 +18,11 @@ export class Console extends React.Component {
 	}
 
 	handleUpdate(newState) {
-		Object.keys(this.state).forEach((k) => {
-			newState[k] = newState[k] || null;
-		});
+		if (this.state) {
+			Object.keys(this.state).forEach((k) => {
+				newState[k] = newState[k] || null;
+			});
+		}
 		this.setState(newState);
 	}
 
@@ -29,11 +31,14 @@ export class Console extends React.Component {
 	}
 
 	render() {
+		var propKids = React.Children.map(this.props.children, (child) => {
+			return React.cloneElement(child, {state: this.state || {}, handleCommand: this.handleCommand.bind(this)});
+		});
 		return (
 			<div className="Console">
-				{this.props.children}
+				{propKids}
 			</div>
-		)
+		);
 	}
 }
 
