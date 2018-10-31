@@ -46,7 +46,9 @@ export class Console extends React.Component {
 		if (a) {
 			event.preventDefault();
 			event.stopPropagation();
-			this.handleCommand(a.getAttribute('data-command'));
+			if (!a.classList.contains('disabled')) {
+				this.handleCommand(a.getAttribute('data-command'));
+			}
 		}
 	}
 
