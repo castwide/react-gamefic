@@ -9,12 +9,12 @@ export class Output extends React.Component {
 	}
 
 	render() {
-	  return (
+		return (
 			<div className="Output">
 				<StateImage {...this.props} />
 				<History {...this.props} />
 				<Turn state={this.props.state} handleCommand={this.props.handleCommand} time="Present" />
 			</div>
-	  )
+		)
 	}
 }
