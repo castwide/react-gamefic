@@ -47,6 +47,7 @@ export class Terminal extends React.Component {
 			return (
 				<div className="Terminal" ref={(el) => this.containerElement = el}>
 					<ActivityScene {...props} />
+					<div ref={(el) => this.bottomElement = el}></div>
 				</div>
 			);
 		}
@@ -60,7 +61,7 @@ Terminal.defaultProps = {
 		MultipleChoice: MultipleChoiceScene,
 		YesOrNo: YesOrNoScene
 	},
-	autoScroll: false,
+	autoScroll: true,
 	outputComponent: Output,
 	stateImageKey: null
 };
