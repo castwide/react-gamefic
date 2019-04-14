@@ -1,6 +1,6 @@
 {
   "name": "react-gamefic",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "React components for Gamefic",
   "main": "build/index.js",
   "files": [
@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -p"
   },
-  "keywords": [],
+  "keywords": ["React", "Gamefic"],
   "author": "Castwide",
   "license": "MIT",
   "repository": {
