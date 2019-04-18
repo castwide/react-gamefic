@@ -25,7 +25,7 @@ export class CommandForm extends React.Component {
 	render() {
 	  return (
 			<form className="CommandForm" action="#" ref={(form) => {this.formElement = form}}>
-				<label>{this.props.state.prompt}</label>
+				<label>{this.props.prompt}</label>
 				<input type="text" ref={(input) => {this.textInput = input}} onChangeCapture={(event) => this.handleChangeCapture(event)} />
 			</form>
 	  );
