@@ -1,3 +1,6 @@
+## 0.1.2 - August 24, 2019
+- Rebuild
+
 ## 0.1.1 - August 24, 2019
 - `CommandLink` uses children instead of text attribute
 - Dependency updates
