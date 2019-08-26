@@ -1,3 +1,6 @@
+## 0.1.3 - August 25, 2019
+- Add handleCommand to props
+
 ## 0.1.2 - August 24, 2019
 - Rebuild
 
