@@ -4,12 +4,8 @@ import PropTypes from 'prop-types';
 export class Console extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {}
+		this.state = {};
 		this.props.driver.onUpdate(this.handleUpdate.bind(this));
-	}
-	  
-	componentDidMount() {
-		this.props.driver.start();
 	}
 
 	componentDidUpdate() {

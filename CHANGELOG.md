@@ -1,3 +1,6 @@
+## 0.2.0
+- Console does not start the game on mount
+
 ## 0.1.3 - August 25, 2019
 - Add handleCommand to props
 
