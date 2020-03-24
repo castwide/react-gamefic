@@ -1,5 +1,6 @@
-## 0.2.0
+## 0.2.0 - March 24, 2020
 - Console does not start the game on mount
+- Use messages instead of output in game state
 
 ## 0.1.3 - August 25, 2019
 - Add handleCommand to props
