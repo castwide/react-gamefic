@@ -53,7 +53,7 @@ export class Turn extends React.Component {
 		return (
 			<div className={'Turn ' + this.props.time} onClickCapture={(event) => this.handleClickCapture(event)}>
 				{kbd}
-				<div dangerouslySetInnerHTML={{ __html: this.props.state.output }}></div>
+				<div dangerouslySetInnerHTML={{ __html: this.props.state.messages }}></div>
 				{ol}
 			</div>
 		);
