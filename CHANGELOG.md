@@ -1,3 +1,7 @@
+## 0.2.1 - Match 26, 2020
+- State prop references in Terminal
+- Conclusion scene
+
 ## 0.2.0 - March 24, 2020
 - Console does not start the game on mount
 - Use messages instead of output in game state
