@@ -25,7 +25,7 @@ export class Terminal extends React.Component {
 		}
 	}
 
-	render () {
+	render() {
 		var props = {
 			state: this.props.state,
 			history: this.history,
@@ -33,16 +33,16 @@ export class Terminal extends React.Component {
 			stateImageKey: this.props.stateImageKey,
 			outputComponent: this.props.outputComponent
 		}
-		if (this.state.scene && this.props.sceneComponents[this.state.scene]) {
+		if (this.props.state.scene && this.props.sceneComponents[this.props.state.scene]) {
 			return (
 				<div className="Terminal" ref={(el) => this.containerElement = el}>
-					{React.createElement(this.props.sceneComponents[this.state.scene], props, null)}
+					{React.createElement(this.props.sceneComponents[this.props.state.scene], props, null)}
 					<div ref={(el) => this.bottomElement = el}></div>
 				</div>
 			);
 		} else {
-			if (this.state.scene) {
-				console.warn('Warning: The "' + this.state.scene + '" scene type is not assigned to a component');
+			if (this.props.state.scene) {
+				console.warn('Warning: The "' + this.props.state.scene + '" scene type is not assigned to a component');
 			}
 			return (
 				<div className="Terminal" ref={(el) => this.containerElement = el}>
