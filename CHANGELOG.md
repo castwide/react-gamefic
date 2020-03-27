@@ -1,4 +1,7 @@
-## 0.2.1 - Match 26, 2020
+## 0.2.2 - March 27, 2020
+- ConclusionScene class
+
+## 0.2.1 - March 26, 2020
 - State prop references in Terminal
 - Conclusion scene
 
