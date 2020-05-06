@@ -13,7 +13,7 @@ export class PauseScene extends React.Component {
 						<li><CommandLink command="" text="Continue" handleCommand={this.props.handleCommand} /></li>
 					</ul>
 				</nav>
-				<CommandForm {...this.props} />
+				<CommandForm prompt={this.props.state.prompt} />
 			</div>
 		);
 	}

@@ -26,7 +26,7 @@ export class Console extends React.Component {
 	}
 
 	nodeIsCommandWidget(node) {
-		return node.nodeName.match(/^(a|button)$/i) && node.hasAttribute('data-command') && node.getAttribute('data-command') != '';
+		return node.nodeName.match(/^(a|button)$/i) && node.hasAttribute('data-command');
 	}
 
 	findCommandWidget(node) {
@@ -49,7 +49,7 @@ export class Console extends React.Component {
 	}
 
 	handleSubmitCapture(event) {
-		if (event.target.hasAttribute('data-command') && event.target.getAttribute('data-command') != '') {
+		if (event.target.hasAttribute('data-command')) {
 			event.preventDefault();
 			event.stopPropagation();
 			this.handleCommand(event.target.getAttribute('data-command'));

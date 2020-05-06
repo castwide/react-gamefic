@@ -1,3 +1,6 @@
+## 0.2.3
+- Command handler accepts blank data-command attributes
+
 ## 0.2.2 - March 27, 2020
 - ConclusionScene class
 

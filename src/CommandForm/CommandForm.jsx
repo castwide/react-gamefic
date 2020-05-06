@@ -12,13 +12,12 @@ export class CommandForm extends React.Component {
   
 	componentDidUpdate() {
 		this.textInput.value = '';
-		this.formElement.removeAttribute('data-command');
+		this.formElement.setAttribute('data-command', '');
 		this.textInput.focus();
 	}
 
 	componentDidMount() {
-		this.textInput.value = '';
-		this.formElement.removeAttribute('data-command');
+		this.formElement.setAttribute('data-command', '')
 		this.textInput.focus();
 	}
   
