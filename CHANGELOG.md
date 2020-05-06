@@ -1,5 +1,6 @@
-## 0.2.3
+## 0.2.3 - May 6, 2020
 - Command handler accepts blank data-command attributes
+- Update scene command form attributes
 
 ## 0.2.2 - March 27, 2020
 - ConclusionScene class

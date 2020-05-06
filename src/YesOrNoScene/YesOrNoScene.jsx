@@ -14,7 +14,7 @@ export class YesOrNoScene extends React.Component {
 						<li><CommandLink command="No" handleCommand={this.props.handleCommand} /></li>
 					</ul>
 				</nav>
-				<CommandForm {...this.props} />
+				<CommandForm prompt={this.props.state.prompt} />
 			</div>
 		);
 	}

@@ -8,7 +8,7 @@ export class MultipleChoiceScene extends React.Component {
 		return (
 			<div className="MultipleChoiceScene">
 				{React.createElement(this.props.outputComponent, this.props, null)}
-				<CommandForm {...this.props} />
+				<CommandForm prompt={this.props.state.prompt} />
 			</div>
 		);
 	}
