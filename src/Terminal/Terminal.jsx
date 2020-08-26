@@ -2,7 +2,6 @@ import React from 'react';
 import {ActivityScene} from '../ActivityScene';
 import {MultipleChoiceScene} from '../MultipleChoiceScene';
 import {PauseScene} from '../PauseScene';
-import {YesOrNoScene} from '../YesOrNoScene';
 import {ConclusionScene} from '../ConclusionScene';
 import {Output} from '../Output';
 import PropTypes from 'prop-types';
@@ -60,7 +59,7 @@ Terminal.defaultProps = {
 		Activity: ActivityScene,
 		Pause: PauseScene,
 		MultipleChoice: MultipleChoiceScene,
-		YesOrNo: YesOrNoScene,
+		YesOrNo: MultipleChoiceScene,
 		Conclusion: ConclusionScene
 	},
 	autoScroll: true,
