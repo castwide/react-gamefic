@@ -7,7 +7,7 @@ export class PauseScene extends React.Component {
 	render() {
 		return (
 			<div className="PauseScene">
-				{React.createElement(this.props.outputComponent, this.props, null)}
+				<Output {...this.props} />
 				<nav>
 					<ul>
 						<li><CommandLink command="" text="Continue" handleCommand={this.props.handleCommand} /></li>

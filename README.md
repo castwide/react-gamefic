@@ -46,7 +46,6 @@ The `consoleDidUpdate` prop is an optional callback to execute when the game sta
 The following props are passed into the `Terminal` component when the application starts.
 
 * `sceneComponents` - A hash identifying the component to use for each type of scene, e.g., `Activity: ActivityScene`. If the game includes any custom states, they can be assigned to components here. If a scene type is not assigned to a component, `Console` emits a warning and defaults to `ActivityScene`.
-* `outputComponent` - The component for displaying the current state and history (`Output` by default).
 
 ### Shared Props
 
