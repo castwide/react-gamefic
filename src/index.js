@@ -6,7 +6,6 @@ import {History} from './History';
 import {MultipleChoiceScene} from './MultipleChoiceScene';
 import {Output} from './Output';
 import {PauseScene} from './PauseScene';
-import {StateImage} from './StateImage';
 import {Turn} from './Turn';
 
 export {
@@ -18,6 +17,5 @@ export {
 	MultipleChoiceScene,
 	Output,
 	PauseScene,
-	StateImage,
 	Turn
 };

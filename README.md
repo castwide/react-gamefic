@@ -47,7 +47,6 @@ The following props are passed into the `Terminal` component when the applicatio
 
 * `sceneComponents` - A hash identifying the component to use for each type of scene, e.g., `Activity: ActivityScene`. If the game includes any custom states, they can be assigned to components here. If a scene type is not assigned to a component, `Console` emits a warning and defaults to `ActivityScene`.
 * `outputComponent` - The component for displaying the current state and history (`Output` by default).
-* `stateImageKey` - A key in the game state that corresponds to the current scene's image. If an image exists, `Output` displays it via the `StateImage` component.
 
 ### Shared Props
 
@@ -56,7 +55,6 @@ The following props are automatically passed into the `Console` component's chil
 * `state` - A hash received from the game engine describing the current state of the game.
 * `history` - An chronological array of game states.
 * `handleCommand` - A callback that sends commands to the engine, e.g., `this.props.handleCommand('go south')`.
-* `stateImageKey` - A key in the game state that corresponds to the current scene's image.
 
 ### `Terminal` Subcomponents
 
@@ -69,9 +67,8 @@ The `Terminal` uses the following components to render the user interface:
 * `CommandForm` - A form with a text input for accepting typed commands.
 * `CommandLink` - A link that triggers a command.
 * `History` - A collection of previous Turns.
-* `StateImage` - The scene's image if one exists in the game state's stateImageKey property.
 * `Turn` - The display for a single turn's output. Used in History and Output.
-* `Output` - The display container for StateImage, History, and the present Turn.
+* `Output` - The display container for History and the present Turn.
 
 ## Built-in Styles
 

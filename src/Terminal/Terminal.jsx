@@ -30,7 +30,6 @@ export class Terminal extends React.Component {
 			state: this.props.state,
 			history: this.history,
 			handleCommand: this.props.handleCommand,
-			stateImageKey: this.props.stateImageKey,
 			outputComponent: this.props.outputComponent
 		}
 		if (this.props.state.scene && this.props.sceneComponents[this.props.state.scene]) {
@@ -63,8 +62,7 @@ Terminal.defaultProps = {
 		Conclusion: ConclusionScene
 	},
 	autoScroll: true,
-	outputComponent: Output,
-	stateImageKey: null
+	outputComponent: Output
 };
 
 Terminal.propTypes = {
