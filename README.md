@@ -61,7 +61,6 @@ The `Terminal` uses the following components to render the user interface:
 
 * `ActivityScene` - The top-level component for Activity scenes.
 * `MultipleChoiceScene` - The top-level component for Multiple Choice scenes.
-* `YesOrNoScene` - The top-level component for Yes-or-No scenes.
 * `PauseScene` - The top-level component for Pause scenes.
 * `CommandForm` - A form with a text input for accepting typed commands.
 * `CommandLink` - A link that triggers a command.
