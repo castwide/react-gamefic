@@ -1,6 +1,6 @@
 import React from 'react';
-import {Output} from '../Output';
-import {CommandLink} from '../CommandLink';
+import { Output } from '../Output';
+import { CommandLink } from '../CommandLink';
 
 export class MultipleChoiceScene extends React.Component {
 	renderChoices() {

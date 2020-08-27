@@ -17,5 +17,5 @@ describe('<MultipleChoiceScene />', () => {
         }
         let scene = shallow(<MultipleChoiceScene {...props} />);
         expect(scene.find(CommandLink).length).toBe(2);
-	})
+    })
 });
