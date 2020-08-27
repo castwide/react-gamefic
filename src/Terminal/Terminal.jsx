@@ -14,9 +14,6 @@ export class Terminal extends React.Component {
 		this.lastPrompt = null;
 	}
 
-	componentDidMount() {
-	}
-
 	componentDidUpdate() {
 		this.history.push(Object.assign({}, this.props.state));
 		if (this.props.autoScroll) {
