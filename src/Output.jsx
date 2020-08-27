@@ -1,6 +1,6 @@
 import React from 'react';
-import {History} from '../History';
-import {Turn} from '../Turn';
+import {History} from './History';
+import {Turn} from './Turn';
 import PropTypes from 'prop-types';
 
 export class Output extends React.Component {

@@ -1,8 +1,8 @@
 import React from 'react';
-import { ActivityScene } from '../ActivityScene';
-import { MultipleChoiceScene } from '../MultipleChoiceScene';
-import { PauseScene } from '../PauseScene';
-import { ConclusionScene } from '../ConclusionScene';
+import { ActivityScene } from './ActivityScene';
+import { MultipleChoiceScene } from './MultipleChoiceScene';
+import { PauseScene } from './PauseScene';
+import { ConclusionScene } from './ConclusionScene';
 import PropTypes from 'prop-types';
 
 export class Terminal extends React.Component {

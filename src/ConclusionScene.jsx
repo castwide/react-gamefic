@@ -1,5 +1,5 @@
 import React from 'react';
-import {Output} from '../Output';
+import {Output} from './Output';
 
 export class ConclusionScene extends React.Component {
 	render() {

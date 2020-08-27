@@ -1,7 +1,7 @@
 import React from 'react';
-import {Output} from '../Output';
-import {CommandLink} from '../CommandLink';
-import {CommandForm} from '../CommandForm';
+import { Output } from './Output';
+import { CommandLink } from './CommandLink';
+import { CommandForm } from './CommandForm';
 
 export class PauseScene extends React.Component {
 	render() {
