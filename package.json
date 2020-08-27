@@ -10,7 +10,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "webpack -p"
   },
   "keywords": [
