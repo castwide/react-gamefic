@@ -2,16 +2,6 @@ import React from 'react';
 import {CommandLink} from '../CommandLink';
 
 export class Turn extends React.Component {
-	optionList() {
-		return this.props.state.options.map((opt, index) => {
-			return (
-				<li key={index}>
-					<CommandLink command={opt} handleCommand={this.props.handleCommand} />
-				</li>				
-			);
-		});
-	}
-
 	nodeIsCommandWidget(node) {
 		if (node.nodeName.toLowerCase() == 'a' && node.classList.contains('gamefic-command')) {
 			return true;
