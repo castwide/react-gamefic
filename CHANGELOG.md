@@ -1,3 +1,11 @@
+## 0.3.0 - August 27, 2020
+- Deprecate YesOrNoScene
+- MultipleChoiceScene renders options
+- Deprecate stateImageKey and outputComponent
+- Update packages
+- Export all components
+- Unit tests
+
 ## 0.2.3 - May 6, 2020
 - Command handler accepts blank data-command attributes
 - Update scene command form attributes
