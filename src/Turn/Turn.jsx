@@ -1,5 +1,4 @@
 import React from 'react';
-import {CommandLink} from '../CommandLink';
 
 export class Turn extends React.Component {
 	nodeIsCommandWidget(node) {
