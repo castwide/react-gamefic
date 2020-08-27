@@ -5,14 +5,15 @@ import {CommandLink} from '../CommandLink';
 export class MultipleChoiceScene extends React.Component {
 	renderChoices() {
 		if (this.props.state.options) {
-			const listItems = this.props.state.options.map((opt, index) =>
-				<li key={index}>
-					<CommandLink command={opt}>{opt}</CommandLink>
-				</li>
-			);
+			const listItems = this.props.state.options.map((opt, index) => {
+				return (
+					<li key={index}>
+						<CommandLink command={opt}>{opt}</CommandLink>
+					</li>
+				);
+			});
 			return (
 				<nav>
-					{this.props.state.options}
 					<ol>
 						{listItems}
 					</ol>
@@ -20,6 +21,7 @@ export class MultipleChoiceScene extends React.Component {
 			);
 		} else {
 			console.warn("Error: Multiple choice scene does not have any options");
+			return '';
 		}
 	}
 

@@ -46,15 +46,10 @@ export class Turn extends React.Component {
 		if (this.props.state.last_prompt || this.props.state.last_input) {
 			kbd = <p><kbd>{this.props.state.last_prompt} {this.props.state.last_input}</kbd></p>;
 		}
-		var ol;
-		if (this.props.state.scene == 'MultipleChoice') {
-			ol = <nav><ol>{this.optionList()}</ol></nav>;
-		}
 		return (
 			<div className={'Turn ' + this.props.time} onClickCapture={(event) => this.handleClickCapture(event)}>
 				{kbd}
 				<div dangerouslySetInnerHTML={{ __html: this.props.state.messages }}></div>
-				{ol}
 			</div>
 		);
 	}
