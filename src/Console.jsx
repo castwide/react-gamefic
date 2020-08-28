@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 export class Console extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			state: {},
+			history: []
+		};
+		this.history = [];
 		this.props.driver.onUpdate(this.handleUpdate.bind(this));
 	}
 
@@ -18,7 +22,11 @@ export class Console extends React.Component {
 		Object.keys(this.state).forEach((k) => {
 			newState[k] = newState[k] || null;
 		});
-		this.setState(newState);
+		this.setState({
+			state: newState,
+			history: this.history
+		});
+		this.history.push(newState);
 	}
 
 	handleCommand(input) {
@@ -58,7 +66,7 @@ export class Console extends React.Component {
 
 	render() {
 		var propKids = React.Children.map(this.props.children, (child) => {
-			return React.cloneElement(child, { handleCommand: this.handleCommand.bind(this), state: this.state });
+			return React.cloneElement(child, Object.assign({}, this.state, { handleCommand: this.handleCommand.bind(this) }));
 		});
 		return (
 			<div className="Console" onClickCapture={(event) => this.handleClickCapture(event)} onSubmitCapture={(event) => this.handleSubmitCapture(event)}>
