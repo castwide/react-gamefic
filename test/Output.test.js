@@ -16,7 +16,7 @@ describe('<Output />', () => {
     });
 
     it('disables History on request', () => {
-        let output = shallow(<Output history={false} />);
+        let output = shallow(<Output transcribe={false} />);
         expect(output.find(History).length).toBe(0);
         expect(output.find(Turn).length).toBe(1);
     });

@@ -9,7 +9,7 @@ export class Output extends React.Component {
 	}
 
 	renderHistory() {
-		if (this.props.history) {
+		if (this.props.transcribe) {
 			return <History {...this.props} />;
 		}
 	}
@@ -25,9 +25,10 @@ export class Output extends React.Component {
 }
 
 Output.defaultProps = {
-	history: true
+	transcribe: true
 };
 
 Output.propTypes = {
-	history: PropTypes.bool
-}
+	history: PropTypes.arrayOf(PropTypes.any),
+	transcribe: PropTypes.bool
+};
