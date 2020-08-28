@@ -1,4 +1,5 @@
 import { ActivityScene } from './ActivityScene';
+import { ChoiceList } from './ChoiceList';
 import { CommandForm } from './CommandForm';
 import { CommandLink } from './CommandLink';
 import { ConclusionScene } from './ConclusionScene';
@@ -12,6 +13,7 @@ import { Turn } from './Turn';
 
 export {
 	ActivityScene,
+	ChoiceList,
 	CommandForm,
 	CommandLink,
 	ConclusionScene,

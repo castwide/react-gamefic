@@ -5,6 +5,7 @@
 - Move history to Console
 - History transcribe property
 - Customizable scene components
+- ChoiceList component
 
 ## 0.3.0 - August 27, 2020
 - Deprecate YesOrNoScene
