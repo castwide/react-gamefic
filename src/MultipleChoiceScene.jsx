@@ -15,7 +15,7 @@ export class MultipleChoiceScene extends React.Component {
 	render() {
 		return (
 			<div className="MultipleChoiceScene">
-				{ this.props.children || this.renderChildren() }
+				{this.props.children || this.renderChildren()}
 			</div>
 		);
 	}

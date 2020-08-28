@@ -15,7 +15,7 @@ export class PauseScene extends React.Component {
 	render() {
 		return (
 			<div className="PauseScene">
-				{ this.props.children || this.renderChildren() }
+				{this.props.children || this.renderChildren()}
 			</div>
 		);
 	}

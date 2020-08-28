@@ -1,5 +1,5 @@
 import React from 'react';
-import {Output} from './Output';
+import { Output } from './Output';
 
 export class ConclusionScene extends React.Component {
 	renderChildren() {
@@ -9,7 +9,7 @@ export class ConclusionScene extends React.Component {
 	render() {
 		return (
 			<div className="ConclusionScene">
-				{ this.props.children || this.renderChildren() }
+				{this.props.children || this.renderChildren()}
 			</div>
 		);
 	}

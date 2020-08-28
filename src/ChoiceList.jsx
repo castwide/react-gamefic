@@ -3,7 +3,7 @@ import { CommandLink } from './CommandLink';
 import { PropTypes } from 'prop-types';
 
 export class ChoiceList extends React.Component {
-	renderChoices() {
+    renderChoices() {
         const listItems = this.props.options.map((opt, index) => {
             return (
                 <li key={index}>
@@ -18,16 +18,16 @@ export class ChoiceList extends React.Component {
                 </ol>
             </nav>
         );
-	}
+    }
 
-	render() {
-		return (
-			<div className="ChoiceList">
-				<label>{this.props.prompt}</label>
-				{this.renderChoices()}
-			</div>
-		);
-	}
+    render() {
+        return (
+            <div className="ChoiceList">
+                <label>{this.props.prompt}</label>
+                {this.renderChoices()}
+            </div>
+        );
+    }
 }
 
 ChoiceList.defaultProps = {
