@@ -12,4 +12,9 @@ describe('<ConclusionScene />', () => {
         let scene = shallow(<ConclusionScene />);
         expect(scene.find(Output).length).toBe(1);
     })
+
+    it('renders children', () => {
+        let scene = shallow(<ConclusionScene><img /></ConclusionScene>);
+        expect(scene.find('img').length).toBe(1);
+    });
 });

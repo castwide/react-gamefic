@@ -1,36 +1,21 @@
 import React from 'react';
 import { Output } from './Output';
-import { CommandLink } from './CommandLink';
+import { ChoiceList } from './ChoiceList';
 
 export class MultipleChoiceScene extends React.Component {
-	renderChoices() {
-		if (this.props.state.options) {
-			const listItems = this.props.state.options.map((opt, index) => {
-				return (
-					<li key={index}>
-						<CommandLink command={opt}>{opt}</CommandLink>
-					</li>
-				);
-			});
-			return (
-				<nav>
-					<ol>
-						{listItems}
-					</ol>
-				</nav>
-			);
-		} else {
-			console.warn("Error: Multiple choice scene does not have any options");
-			return '';
-		}
+	renderChildren() {
+		return (
+			<>
+				<Output {...this.props} />,
+				<ChoiceList options={this.props.state.options} prompt={this.props.state.prompt} />
+			</>
+		);
 	}
 
 	render() {
 		return (
 			<div className="MultipleChoiceScene">
-				<Output {...this.props} />
-				<label>{this.props.state.prompt}</label>
-				{this.renderChoices()}
+				{ this.props.children || this.renderChildren() }
 			</div>
 		);
 	}

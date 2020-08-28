@@ -1,19 +1,21 @@
 import React from 'react';
 import { Output } from './Output';
 import { CommandLink } from './CommandLink';
-import { CommandForm } from './CommandForm';
 
 export class PauseScene extends React.Component {
+	renderChildren() {
+		return (
+			<>
+				<Output {...this.props} transcribe={true} />
+				<CommandLink command="">Continue</CommandLink>
+			</>
+		);
+	}
+
 	render() {
 		return (
 			<div className="PauseScene">
-				<Output {...this.props} />
-				<nav>
-					<ul>
-						<li><CommandLink command="" text="Continue" handleCommand={this.props.handleCommand} /></li>
-					</ul>
-				</nav>
-				<CommandForm prompt={this.props.state.prompt} />
+				{ this.props.children || this.renderChildren() }
 			</div>
 		);
 	}

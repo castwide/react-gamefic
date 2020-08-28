@@ -1,11 +1,12 @@
 import React from 'react';
 import { Turn } from './Turn';
+import PropTypes from 'prop-types';
 
 export class History extends React.Component {
 	renderTurns() {
-		return this.props.history.map((opt, index) => {
+		return this.props.states.map((opt, index) => {
 			return (
-				<Turn key={index} time={index < this.props.history.length ? 'Past' : 'Present'} handleCommand={this.props.handleCommand} state={opt} />
+				<Turn key={index} time="Past" handleCommand={this.props.handleCommand} state={opt} />
 			);
 		});
 	}
@@ -18,3 +19,11 @@ export class History extends React.Component {
 		);
 	}
 }
+
+History.defaultProps = {
+	states: []
+};
+
+History.propTypes = {
+	states: PropTypes.arrayOf(PropTypes.any),
+};

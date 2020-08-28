@@ -1,3 +1,11 @@
+## 0.3.1
+- Optional history output
+- MultipleChoiceScene renders options
+- Unit tests
+- Move history to Console
+- History transcribe property
+- Customizable scene components
+
 ## 0.3.0 - August 27, 2020
 - Deprecate YesOrNoScene
 - MultipleChoiceScene renders options

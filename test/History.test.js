@@ -9,7 +9,7 @@ configure({ adapter: new Adapter() });
 
 describe('<History />', () => {
     it('renders turns', () => {
-        let history = [
+        let states = [
             {
                 messages: "<p>First</p>"
             },
@@ -17,7 +17,7 @@ describe('<History />', () => {
                 messages: "<p>Second</p>"
             }
         ]
-        let element = shallow(<History history={history} />);
+        let element = shallow(<History states={states} />);
         expect(element.find(Turn).length).toBe(2);
     })
 });

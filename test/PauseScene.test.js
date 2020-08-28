@@ -14,5 +14,10 @@ describe('<PauseScene />', () => {
         };
         let scene = shallow(<PauseScene {...props} />);
         expect(scene.find(Output).length).toBe(1);
-    })
+    });
+
+    it('renders children', () => {
+        let scene = shallow(<PauseScene><img /></PauseScene>);
+        expect(scene.find('img').length).toBe(1);
+    });
 });
