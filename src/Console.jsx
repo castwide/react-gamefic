@@ -12,12 +12,6 @@ export class Console extends React.Component {
 		this.props.driver.onUpdate(this.handleUpdate.bind(this));
 	}
 
-	componentDidUpdate() {
-		if (this.props.consoleDidUpdate) {
-			this.props.consoleDidUpdate();
-		}
-	}
-
 	handleUpdate(newState) {
 		Object.keys(this.state).forEach((k) => {
 			newState[k] = newState[k] || null;
@@ -77,6 +71,5 @@ export class Console extends React.Component {
 }
 
 Console.propTypes = {
-	driver: PropTypes.object.isRequired,
-	consoleDidUpdate: PropTypes.func
+	driver: PropTypes.object.isRequired
 }

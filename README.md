@@ -35,8 +35,6 @@ The `Console` is the top-level game container. It accepts two props, `driver` an
 
 The `driver` prop accepts a Driver object as defined in the [gamefic-driver](https://github.com/castwide/gamefic-driver) package.
 
-The `consoleDidUpdate` prop is an optional callback to execute when the game state changes.
-
 ### The `Terminal` Component
 
 `Terminal` is a text-based user interface. It should be familiar to [Inform](http://inform7.com/) users and anyone who's played traditional adventure games.

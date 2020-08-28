@@ -1,4 +1,4 @@
-## 0.3.1
+## 0.4.0
 - Optional history output
 - MultipleChoiceScene renders options
 - Unit tests
@@ -6,6 +6,7 @@
 - History transcribe property
 - Customizable scene components
 - ChoiceList component
+- Removed consoleDidUpdate prop
 
 ## 0.3.0 - August 27, 2020
 - Deprecate YesOrNoScene
