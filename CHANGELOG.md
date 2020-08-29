@@ -1,4 +1,4 @@
-## 0.4.0
+## 0.4.0 - August 29, 2020
 - Optional history output
 - MultipleChoiceScene renders options
 - Unit tests
