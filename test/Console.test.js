@@ -1,5 +1,5 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
+import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import { Console } from '../src/Console';
@@ -21,5 +21,21 @@ describe('<Console />', () => {
         });
         shallow(<Console driver={driver} />);
         expect(configured).toBe(true);
+    });
+
+    it('builds a state history', () => {
+        let driver = {};
+        driver.onUpdate = jest.fn((callback) => {
+            driver.update = callback;
+        });
+        let element = mount(<Console driver={driver} />);
+
+        driver.update({ messages: "first" });
+        expect(element.state().state.messages).toEqual("first");
+        expect(element.state().history).toEqual([]);
+
+        driver.update({ messages: "second" });
+        expect(element.state().state.messages).toEqual("second");
+        expect(element.state().history).toEqual([{ messages: "first" }]);
     });
 });

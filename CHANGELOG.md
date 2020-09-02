@@ -1,3 +1,6 @@
+## 0.4.1 - September 2, 2020
+- Fix duplicate state bug
+
 ## 0.4.0 - August 29, 2020
 - Optional history output
 - MultipleChoiceScene renders options

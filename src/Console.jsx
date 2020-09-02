@@ -13,12 +13,12 @@ export class Console extends React.Component {
 	}
 
 	handleUpdate(newState) {
-		Object.keys(this.state).forEach((k) => {
+		Object.keys(this.state.state).forEach((k) => {
 			newState[k] = newState[k] || null;
 		});
 		this.setState({
 			state: newState,
-			history: this.history
+			history: [...this.history]
 		});
 		this.history.push(newState);
 	}
