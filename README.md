@@ -15,6 +15,7 @@ Run the following commands to create a new Gamefic project that targets the Reac
     $ gamefic init my-game
 	$ cd my-game
 	$ rake web:generate
+    $ npm install
     $ rake web:build
 
 The `web:generate` task creates the React application in the web directory. The `web:build` task compiles the application in builds/web.
