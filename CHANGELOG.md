@@ -1,3 +1,6 @@
+## 0.4.2 - October 11, 2020
+- Autoscroll vertically to end instead of center
+
 ## 0.4.1 - September 2, 2020
 - Fix duplicate state bug
 

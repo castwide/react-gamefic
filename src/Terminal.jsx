@@ -12,7 +12,7 @@ export class Terminal extends React.Component {
 
 	componentDidUpdate() {
 		if (this.props.autoScroll) {
-			this.bottomElement.scrollIntoView({ behavior: 'smooth' });
+			this.bottomElement.scrollIntoView({ block: 'end', behavior: 'smooth' });
 		}
 	}
 
