@@ -1,6 +1,6 @@
 {
   "name": "react-gamefic",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "React components for Gamefic",
   "main": "build/index.js",
   "files": [
@@ -38,7 +38,7 @@
     "@babel/plugin-transform-react-jsx": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.4.2",
+    "babel-jest": "^26.5.2",
     "babel-loader": "^8.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.3",
