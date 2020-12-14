@@ -1,5 +1,7 @@
-## 0.4.3
+## 0.5.0 - December 14, 2020
 - Update babel-jest
+- Update webpack
+- Remove scrolling from Console
 
 ## 0.4.2 - October 11, 2020
 - Autoscroll vertically to end instead of center
