@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "test": "jest --coverage",
-    "build": "webpack -p"
+    "build": "webpack --mode production"
   },
   "keywords": [
     "React",
@@ -32,7 +32,7 @@
     "react": "16.x"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
+    "@babel/cli": "^7.12.10",
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-transform-react-jsx": "^7.0.0",
@@ -44,7 +44,7 @@
     "enzyme-adapter-react-16": "^1.15.3",
     "jest": "^26.4.2",
     "react-dom": "^16.13.1",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack": "^5.10.1",
+    "webpack-cli": "^4.2.0"
   }
 }
