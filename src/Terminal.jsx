@@ -52,5 +52,6 @@ Terminal.defaultProps = {
 };
 
 Terminal.propTypes = {
+	sceneComponents: PropTypes.object,
 	autoScroll: PropTypes.bool
 }
