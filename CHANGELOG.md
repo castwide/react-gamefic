@@ -1,3 +1,6 @@
+## 0.5.1 - January 29, 2022
+- Package updates
+
 ## 0.5.0 - December 14, 2020
 - Update babel-jest
 - Update webpack
