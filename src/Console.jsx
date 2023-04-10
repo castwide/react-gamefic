@@ -5,22 +5,22 @@ export class Console extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			state: {},
+			output: {},
 			history: []
 		};
 		this.history = [];
 		this.props.driver.onUpdate(this.handleUpdate.bind(this));
 	}
 
-	handleUpdate(newState) {
-		Object.keys(this.state.state).forEach((k) => {
-			newState[k] = newState[k] || null;
+	handleUpdate(output) {
+		Object.keys(this.state.output).forEach((k) => {
+			output[k] = output[k] || null;
 		});
 		this.setState({
-			state: newState,
+			output: output,
 			history: [...this.history]
 		});
-		this.history.push(newState);
+		this.history.push(output);
 	}
 
 	handleCommand(input) {

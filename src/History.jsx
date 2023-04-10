@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 export class History extends React.Component {
 	renderTurns() {
-		return this.props.states.map((opt, index) => {
+		return this.props.outputs.map((opt, index) => {
 			return (
-				<Turn key={index} time="Past" handleCommand={this.props.handleCommand} state={opt} />
+				<Turn key={index} time="Past" handleCommand={this.props.handleCommand} output={opt} />
 			);
 		});
 	}
@@ -21,9 +21,9 @@ export class History extends React.Component {
 }
 
 History.defaultProps = {
-	states: []
+	outputs: []
 };
 
 History.propTypes = {
-	states: PropTypes.arrayOf(PropTypes.any),
+	outputs: PropTypes.arrayOf(PropTypes.any),
 };

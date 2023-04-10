@@ -32,13 +32,13 @@ export class Turn extends React.Component {
 
 	render() {
 		var kbd;
-		if (this.props.state.last_prompt || this.props.state.last_input) {
-			kbd = <p><kbd>{this.props.state.last_prompt} {this.props.state.last_input}</kbd></p>;
+		if (this.props.output.last_prompt || this.props.output.last_input) {
+			kbd = <p><kbd>{this.props.output.last_prompt} {this.props.output.last_input}</kbd></p>;
 		}
 		return (
 			<div className={'Turn ' + this.props.time} onClickCapture={(event) => this.handleClickCapture(event)}>
 				{kbd}
-				<div dangerouslySetInnerHTML={{ __html: this.props.state.messages }}></div>
+				<div dangerouslySetInnerHTML={{ __html: this.props.output.messages }}></div>
 			</div>
 		);
 	}

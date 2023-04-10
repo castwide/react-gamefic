@@ -1,3 +1,6 @@
+## 0.7.0
+- Rename state to output
+
 ## 0.6.0 - April 10, 2023
 - Transitional patch for upcoming scene change
 

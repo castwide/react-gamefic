@@ -10,7 +10,7 @@ export class Output extends React.Component {
 
 	renderHistory() {
 		if (this.props.transcribe) {
-			return <History states={this.props.history} />;
+			return <History outputs={this.props.history} />;
 		}
 	}
 
@@ -18,7 +18,7 @@ export class Output extends React.Component {
 		return (
 			<div className="Output">
 				{this.renderHistory()}
-				<Turn state={this.props.state} handleCommand={this.props.handleCommand} time="Present" />
+				<Turn output={this.props.output} handleCommand={this.props.handleCommand} time="Present" />
 			</div>
 		)
 	}

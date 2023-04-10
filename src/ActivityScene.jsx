@@ -7,7 +7,7 @@ export class ActivityScene extends React.Component {
 		return (
 			<>
 				<Output {...this.props} />
-				<CommandForm prompt={this.props.state ? this.props.state.prompt : ''} />
+				<CommandForm prompt={this.props.output ? this.props.output.prompt : ''} />
 			</>
 		);
 	}

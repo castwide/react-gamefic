@@ -31,11 +31,11 @@ describe('<Console />', () => {
         let element = mount(<Console driver={driver} />);
 
         driver.update({ messages: "first" });
-        expect(element.state().state.messages).toEqual("first");
+        expect(element.state().output.messages).toEqual("first");
         expect(element.state().history).toEqual([]);
 
         driver.update({ messages: "second" });
-        expect(element.state().state.messages).toEqual("second");
+        expect(element.state().output.messages).toEqual("second");
         expect(element.state().history).toEqual([{ messages: "first" }]);
     });
 });

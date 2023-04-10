@@ -14,7 +14,7 @@ describe('<Turn />', () => {
     it('renders messages', () => {
         let message = '<p class="state_message">Test</p>';
         let props = {
-            state: {
+            output: {
                 messages: message
             }
         }
@@ -41,7 +41,7 @@ describe('<Turn />', () => {
                 handleCommand: (cmd) => {
                     received = cmd;
                 },
-                state: {
+                output: {
                     messages: message
                 }
             }
@@ -63,7 +63,7 @@ describe('<Turn />', () => {
                 handleCommand: (cmd) => {
                     received = cmd;
                 },
-                state: {
+                output: {
                     messages: message
                 }
             }

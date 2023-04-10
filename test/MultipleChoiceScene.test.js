@@ -10,13 +10,13 @@ configure({ adapter: new Adapter() });
 
 describe('<MultipleChoiceScene />', () => {
     it('renders a ChoiceList', () => {
-        let props = {
-            state: {
+        const props = {
+            output: {
                 options: ["First", "Second"],
                 prompt: "Choose"
             }
         }
-        let scene = mount(<MultipleChoiceScene {...props} />);
+        const scene = mount(<MultipleChoiceScene {...props} />);
         expect(scene.find(ChoiceList).length).toBe(1);
         expect(scene.find(CommandLink).length).toBe(2);
     });

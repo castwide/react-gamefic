@@ -10,7 +10,7 @@ configure({ adapter: new Adapter() });
 describe('<Terminal />', () => {
     it('selects the scene from the state', () => {
         let props = {
-            state: {
+            output: {
                 scene: 'Activity'
             }
         };
@@ -23,7 +23,7 @@ describe('<Terminal />', () => {
             return <Foo>Foo</Foo>;
         };
         let props = {
-            state: {
+            output: {
                 scene: 'Foo'
             }
         };
@@ -41,7 +41,7 @@ describe('<Terminal />', () => {
             return <Foo>Foo</Foo>;
         };
         let props = {
-            state: {
+            output: {
                 scene: 'Bar'
             }
         };

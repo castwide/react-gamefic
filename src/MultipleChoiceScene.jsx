@@ -7,7 +7,7 @@ export class MultipleChoiceScene extends React.Component {
 		return (
 			<>
 				<Output {...this.props} />,
-				<ChoiceList options={this.props.state.options} prompt={this.props.state.prompt} />
+				<ChoiceList options={this.props.output.options} prompt={this.props.output.prompt} />
 			</>
 		);
 	}

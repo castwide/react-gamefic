@@ -18,7 +18,7 @@ export class Terminal extends React.Component {
 
 
 	select_scene() {
-		const name = this.props.state.scene?.type || this.props.state.scene;
+		const name = this.props.output.scene?.type || this.props.output.scene;
 		const available = this.props.sceneComponents[name];
 		if (available) {
 			return available;
