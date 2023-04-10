@@ -1,3 +1,6 @@
+## 0.6.0 - April 10, 2023
+- Transitional patch for upcoming scene change
+
 ## 0.5.1 - January 29, 2022
 - Package updates
 

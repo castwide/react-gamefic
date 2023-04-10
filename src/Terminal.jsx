@@ -16,27 +16,26 @@ export class Terminal extends React.Component {
 		}
 	}
 
-	render() {
-		if (this.props.state.scene && this.props.sceneComponents[this.props.state.scene]) {
-			return (
-				<div className="Terminal" ref={(el) => this.containerElement = el}>
-					{React.createElement(this.props.sceneComponents[this.props.state.scene], this.props, null)}
-					<div ref={(el) => this.bottomElement = el}></div>
-				</div>
-			);
+
+	select_scene() {
+		const name = this.props.state.scene?.type || this.props.state.scene;
+		const available = this.props.sceneComponents[name];
+		if (available) {
+			return available;
 		} else {
-			if (this.props.state.scene) {
-				console.warn('Warning: The "' + this.props.state.scene + '" scene type is not assigned to a component');
-				return (
-					<div className="Terminal" ref={(el) => this.containerElement = el}>
-						<ActivityScene {...this.props} />
-						<div ref={(el) => this.bottomElement = el}></div>
-					</div>
-				);
-			} else {
-				return null;
-			}
+			console.warn('Warning: The "' + name + '" scene type is not assigned to a component');
+			return ActivityScene;
 		}
+	}
+
+	render() {
+		const sceneComponent = this.select_scene();
+		return (
+			<div className="Terminal" ref={(el) => this.containerElement = el}>
+				{React.createElement(sceneComponent, this.props, null)}
+				<div ref={(el) => this.bottomElement = el}></div>
+			</div>
+		);
 	}
 }
 
