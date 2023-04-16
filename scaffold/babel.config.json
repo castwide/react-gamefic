@@ -1,0 +1,11 @@
+{
+  "sourceType": "unambiguous",
+  "presets": [
+      [
+        "babel-preset-react-app", {
+          "absoluteRuntime": true
+        }
+      ]
+  ],
+  "plugins": ["@babel/plugin-transform-modules-commonjs"]
+}
