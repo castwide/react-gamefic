@@ -1,24 +1,21 @@
-import React from 'react';
+import React, { ReactFragment } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { Driver } from 'gamefic-driver';
-import type SceneProps from './SceneProps';
-
-type SceneMapType = { [key: string]: React.FunctionComponent<SceneProps> }
+// import type SceneProps from './SceneProps';
+import GameContext from './GameContext';
 
 let started = false;
 
 interface ConsoleProps {
 	driver: Driver,
-	namedScenes?: SceneMapType,
-	typedScenes?: SceneMapType,
 	className?: string,
+	children: ReactFragment
 }
 
 export default function Console({
 	driver,
-	namedScenes = {},
-	typedScenes = {},
-	className = 'Console'
+	className = 'Console',
+	children
 }: ConsoleProps) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [outputs, setOutputs] = useState<Array<any>>([]);
@@ -53,7 +50,7 @@ export default function Console({
 				window.localStorage.setItem('snapshot', result);
 			});
 		}
-	}, [outputs]);
+	}, [driver, outputs]);
 
 	useEffect(() => {
 		bottomRef.current?.scrollIntoView({ block: 'end', behavior: 'smooth' });
@@ -73,34 +70,19 @@ export default function Console({
 		return outputs.slice(0, -1) || [];
 	}
 
-	const selectScene = () => {
-		const output = getOutput();
-		const name = output.scene?.name;
-		const type = output.scene?.type || output.scene;
-		const available = namedScenes[name] || typedScenes[type];
-		if (available) {
-			return available;
-		} else {
-			throw(`Scene name "${name}" and type "${type}" are not assigned to a component`);
-		}
-	}
-
-	const handleNewGame = (event) => {
-		event.preventDefault();
+	const handleNew = () => {
 		window.localStorage.removeItem('snapshot');
 		setOutputs([]);
 		driver.start();
 	}
 
-	const handleSaveGame = (event) => {
-		event.preventDefault();
+	const handleSave = () => {
 		driver.snapshot().then((result) => {
 			window.localStorage.setItem('saved', result);
 		});
 	}
 
-	const handleLoadGame = (event) => {
-		event.preventDefault();
+	const handleRestore = () => {
 		const snapshot = window.localStorage.getItem('saved');
 		if (snapshot) {
 			setOutputs([]);
@@ -119,17 +101,22 @@ export default function Console({
 			<div className={className}>loading</div>
 		);
 	} else {
-		const selected = selectScene();
+		const context = {
+			output: getOutput(),
+			history: getHistory(),
+			handleInput: handleInput,
+			handleNew: handleNew,
+			handleRestore: handleRestore,
+			handleSave: handleSave
+		}
+
 		return (
-			<div className={className}>
-				<p>
-					<a href="#" onClick={handleNewGame}>New Game</a>
-					<a href="#" onClick={handleSaveGame}>Save Game</a>
-					<a href="#" onClick={handleLoadGame}>Load Game</a>
-				</p>
-				{React.createElement(selected, {output: getOutput(), history: getHistory(), handleInput: handleInput}, null)}
-				<div ref={bottomRef} />
-			</div>
+			<GameContext.Provider value={context}>
+				<div className={className}>
+					{children}
+					<div ref={bottomRef} />
+				</div>
+			</GameContext.Provider>
 		)
 	}
 }
