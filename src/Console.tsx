@@ -92,6 +92,24 @@ export default function Console({
 		driver.start();
 	}
 
+	const handleSaveGame = (event) => {
+		event.preventDefault();
+		driver.snapshot().then((result) => {
+			window.localStorage.setItem('saved', result);
+		});
+	}
+
+	const handleLoadGame = (event) => {
+		event.preventDefault();
+		const snapshot = window.localStorage.getItem('saved');
+		if (snapshot) {
+			setOutputs([]);
+			driver.restore(snapshot);
+		} else {
+			alert('No saved game.');
+		}
+	}
+
 	if (error) {
 		return (
 			<div className={className}>{error}</div>
@@ -106,6 +124,8 @@ export default function Console({
 			<div className={className}>
 				<p>
 					<a href="#" onClick={handleNewGame}>New Game</a>
+					<a href="#" onClick={handleSaveGame}>Save Game</a>
+					<a href="#" onClick={handleLoadGame}>Load Game</a>
 				</p>
 				{React.createElement(selected, {output: getOutput(), history: getHistory(), handleInput: handleInput}, null)}
 				<div ref={bottomRef} />
