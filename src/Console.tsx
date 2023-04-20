@@ -36,11 +36,24 @@ export default function Console({
 					driver.update();
 				}
 			});
-			driver.start().then(() => {}).catch((error) => {
-				setError(error.toString());
-			});
+			const snapshot = window.localStorage.getItem('snapshot');
+			if (snapshot) {
+				driver.restore(snapshot);
+			} else {
+				driver.start().then(() => {}).catch((error) => {
+					setError(error.toString());
+				});
+			}
 		}
 	});
+
+	useEffect(() => {
+		if (outputs.length > 1) {
+			driver.snapshot().then((result) => {
+				window.localStorage.setItem('snapshot', result);
+			});
+		}
+	}, [outputs]);
 
 	useEffect(() => {
 		bottomRef.current?.scrollIntoView({ block: 'end', behavior: 'smooth' });
@@ -72,6 +85,13 @@ export default function Console({
 		}
 	}
 
+	const handleNewGame = (event) => {
+		event.preventDefault();
+		window.localStorage.removeItem('snapshot');
+		setOutputs([]);
+		driver.start();
+	}
+
 	if (error) {
 		return (
 			<div className={className}>{error}</div>
@@ -84,7 +104,9 @@ export default function Console({
 		const selected = selectScene();
 		return (
 			<div className={className}>
-				{ /* @ts-ignore */}
+				<p>
+					<a href="#" onClick={handleNewGame}>New Game</a>
+				</p>
 				{React.createElement(selected, {output: getOutput(), history: getHistory(), handleInput: handleInput}, null)}
 				<div ref={bottomRef} />
 			</div>
