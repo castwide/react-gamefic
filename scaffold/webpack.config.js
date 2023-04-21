@@ -15,7 +15,7 @@ export default (arg, env) => {
     },
     devtool: 'inline-source-map',
     resolve: {
-      extensions: [".js", ".jsx", ".ts", ".tsx", ".cjs"],
+      extensions: [".js", ".jsx", ".ts", ".tsx", ".cjs", ".rb"],
     },
     plugins: [
       new CopyWebpackPlugin({
@@ -24,13 +24,7 @@ export default (arg, env) => {
             from: path.resolve(__dirname, 'public'),
           }
         ]
-      }),
-      new HtmlWebpackPlugin(
-        {
-          inject: false,
-          template: path.join(__dirname, 'public', 'index.html')
-        }
-      )  
+      })
     ],
     module: {
       rules: [
@@ -46,7 +40,7 @@ export default (arg, env) => {
           use: [{
             loader: 'url-loader',
             options: {
-              limit: 8000, // Convert images < 8kb to base64 strings
+              limit: 8000,
               name: 'images/[hash]-[name].[ext]'
             }
           }]
@@ -62,7 +56,6 @@ export default (arg, env) => {
           }]
         },
         {
-          // opal-webpack-bundler will compile and include ruby files in the pack
           test: /\.rb$/,
           use: [
             {

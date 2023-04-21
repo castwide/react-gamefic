@@ -1,7 +1,7 @@
 import React from 'react';
 import CommandLink from './CommandLink';
 
-export default function OptionList({options, handleInput}: any) {
+export default function OptionList({options, handleInput, className = ''}: any) {
     const renderOptions = () => {
         const listItems = options.map((opt: any, index: any) => {
             return (
@@ -22,5 +22,10 @@ export default function OptionList({options, handleInput}: any) {
         )
     };
 
-    return (options?.length > 0 ? renderOptions() : null);
+    return (options?.length > 0 ?
+        <div className={className}>
+            {renderOptions()}
+        </div>
+        : null
+    );
 }

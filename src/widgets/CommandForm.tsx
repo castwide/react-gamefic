@@ -3,10 +3,11 @@ import { useRef } from 'react';
 
 interface CommandFormProps {
 	prompt: string,
-	handleInput: Function
+	handleInput: Function,
+	className: string
 }
 
-export default function CommandForm({prompt, handleInput}: CommandFormProps) {
+export default function CommandForm({prompt, handleInput, className= ''}: CommandFormProps) {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleSubmit = (event: any) => {
@@ -17,7 +18,7 @@ export default function CommandForm({prompt, handleInput}: CommandFormProps) {
 	}
 
 	return (
-		<form className="CommandForm" onSubmit={handleSubmit}>
+		<form className={className} onSubmit={handleSubmit}>
 			<label>{prompt}</label>
 			<input role="input" type="text" ref={inputRef} />
 			<button type="submit">Enter</button>

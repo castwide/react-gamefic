@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRef } from 'react';
 
-export default function CommandLink({command, handleInput, children}: any) {
+export default function CommandLink({command, handleInput, className = '', children}: any) {
 	const linkRef = useRef(null);
 
 	const handleSubmit = (event: any) => {
@@ -11,6 +11,6 @@ export default function CommandLink({command, handleInput, children}: any) {
 	}
 
 	return (
-		<a href="#" data-command={command} ref={linkRef} onClick={handleSubmit}>{children || command}</a>
+		<a className={className} href="#" data-command={command} ref={linkRef} onClick={handleSubmit}>{children || command}</a>
 	);
 };

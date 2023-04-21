@@ -1,5 +1,5 @@
 {
-  "name": "${name}",
+  "name": "gftest",
   "version": "1.0.0",
   "description": "A Gamefic web app",
   "keywords": [],
@@ -13,23 +13,24 @@
     "start": "webpack-dev-server --mode development"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
+    "@babel/core": "^7.21.4",
     "@babel/plugin-transform-modules-commonjs": "^7.21.2",
-    "babel-loader": "^8.2.3",
+    "@types/react": "^18.0.37",
+    "babel-loader": "^8.3.0",
     "babel-preset-react-app": "^10.0.1",
     "copy-webpack-plugin": "^7.0.0",
-    "css-loader": "^5.0.1",
+    "css-loader": "^5.2.7",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.1",
     "opal-webpack-bundler": "file:../../../opal-webpack-bundler",
     "style-loader": "^0.23.1",
     "url-loader": "^4.1.1",
-    "webpack": "^5.10.1",
-    "webpack-cli": "^4.2.0",
+    "webpack": "^5.80.0",
+    "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.13.3"
   },
   "dependencies": {
-    "gamefic-driver": "0.5.0-beta.2",
+    "gamefic-driver": "^0.5.0-beta.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-gamefic": "file:../../react-gamefic"

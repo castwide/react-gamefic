@@ -3,28 +3,29 @@ html {
 	padding: 0;
 	font-size: 14pt;
 }
+
 body {
 	margin: 0;
 	padding: 0;
 }
+
 a {
 	color: blue;
 }
-.Console {
+
+.console {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 1em;
 	height: calc(100vh - 2em);
 }
-.CommandForm {
+
+.console form {
 	display: flex;
 	margin-bottom: 1em;
 }
-.CommandForm label {
-	margin-right: 1em;
-	font-family: inherit;
-}
-.CommandForm input {
+
+.console input {
 	flex-grow: 100;
 	background-color: inherit;
 	border: none;
@@ -32,13 +33,4 @@ a {
 	color: black;
 	font-family: inherit;
 	font-size: inherit;
-}
-.Console.working .CommandForm {
-	visibility: hidden;
-}
-.PauseScene > nav {
-	display: none;
-}
-.Turn.Past .gamefic-command {
-	color: gray;
 }

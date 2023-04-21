@@ -5,11 +5,9 @@ const spawnSync = require('child_process').spawnSync;
 
 const dependencies = [    "gamefic-driver", "react", "react-dom", "react-gamefic"];
 const devDependencies = [
-  "@babel/core", "@babel/plugin-transform-modules-commonjs", "babel-loader",
-  "babel-preset-react-app", "copy-webpack-plugin", "css-loader", "file-loader",
-  "html-webpack-plugin", "opal-webpack-bundler", "style-loader", "url-loader",
-  "webpack", "webpack-cli",
-  "webpack-dev-server"
+  "@babel/core", "@babel/plugin-transform-modules-commonjs", "@types/react", "babel-loader",
+  "babel-preset-react-app", "copy-webpack-plugin", "css-loader", "opal-webpack-bundler",
+  "style-loader", "url-loader", "webpack", "webpack-cli", "webpack-dev-server"
 ];
 
 function existingFiles(scaffold, target) {
@@ -50,8 +48,8 @@ module.exports = async function create(options) {
     console.log('Updating files...');
     updateFiles(target, options);
     console.log('Installing dependencies...');
-    spawnSync('npm', ['install', '--save-dev', ...devDependencies], { shell: true });
-    spawnSync('npm', ['install', '--save', ...dependencies], { shell: true });
+    spawnSync('npm', ['install', '--save-dev', ...devDependencies], { shell: true, stdio: 'inherit' });
+    spawnSync('npm', ['install', '--save', ...dependencies], { shell: true, stdio: 'inherit' });
     console.log('Done.');
   }
   return true;

@@ -1,7 +1,7 @@
 import React from "react";
 import GameContext from './GameContext';
 
-export default function Terminal({namedScenes, typedScenes}) {
+export default function Terminal({namedScenes, typedScenes, className = ''}) {
   const selectScene = (scene: any) => {
     const name = scene?.name;
     const type = scene?.type || scene;
@@ -14,8 +14,10 @@ export default function Terminal({namedScenes, typedScenes}) {
   }
 
   return (
-    <GameContext.Consumer>
-      {(context) => React.createElement(selectScene(context.output.scene), {output: context.output, history: context.history, handleInput: context.handleInput}, null)}
-    </GameContext.Consumer>
+      <div className={className}>
+        <GameContext.Consumer>
+          {(context) => React.createElement(selectScene(context.output.scene), {output: context.output, history: context.history, handleInput: context.handleInput}, null)}
+        </GameContext.Consumer>
+      </div>
   );
 }

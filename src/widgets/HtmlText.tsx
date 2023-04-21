@@ -7,7 +7,7 @@ const sanitizeOptions: IOptions = {
   allowedAttributes: {...sanitizeHtml.defaults.allowedAttributes, a: ['href', 'name', 'target', 'data-command']}
 }
 
-export default function HtmlText({text, handleInput = null}: {text: string, handleInput?: Function | null}) {
+export default function HtmlText({text, handleInput = null, className=''}: any) {
   const htmlRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,6 +24,6 @@ export default function HtmlText({text, handleInput = null}: {text: string, hand
   }
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(text, sanitizeOptions) }} ref={htmlRef}></div>
+    <div className={className} dangerouslySetInnerHTML={{ __html: sanitizeHtml(text, sanitizeOptions) }} ref={htmlRef}></div>
   );
 }

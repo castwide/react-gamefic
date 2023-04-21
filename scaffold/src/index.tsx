@@ -1,11 +1,14 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { Console } from 'react-gamefic';
-import { Activity, Conclusion, Pause, MultipleChoice, YesOrNo } from './scenes';
 import driver from './driver';
 
+import { Console, Terminal } from 'react-gamefic';
+import { Activity, Conclusion, Pause, MultipleChoice, YesOrNo } from './scenes';
+import { Menu } from './widgets';
+
 import 'react-gamefic/styles/ebook';
+import './style.css';
 
 const namedScenes = {}
 
@@ -18,4 +21,9 @@ const typedScenes = {
 }
 
 const root = createRoot(document.getElementById('root'));
-root.render(<Console driver={driver} namedScenes={namedScenes} typedScenes={typedScenes} />);
+root.render(
+	<Console className="console" driver={driver}>
+		<Menu />
+		<Terminal namedScenes={namedScenes} typedScenes={typedScenes} />
+	</Console>
+);

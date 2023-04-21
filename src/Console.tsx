@@ -14,7 +14,7 @@ interface ConsoleProps {
 
 export default function Console({
 	driver,
-	className = 'Console',
+	className = 'console',
 	children
 }: ConsoleProps) {
 	const [isLoading, setIsLoading] = useState(true);

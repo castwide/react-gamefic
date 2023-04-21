@@ -1,7 +1,7 @@
 import React from 'react';
 import { Turn } from '.';
 
-export default function History({turns}: any) {
+export default function History({turns, className = ''}: any) {
 	const renderHistory = () => {
 		const renderTurns = turns.map((turn: any, index: any) => {
 			return (
@@ -16,5 +16,10 @@ export default function History({turns}: any) {
 		)
 	}
 
-	return (turns?.length > 0 ? renderHistory() : null);
+	return (turns?.length > 0 ? 
+		<div className={className}>
+			{renderHistory()}
+		</div>
+		: null
+	);
 }

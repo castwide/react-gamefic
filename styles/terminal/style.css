@@ -2,18 +2,22 @@ html {
 	color: green;
 	font-family: monospace;
 }
+
 body {
 	background-color: #030303;
 }
+
 a {
 	color: inherit;
 	text-decoration: underline;
 	cursor: pointer;
 }
-.Console {
+
+.console {
 	background-color: black;
 }
-.CommandForm input {
+
+.console input {
 	background-color: inherit;
 	border-bottom: 1px solid green;
 	color: green;

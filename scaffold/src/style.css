@@ -1,0 +1,12 @@
+.console form button {
+  display: none;
+}
+
+header nav {
+  font-size: 60%;
+  text-align: right;
+}
+
+header nav button {
+  margin-left: 1em;
+}
