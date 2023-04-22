@@ -1,5 +1,5 @@
 html {
-	color: green;
+	color: rgb(3, 214, 3);
 	font-family: monospace;
 }
 
@@ -20,5 +20,5 @@ a {
 .console input {
 	background-color: inherit;
 	border-bottom: 1px solid green;
-	color: green;
+	color: rgb(3, 214, 3);
 }
