@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface CommandFormProps {
 	prompt: string,
@@ -9,6 +9,10 @@ interface CommandFormProps {
 
 export default function CommandForm({prompt, handleInput, className= ''}: CommandFormProps) {
 	const inputRef = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		inputRef.current?.focus();
+	});
 
 	const handleSubmit = (event: any) => {
 		event.preventDefault();
