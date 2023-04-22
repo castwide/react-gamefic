@@ -34,8 +34,10 @@ export default function Console({
 				}
 			});
 			const snapshot = window.localStorage.getItem('snapshot');
+			const history = JSON.parse(window.sessionStorage.getItem('history') || '[]');
 			if (snapshot) {
 				driver.restore(snapshot);
+				setOutputs(previous => [...history, previous[previous.length - 1]]);
 			} else {
 				driver.start().then(() => {}).catch((error) => {
 					setError(error.toString());
@@ -46,15 +48,25 @@ export default function Console({
 
 	useEffect(() => {
 		if (outputs.length > 1) {
-			driver.snapshot().then((result) => {
-				window.localStorage.setItem('snapshot', result);
-			});
+			if (concluded()) {
+				window.localStorage.removeItem('snapshot');
+				window.sessionStorage.removeItem('history');
+			} else {
+				driver.snapshot().then((result) => {
+					window.localStorage.setItem('snapshot', result);
+					window.sessionStorage.setItem('history', JSON.stringify(getHistory()));
+				});
+			}
 		}
 	}, [driver, outputs]);
 
 	useEffect(() => {
 		bottomRef.current?.scrollIntoView({ block: 'end', behavior: 'smooth' });
 	}, [outputs]);
+
+	const concluded = () => {
+		return getOutput().scene.type == 'Conclusion';
+	}
 
 	const handleInput = (input: string) => {
 		driver.receive(input).then((response: any) => {
@@ -72,24 +84,41 @@ export default function Console({
 
 	const handleNew = () => {
 		window.localStorage.removeItem('snapshot');
+		window.sessionStorage.removeItem('history');
 		setOutputs([]);
 		driver.start();
 	}
 
-	const handleSave = () => {
+	const handleSave = (name: string) => {
+		const trimmed = name.trim();
 		driver.snapshot().then((result) => {
-			window.localStorage.setItem('saved', result);
+			window.localStorage.setItem(`saved:${trimmed}`, result);
 		});
 	}
 
-	const handleRestore = () => {
-		const snapshot = window.localStorage.getItem('saved');
+	const handleRestore = (name: string) => {
+		const snapshot = window.localStorage.getItem(`saved:${name}`);
 		if (snapshot) {
 			setOutputs([]);
 			driver.restore(snapshot);
 		} else {
-			alert('No saved game.');
+			alert(`Save file '${name}' does not exist.`);
 		}
+	}
+
+	const handleDelete = (name: string) => {
+		window.localStorage.removeItem(`saved:${name}`)
+	}
+
+	const getSaveNames = () => {
+		const names = [];
+		for (var i = 0; i < window.localStorage.length; i++) {
+			const key = window.localStorage.key(i)
+			if (key?.startsWith('saved:')) {
+				names.push(key.substring(6));
+			}
+		}
+		return names;
 	}
 
 	if (error) {
@@ -107,7 +136,9 @@ export default function Console({
 			handleInput: handleInput,
 			handleNew: handleNew,
 			handleRestore: handleRestore,
-			handleSave: handleSave
+			handleSave: handleSave,
+			handleDelete: handleDelete,
+			getSaveNames: getSaveNames
 		}
 
 		return (
