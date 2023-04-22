@@ -89,3 +89,8 @@ resolve: {
     }
 }
 ```
+
+## More Info
+
+Refer to the [official website](https://gamefic.com) or the [Gamefic SDK repo](https://gamefic.com/castwide/gamefic-sdk) for more information
+about developing with Gamefic.
