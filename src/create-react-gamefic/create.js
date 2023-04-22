@@ -3,11 +3,11 @@ const path = require('path');
 const klawSync = require('klaw-sync');
 const spawnSync = require('child_process').spawnSync;
 
-const dependencies = [    "gamefic-driver", "react", "react-dom", "react-gamefic"];
+const dependencies = ["gamefic-driver", "react", "react-dom", "react-gamefic", "react-modal"];
 const devDependencies = [
-  "@babel/core", "@babel/plugin-transform-modules-commonjs", "@types/react", "babel-loader",
-  "babel-preset-react-app", "copy-webpack-plugin", "css-loader", "opal-webpack-bundler",
-  "style-loader", "url-loader", "webpack", "webpack-cli", "webpack-dev-server"
+  "@babel/core", "@babel/plugin-transform-modules-commonjs", "@babel/preset-env", "@types/react",
+  "babel-loader", "babel-preset-react-app", "copy-webpack-plugin", "css-loader", "file-loader",
+  "opal-webpack-bundler", "style-loader", "url-loader", "webpack", "webpack-cli", "webpack-dev-server"
 ];
 
 function existingFiles(scaffold, target) {
@@ -26,7 +26,7 @@ async function copyScaffold(scaffold, target) {
 }
 
 async function updateFiles(target, options) {
-  ['package.json', 'public/index.html', 'public/manifest.json'].forEach((file) => {
+  ['package.json', 'public/index.html', 'public/manifest.json', 'web/src/Menu.tsx'].forEach((file) => {
     const filePath = path.join(target, file);
     const buffer = fse.readFileSync(filePath, 'utf-8').replace('${name}', options.name);
     fse.writeFileSync(filePath, buffer);

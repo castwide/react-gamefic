@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 
 import driver from './driver';
@@ -24,6 +25,6 @@ const root = createRoot(document.getElementById('root'));
 root.render(
 	<Console className="console" driver={driver}>
 		<Menu />
-		<Terminal namedScenes={namedScenes} typedScenes={typedScenes} />
+		<Terminal className="terminal" namedScenes={namedScenes} typedScenes={typedScenes} />
 	</Console>
 );

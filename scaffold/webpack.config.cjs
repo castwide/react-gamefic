@@ -1,11 +1,7 @@
-import path from 'path';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-import * as url from 'url';
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
-
-export default (arg, env) => {
+module.exports = (arg, env) => {
   process.env.NODE_ENV = env.NODE_ENV || arg.mode || 'development';
   return {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
@@ -16,6 +12,10 @@ export default (arg, env) => {
     devtool: 'inline-source-map',
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx", ".cjs", ".rb"],
+      alias: {
+        'react': path.resolve('./node_modules/react'),
+        'react-dom': path.resolve('./node_modules/react-dom')
+      }
     },
     plugins: [
       new CopyWebpackPlugin({
@@ -50,6 +50,15 @@ export default (arg, env) => {
           use: [{
             loader: 'babel-loader',
             options: {
+              presets: [
+                '@babel/preset-env',
+                [
+                  require.resolve('babel-preset-react-app'),
+                  {
+                    absoluteRuntime: false
+                  },
+                ],
+              ],
               include: path.resolve(__dirname, 'src'),
               exclude: /(node_modules|bower_components|build)/,
             },
