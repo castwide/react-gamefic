@@ -11,11 +11,7 @@ module.exports = (arg, env) => {
     },
     devtool: 'inline-source-map',
     resolve: {
-      extensions: [".js", ".jsx", ".ts", ".tsx", ".cjs", ".rb"],
-      alias: {
-        'react': path.resolve('./node_modules/react'),
-        'react-dom': path.resolve('./node_modules/react-dom')
-      }
+      extensions: [".js", ".jsx", ".ts", ".tsx", ".cjs", ".rb"]
     },
     plugins: [
       new CopyWebpackPlugin({
