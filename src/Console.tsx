@@ -93,6 +93,7 @@ export default function Console({
 		const trimmed = name.trim();
 		driver.snapshot().then((result) => {
 			window.localStorage.setItem(`saved:${trimmed}`, result);
+			window.localStorage.setItem(`timestamp:${trimmed}`, Date.now())
 		});
 	}
 
@@ -110,15 +111,22 @@ export default function Console({
 		window.localStorage.removeItem(`saved:${name}`)
 	}
 
-	const getSaveNames = () => {
-		const names = [];
+	const getSavedFiles = () => {
+		const files = [];
 		for (var i = 0; i < window.localStorage.length; i++) {
 			const key = window.localStorage.key(i)
 			if (key?.startsWith('saved:')) {
-				names.push(key.substring(6));
+				const name = key.substring(6);
+				const date = window.localStorage.getItem(`timestamp:${name}`);
+				files.push({
+					name: name,
+					date: date ? (new Date(Number.parseInt(date)).toLocaleString()) : null,
+					timestamp: date
+				});
 			}
 		}
-		return names;
+		files.sort((a, b) => b.timestamp - a.timestamp);
+		return files;
 	}
 
 	if (error) {
@@ -133,12 +141,12 @@ export default function Console({
 		const context = {
 			output: getOutput(),
 			history: getHistory(),
-			handleInput: handleInput,
-			handleNew: handleNew,
-			handleRestore: handleRestore,
-			handleSave: handleSave,
-			handleDelete: handleDelete,
-			getSaveNames: getSaveNames
+			handleInput,
+			handleNew,
+			handleRestore,
+			handleSave,
+			handleDelete,
+			getSavedFiles
 		}
 
 		return (

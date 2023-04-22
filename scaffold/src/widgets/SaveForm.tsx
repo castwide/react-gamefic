@@ -1,12 +1,10 @@
 import React, { useRef, useState } from 'react';
 
-export default function SaveForm({getSaveNames, handleSave, handleDelete}) {
-  const [saveNames, setSaveNames] = useState(getSaveNames());
+export default function SaveForm({getSavedFiles, handleSave, handleDelete}) {
+  const [savedFiles, setSavedFiles] = useState(getSavedFiles());
   const inputRef = useRef();
 
-  const handleOverwriteClick = (event) => {
-    event.preventDefault();
-    const name = event.target.innerText;
+  const confirmOverwrite = (name) => {
     if (confirm(`Overwrite ${name}?`)) {
       handleSave(name);
     }
@@ -21,22 +19,22 @@ export default function SaveForm({getSaveNames, handleSave, handleDelete}) {
   const confirmDelete = (name: string) => {
     if (confirm(`Delete ${name}?`)) {
       handleDelete(name);
-      setSaveNames(getSaveNames());
+      setSavedFiles(getSavedFiles());
     }
   }
 
   const renderSaves = () => {
-    if (saveNames.length == 0) return (
+    if (savedFiles.length == 0) return (
       <nav>
         <p>No saved games.</p>
       </nav>
     );
 
-    const list = saveNames.map((name: string, key: number) => {
+    const list = savedFiles.map((file: any, key: number) => {
       return (
         <p key={key}>
-          <a onClick={handleOverwriteClick}>{name}</a>
-          <a onClick={(event) => { event.preventDefault(); confirmDelete(name); }}>[delete]</a>
+          <a onClick={(event) => { event.preventDefault(); confirmOverwrite(file.name); }}><strong>{file.name}</strong> <small>({file.date})</small></a>
+          <a onClick={(event) => { event.preventDefault(); confirmDelete(file.name); }}>[delete]</a>
         </p>
       );
     })

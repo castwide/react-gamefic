@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 
-export default function RestoreForm({getSaveNames, handleRestore, handleDelete}) {
-  const [saveNames, setSaveNames] = useState(getSaveNames());
+export default function RestoreForm({getSavedFiles, handleRestore, handleDelete}) {
+  const [savedFiles, setSavedFiles] = useState(getSavedFiles());
 
-  const handleRestoreClick = (event) => {
-    event.preventDefault();
-    const name = event.target.innerText;
+  const confirmRestore = (name) => {
     if (confirm(`Discard unsaved changes and load ${name}?`)) {
       handleRestore(name);
     }
@@ -14,12 +12,12 @@ export default function RestoreForm({getSaveNames, handleRestore, handleDelete})
   const confirmDelete = (name: string) => {
     if (confirm(`Delete ${name}?`)) {
       handleDelete(name);
-      setSaveNames(getSaveNames());
+      setSavedFiles(getSavedFiles());
     }
   }
 
   const renderSaves = () => {
-    if (saveNames.length == 0) {
+    if (savedFiles.length == 0) {
       return (
         <nav>
           <p>No saved games.</p>
@@ -27,10 +25,10 @@ export default function RestoreForm({getSaveNames, handleRestore, handleDelete})
       );
     }
 
-    const list = saveNames.map((name, key) => {
+    const list = savedFiles.map((file, key) => {
       return (
         <p key={key}>
-          <a onClick={handleRestoreClick}>{name}</a>
+          <a onClick={(event => { event.preventDefault(); confirmRestore(file.name); })}><strong>{file.name}</strong> <small>({file.date}}</small></a>
           <a onClick={(event) => { event.preventDefault(); confirmDelete(name); }}>[delete]</a>
         </p>
       );

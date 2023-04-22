@@ -54,7 +54,7 @@ export default function Menu() {
           overlayClassName="overlay"
         >
           <h1>Save Game</h1>
-          <SaveForm getSaveNames={context.getSaveNames} handleSave={saveAndCloseModal} handleDelete={context.handleDelete} />
+          <SaveForm getSavedFiles={context.getSavedFiles} handleSave={saveAndCloseModal} handleDelete={context.handleDelete} />
           <footer>
             <button onClick={closeModal}>Cancel</button>
           </footer>
@@ -67,7 +67,7 @@ export default function Menu() {
           overlayClassName="overlay"
         >
           <h1>Load Game</h1>
-          <RestoreForm getSaveNames={context.getSaveNames} handleRestore={restoreAndCloseModal} handleDelete={context.handleDelete} />
+          <RestoreForm getSavedFiles={context.getSavedFiles} handleRestore={restoreAndCloseModal} handleDelete={context.handleDelete} />
           <footer>
             <button onClick={closeModal}>Cancel</button>
           </footer>
