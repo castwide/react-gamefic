@@ -14,15 +14,17 @@ a {
 }
 
 .console {
-	max-width: 1200px;
 	margin: 0 auto;
-	padding: 1em;
-	height: calc(100vh - 2em);
+	padding: 0;
 }
 
 .console form {
 	display: flex;
 	margin-bottom: 1em;
+}
+
+.console form label {
+	margin-right: 0.5em;
 }
 
 .console input {
