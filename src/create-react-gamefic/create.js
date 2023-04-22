@@ -26,7 +26,7 @@ async function copyScaffold(scaffold, target) {
 }
 
 async function updateFiles(target, options) {
-  ['package.json', 'public/index.html', 'public/manifest.json', 'web/src/Menu.tsx'].forEach((file) => {
+  ['package.json', 'public/index.html', 'public/manifest.json', 'src/widgets/Menu.tsx'].forEach((file) => {
     const filePath = path.join(target, file);
     const buffer = fse.readFileSync(filePath, 'utf-8').replace('${name}', options.name);
     fse.writeFileSync(filePath, buffer);
