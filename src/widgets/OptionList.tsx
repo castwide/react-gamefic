@@ -14,9 +14,9 @@ export default function OptionList({options, handleInput, className = ''}: any) 
         return (
             <div>
                 <nav>
-                    <ul>
+                    <ol>
                         {listItems}
-                    </ul>
+                    </ol>
                 </nav>
             </div>
         )
