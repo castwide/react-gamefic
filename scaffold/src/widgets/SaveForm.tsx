@@ -30,7 +30,7 @@ export default function SaveForm({getSavedFiles, handleSave, handleDelete}) {
       </nav>
     );
 
-    const list = savedFiles.map((file: any, key: number) => {
+    const list = savedFiles.map((file: {name: string, date: string}, key: number) => {
       return (
         <p key={key}>
           <a onClick={(event) => { event.preventDefault(); confirmOverwrite(file.name); }}><strong>{file.name}</strong> <small>({file.date})</small></a>

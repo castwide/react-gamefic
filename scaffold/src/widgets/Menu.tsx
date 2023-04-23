@@ -1,5 +1,5 @@
 import React from 'react';
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Modal from 'react-modal';
 import { GameContext } from 'react-gamefic';
 import SaveForm from './SaveForm';
@@ -11,11 +11,11 @@ export default function Menu() {
   const [modal, setModal] = useState<string | null>(null);
   const context = useContext(GameContext);
 
-  const handleSaveClick = (event) => {
+  const handleSaveClick = () => {
     setModal('save');
   }
 
-  const handleRestoreClick = (event) => {
+  const handleRestoreClick = () => {
     setModal('restore');
   }
 

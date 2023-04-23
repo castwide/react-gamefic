@@ -20,4 +20,4 @@ export default function CommandLink({command, handleInput, className = '', child
 	return (
 		<a className={className} href="#" data-command={command} ref={linkRef} onClick={handleSubmit}>{children || command}</a>
 	);
-};
+}

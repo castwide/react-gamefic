@@ -3,8 +3,8 @@ import { useEffect, useRef } from 'react';
 
 interface CommandFormProps {
 	prompt: string,
-	handleInput: Function,
-	className: string
+	handleInput: (command: string) => void,
+	className?: string
 }
 
 export default function CommandForm({prompt, handleInput, className= ''}: CommandFormProps) {

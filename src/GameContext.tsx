@@ -3,10 +3,11 @@ import React from "react";
 const GameContext = React.createContext({
   output: {},
   history: [],
-  handleInput: (_) => {},
-  handleSave: () => {},
-  handleRestore: (_) => {},
-  handleNew: () => {}
+  handleInput: null,
+  handleSave: null,
+  handleRestore: null,
+  handleNew: null,
+  handleGetSavedFiles: null
 });
 
 export default GameContext;

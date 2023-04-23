@@ -9,7 +9,7 @@ const sharedOutput = {
 
 export default class TestDriver extends Driver {
   private turn = 0;
-	public stop: boolean = false;
+	public stop = false;
 
 	start() {
     this.turn = 0;
@@ -22,7 +22,7 @@ export default class TestDriver extends Driver {
 		return new Promise((resolve) => resolve(true));
 	}
 
-	receive(input: string) {
+	receive() {
 		return new Promise((resolve) => resolve(true));
 	}
 
@@ -39,7 +39,7 @@ export default class TestDriver extends Driver {
 		return new Promise((resolve) => resolve(true));
 	}
 
-	restore(_snapshot: any) {
+	restore() {
 		return new Promise((resolve) => {
 			resolve({
         messages: 'restore',

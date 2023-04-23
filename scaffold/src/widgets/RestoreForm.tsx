@@ -28,7 +28,7 @@ export default function RestoreForm({getSavedFiles, handleRestore, handleDelete}
     const list = savedFiles.map((file, key) => {
       return (
         <p key={key}>
-          <a onClick={(event => { event.preventDefault(); confirmRestore(file.name); })}><strong>{file.name}</strong> <small>({file.date}}</small></a>
+          <a onClick={(event => { event.preventDefault(); confirmRestore(file.name); })}><strong>{file.name}</strong> <small>({file.date})</small></a>
           <a onClick={(event) => { event.preventDefault(); confirmDelete(file.name); }}>[delete]</a>
         </p>
       );

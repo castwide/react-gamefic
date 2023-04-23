@@ -19,7 +19,7 @@ export default function Console({
 }: ConsoleProps) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [outputs, setOutputs] = useState<Array<any>>([]);
-	const [error, setError] = useState<String | null>(null);
+	const [error, setError] = useState<string | null>(null);
 
 	const bottomRef = useRef<HTMLDivElement>(null);
 
