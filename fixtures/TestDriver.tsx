@@ -19,11 +19,11 @@ export default class TestDriver extends Driver {
 				...sharedOutput
 			});
 		}
-		return new Promise((resolve) => true);
+		return new Promise((resolve) => resolve(true));
 	}
 
 	receive(input: string) {
-		return new Promise((resolve) => true);
+		return new Promise((resolve) => resolve(true));
 	}
 
 	update() {
@@ -32,14 +32,14 @@ export default class TestDriver extends Driver {
       ...sharedOutput
     }
     this.notify(output);
-		return new Promise((resolve) => true);
+		return new Promise((resolve) => resolve(true));
 	}
 
 	snapshot() {
-		return new Promise((resolve) => true);
+		return new Promise((resolve) => resolve(true));
 	}
 
-	restore(snapshot: any) {
+	restore(_snapshot: any) {
 		return new Promise((resolve) => {
 			resolve({
         messages: 'restore',
