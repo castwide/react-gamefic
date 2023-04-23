@@ -1,9 +1,15 @@
 import React from 'react';
 import CommandLink from './CommandLink';
 
-export default function OptionList({options, handleInput, className = ''}: any) {
+interface OptionListProps {
+    options: string[],
+    handleInput: (command: string) => void,
+    className? : string
+}
+
+export default function OptionList({options, handleInput, className}: OptionListProps) {
     const renderOptions = () => {
-        const listItems = options.map((opt: any, index: any) => {
+        const listItems = options.map((opt: string, index: number) => {
             return (
                 <li key={index}>
                     <CommandLink command={opt} handleInput={handleInput}>{opt}</CommandLink>

@@ -1,7 +1,13 @@
 import React from 'react';
 import HtmlText from './HtmlText';
 
-export default function Turn({output, handleInput, className = ''}: any) {
+interface TurnProps {
+	output: { [key: string]: any },
+	handleInput?: (command: string) => void,
+	className?: string
+}
+
+export default function Turn({output, handleInput, className}: TurnProps) {
 	const lastInput = output.last_input ? (
 		<p>
 			<kbd>{output.last_prompt} {output.last_input}</kbd>

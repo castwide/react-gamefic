@@ -1,9 +1,14 @@
 import React from 'react';
 import { Turn } from '.';
 
-export default function History({turns, className = ''}: any) {
+interface HistoryProps {
+	turns: [],
+	className?: string
+}
+
+export default function History({turns, className}: HistoryProps) {
 	const renderHistory = () => {
-		const renderTurns = turns.map((turn: any, index: any) => {
+		const renderTurns = turns.map((turn: any, index: number) => {
 			return (
 				<Turn key={index} output={turn} />
 			);

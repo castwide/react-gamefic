@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import sanitizeHtml from 'sanitize-html';
 import { IOptions } from 'sanitize-html';
 
@@ -7,7 +7,13 @@ const sanitizeOptions: IOptions = {
   allowedAttributes: {...sanitizeHtml.defaults.allowedAttributes, a: ['href', 'name', 'target', 'data-command']}
 }
 
-export default function HtmlText({text, handleInput = null, className=''}: any) {
+interface HtmlTextProps {
+  text: string,
+  handleInput?: (command: string | null) => void,
+  className?: string
+}
+
+export default function HtmlText({text, handleInput, className}: HtmlTextProps) {
   const htmlRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

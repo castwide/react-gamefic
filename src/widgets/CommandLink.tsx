@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { ReactFragment } from 'react';
 import { useRef } from 'react';
 
-export default function CommandLink({command, handleInput, className = '', children}: any) {
+interface CommandLinkProps {
+	command: string,
+	handleInput: (command: string) => void,
+	children: ReactFragment,
+	className?: string
+}
+
+export default function CommandLink({command, handleInput, className = '', children}: CommandLinkProps) {
 	const linkRef = useRef(null);
 
 	const handleSubmit = (event: any) => {
