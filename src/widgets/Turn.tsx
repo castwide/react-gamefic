@@ -1,5 +1,6 @@
 import React from 'react';
 import HtmlText from './HtmlText';
+import OptionList from './OptionList';
 
 interface TurnProps {
 	output: { [key: string]: any },
@@ -20,6 +21,7 @@ export default function Turn({output, handleInput, className}: TurnProps) {
 		<div className={className}>
 			{lastInput}
 			<HtmlText text={output.messages} handleInput={handleInput} />
+			<OptionList options={output.options} handleInput={handleInput} />
 		</div>
 	)
 }

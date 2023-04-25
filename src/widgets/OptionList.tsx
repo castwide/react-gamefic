@@ -3,8 +3,8 @@ import CommandLink from './CommandLink';
 
 interface OptionListProps {
     options: string[],
-    handleInput: (command: string) => void,
-    className? : string
+    handleInput?: (command: string) => void,
+    className?: string
 }
 
 export default function OptionList({options, handleInput, className}: OptionListProps) {

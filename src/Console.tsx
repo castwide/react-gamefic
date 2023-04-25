@@ -69,7 +69,7 @@ export default function Console({
 	}
 
 	const handleInput = (input: string) => {
-		driver.receive(input).then((response: any) => {
+		driver.receive(input).then(() => {
 			driver.update();
 		});
 	};

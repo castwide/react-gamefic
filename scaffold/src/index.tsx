@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import driver from './driver';
 
 import { Console, Terminal } from 'react-gamefic';
-import { Activity, Conclusion, Pause, MultipleChoice, YesOrNo } from './scenes';
+import { Activity, Conclusion, Default, Pause, MultipleChoice, YesOrNo } from './scenes';
 import { Menu } from './widgets';
 
 import 'react-gamefic/styles/ebook';
@@ -15,6 +15,7 @@ const namedScenes = {}
 const typedScenes = {
 	Activity: Activity,
 	Conclusion: Conclusion,
+	Default: Default,
 	MultipleChoice: MultipleChoice,
 	Pause: Pause,
 	YesOrNo: YesOrNo
