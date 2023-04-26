@@ -49,7 +49,9 @@ export default function Console({
 					setOutputs(previous => [...history, previous[previous.length - 1]]);
 				}).catch((error) => {
 					console.log(error);
-					console.log('Ignoring snapshot and starting new game');
+					console.log('Discarding snapshot and starting new game');
+					window.localStorage.removeItem('snapshot');
+					window.sessionStorage.removeItem('history');
 					startNew();
 				});
 			} else {
