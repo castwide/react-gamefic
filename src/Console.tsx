@@ -23,6 +23,15 @@ export default function Console({
 
 	const bottomRef = useRef<HTMLDivElement>(null);
 
+	const startNew = () => {
+		setIsLoading(true);
+		setOutputs([]);
+		driver.start().then(() => {
+		}).catch((error) => {
+			setError(error.toString());
+		});
+	};
+
 	useEffect(() => {
 		if (!started) {
 			started = true;
@@ -36,12 +45,15 @@ export default function Console({
 			const snapshot = window.localStorage.getItem('snapshot');
 			const history = JSON.parse(window.sessionStorage.getItem('history') || '[]');
 			if (snapshot) {
-				driver.restore(snapshot);
-				setOutputs(previous => [...history, previous[previous.length - 1]]);
-			} else {
-				driver.start().then(() => {}).catch((error) => {
-					setError(error.toString());
+				driver.restore(snapshot).then(() => {
+					setOutputs(previous => [...history, previous[previous.length - 1]]);
+				}).catch((error) => {
+					console.log(error);
+					console.log('Ignoring snapshot and starting new game');
+					startNew();
 				});
+			} else {
+				startNew();
 			}
 		}
 	});
@@ -85,8 +97,7 @@ export default function Console({
 	const handleNew = () => {
 		window.localStorage.removeItem('snapshot');
 		window.sessionStorage.removeItem('history');
-		setOutputs([]);
-		driver.start();
+		startNew();
 	}
 
 	const handleSave = (name: string) => {
