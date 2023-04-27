@@ -1,20 +1,20 @@
 import React, { ReactFragment } from 'react';
 import { useRef } from 'react';
+import { HandleInputType } from '../types';
 
 interface CommandLinkProps {
 	command: string,
-	handleInput: (command: string) => void,
+	handleInput?: HandleInputType,
 	children: ReactFragment,
 	className?: string
 }
 
 export default function CommandLink({command, handleInput, className = '', children}: CommandLinkProps) {
-	const linkRef = useRef(null);
+	const linkRef = useRef<HTMLAnchorElement | null>(null);
 
 	const handleSubmit = (event: any) => {
 		event.preventDefault();
-		// @ts-ignore
-		handleInput(linkRef.current.getAttribute('data-command'));
+		handleInput && handleInput(linkRef.current?.getAttribute('data-command') || '');
 	}
 
 	return (

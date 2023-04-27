@@ -1,9 +1,10 @@
 import React from 'react';
 import { useEffect, useRef } from 'react';
+import { HandleInputType } from '../types';
 
 interface CommandFormProps {
 	prompt: string,
-	handleInput: (command: string) => void,
+	handleInput: HandleInputType,
 	className?: string
 }
 
@@ -16,7 +17,7 @@ export default function CommandForm({prompt, handleInput, className= ''}: Comman
 
 	const handleSubmit = (event: any) => {
 		event.preventDefault();
-		handleInput(inputRef.current?.value);
+		handleInput(inputRef.current?.value || '');
 		// @ts-ignore
 		inputRef.current.value = '';
 	}

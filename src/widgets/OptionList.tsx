@@ -1,9 +1,10 @@
 import React from 'react';
 import CommandLink from './CommandLink';
+import { HandleInputType } from '../types';
 
 interface OptionListProps {
     options: string[],
-    handleInput?: (command: string) => void,
+    handleInput?: HandleInputType,
     className?: string
 }
 

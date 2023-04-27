@@ -1,13 +1,6 @@
 import React from "react";
+import { GameContextType } from "./types";
 
-const GameContext = React.createContext({
-  output: {},
-  history: [],
-  handleInput: null,
-  handleSave: null,
-  handleRestore: null,
-  handleNew: null,
-  handleGetSavedFiles: null
-});
+const GameContext = React.createContext<GameContextType>({});
 
 export default GameContext;

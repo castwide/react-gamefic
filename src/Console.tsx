@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Driver } from 'gamefic-driver';
 // import type SceneProps from './SceneProps';
 import GameContext from './GameContext';
+import { GameContextType, HandleInputType } from './types';
 
 let started = false;
 
@@ -88,8 +89,8 @@ export default function Console({
 		return getOutput().scene.type == 'Conclusion';
 	}
 
-	const handleInput = (input: string) => {
-		driver.receive(input).then(() => {
+	const handleInput: HandleInputType = (command: string | null) => {
+		driver.receive(command || '').then(() => {
 			driver.update();
 		});
 	};
@@ -112,7 +113,7 @@ export default function Console({
 		const trimmed = name.trim();
 		driver.snapshot().then((result) => {
 			window.localStorage.setItem(`saved:${trimmed}`, result);
-			window.localStorage.setItem(`timestamp:${trimmed}`, Date.now())
+			window.localStorage.setItem(`timestamp:${trimmed}`, Date.now().toString())
 		});
 	}
 
@@ -158,7 +159,7 @@ export default function Console({
 			<div className={className}>loading</div>
 		);
 	} else {
-		const context = {
+		const context: GameContextType = {
 			output: getOutput(),
 			history: getHistory(),
 			handleInput,

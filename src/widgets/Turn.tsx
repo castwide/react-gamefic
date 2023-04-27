@@ -1,10 +1,11 @@
 import React from 'react';
 import HtmlText from './HtmlText';
 import OptionList from './OptionList';
+import { HandleInputType } from '../types';
 
 interface TurnProps {
 	output: { [key: string]: any },
-	handleInput?: (command: string) => void,
+	handleInput?: HandleInputType,
 	className?: string
 }
 

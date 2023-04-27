@@ -24,7 +24,11 @@ module.exports = (env, args) => {
         // },
         {
           test: /\.(tsx?)$/,
-          loader: 'ts-loader',
+          
+          use: [
+            // { loader: 'babel-loader' },
+            { loader: 'ts-loader' },
+          ]
           // options: {
           //   configFile: path.resolve(__dirname, 'tsconfig.json'),
           //   compilerOptions: {

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import sanitizeHtml from 'sanitize-html';
 import { IOptions } from 'sanitize-html';
+import { HandleInputType } from '../types';
 
 const sanitizeOptions: IOptions = {
   allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
@@ -14,7 +15,7 @@ const sanitizeOptions: IOptions = {
 
 interface HtmlTextProps {
   text: string,
-  handleInput?: (command: string | null) => void,
+  handleInput?: HandleInputType,
   className?: string
 }
 
