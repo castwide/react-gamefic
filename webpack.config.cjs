@@ -14,14 +14,14 @@ module.exports = (env, args) => {
     },
     module: {
       rules: [
-        {
-          test: /\.css$/,
-          use: 'style-loader'
-        },
-        {
-          test: /\.css$/,
-          use: 'css-loader'
-        },
+        // {
+        //   test: /\.css$/,
+        //   use: 'style-loader'
+        // },
+        // {
+        //   test: /\.css$/,
+        //   use: 'css-loader'
+        // },
         {
           test: /\.(tsx?)$/,
           loader: 'ts-loader',
