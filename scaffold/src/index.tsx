@@ -9,6 +9,7 @@ import { Menu } from './widgets';
 
 import 'react-gamefic/styles/ebook';
 import './style.css';
+import './modal.css';
 
 const namedScenes = {}
 
