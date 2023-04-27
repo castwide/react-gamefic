@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 
-export default function SaveForm({getSavedFiles, handleSave, handleDelete}) {
-  const [savedFiles, setSavedFiles] = useState(getSavedFiles());
+export default function SaveForm({handleGetSavedFiles, handleSave, handleDelete}) {
+  const [savedFiles, setSavedFiles] = useState(handleGetSavedFiles());
   const inputRef = useRef();
 
   const confirmOverwrite = (name) => {
@@ -19,7 +19,7 @@ export default function SaveForm({getSavedFiles, handleSave, handleDelete}) {
   const confirmDelete = (name: string) => {
     if (confirm(`Delete ${name}?`)) {
       handleDelete(name);
-      setSavedFiles(getSavedFiles());
+      setSavedFiles(handleGetSavedFiles());
     }
   }
 

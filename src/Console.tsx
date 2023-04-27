@@ -8,8 +8,14 @@ let started = false;
 
 interface ConsoleProps {
 	driver: Driver,
-	className?: string,
+	className: string,
 	children: ReactFragment
+}
+
+interface SaveFile {
+	name: string,
+	date: string | null,
+	timestamp: number
 }
 
 export default function Console({
@@ -124,18 +130,19 @@ export default function Console({
 		window.localStorage.removeItem(`saved:${name}`)
 	}
 
-	const getSavedFiles = () => {
+	const handleGetSavedFiles = () => {
 		const files = [];
 		for (var i = 0; i < window.localStorage.length; i++) {
 			const key = window.localStorage.key(i)
 			if (key?.startsWith('saved:')) {
 				const name = key.substring(6);
 				const date = window.localStorage.getItem(`timestamp:${name}`);
-				files.push({
+				const file: SaveFile = {
 					name: name,
-					date: date ? (new Date(Number.parseInt(date)).toLocaleString()) : null,
-					timestamp: date
-				});
+					date: date ? (new Date(Number.parseInt(date)).toLocaleString()) : 'n/a',
+					timestamp: date ? Number.parseInt(date) : 0
+				}
+				files.push(file);
 			}
 		}
 		files.sort((a, b) => b.timestamp - a.timestamp);
@@ -159,7 +166,7 @@ export default function Console({
 			handleRestore,
 			handleSave,
 			handleDelete,
-			getSavedFiles
+			handleGetSavedFiles
 		}
 
 		return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-export default function RestoreForm({getSavedFiles, handleRestore, handleDelete}) {
-  const [savedFiles, setSavedFiles] = useState(getSavedFiles());
+export default function RestoreForm({handleGetSavedFiles, handleRestore, handleDelete}) {
+  const [savedFiles, setSavedFiles] = useState(handleGetSavedFiles());
 
   const confirmRestore = (name) => {
     if (confirm(`Discard unsaved changes and load ${name}?`)) {
@@ -12,7 +12,7 @@ export default function RestoreForm({getSavedFiles, handleRestore, handleDelete}
   const confirmDelete = (name: string) => {
     if (confirm(`Delete ${name}?`)) {
       handleDelete(name);
-      setSavedFiles(getSavedFiles());
+      setSavedFiles(handleGetSavedFiles());
     }
   }
 
