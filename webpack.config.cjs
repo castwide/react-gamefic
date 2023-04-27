@@ -1,6 +1,6 @@
 const path = require('path');
-module.exports = (arg, env) => {
-  process.env.NODE_ENV = env.NODE_ENV || arg.mode || 'development';
+module.exports = (env, args) => {
+  process.env.NODE_ENV = env.NODE_ENV || args.mode || 'development';
 
   return {
     entry: './src/index.tsx',
@@ -23,25 +23,35 @@ module.exports = (arg, env) => {
           use: 'css-loader'
         },
         {
-          test: /\.(jsx?|tsx?)$/,
-          loader: require.resolve('babel-loader'),
-          options: {
-            customize: require.resolve(
-              'babel-preset-react-app/webpack-overrides'
-            ),
-            presets: [
-              [
-                require.resolve('babel-preset-react-app'),
-                {
-                  // runtime: hasJsxRuntime ? 'automatic' : 'classic',
-                  absoluteRuntime: false
-                },
-              ],
-            ],
-            include: path.resolve(__dirname, 'src'),
-            exclude: /(node_modules|bower_components|build)/,
-          },
+          test: /\.(tsx?)$/,
+          loader: 'ts-loader',
+          // options: {
+          //   configFile: path.resolve(__dirname, 'tsconfig.json'),
+          //   compilerOptions: {
+          //     outDir: path.join(__dirname, 'build')
+          //   }
+          // }
         },
+        // {
+        //   test: /\.(jsx?|tsx?)$/,
+        //   loader: 'babel-loader',
+        //   // options: {
+        //   //   customize: require.resolve(
+        //   //     'babel-preset-react-app/webpack-overrides'
+        //   //   ),
+        //   //   presets: [
+        //   //     [
+        //   //       require.resolve('babel-preset-react-app'),
+        //   //       {
+        //   //         // runtime: hasJsxRuntime ? 'automatic' : 'classic',
+        //   //         absoluteRuntime: false
+        //   //       },
+        //   //     ],
+        //   //   ],
+        //   //   include: path.resolve(__dirname, 'src'),
+        //   //   exclude: /(node_modules|bower_components|build)/,
+        //   // },
+        // },
       ]
     },
     externals: {
