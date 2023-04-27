@@ -6,8 +6,9 @@ const spawnSync = require('child_process').spawnSync;
 const dependencies = ["gamefic-driver", "react", "react-dom", "react-gamefic", "react-modal"];
 const devDependencies = [
   "@babel/core", "@babel/plugin-transform-modules-commonjs", "@babel/preset-env", "@types/react",
-  "babel-loader", "babel-preset-react-app", "copy-webpack-plugin", "css-loader", "file-loader",
-  "opal-webpack-bundler", "style-loader", "url-loader", "webpack", "webpack-cli", "webpack-dev-server"
+  "@types/react-dom", "babel-loader", "babel-preset-react-app", "copy-webpack-plugin", "css-loader",
+  "file-loader", "opal-webpack-bundler", "style-loader", "url-loader", "webpack", "webpack-cli",
+  "webpack-dev-server"
 ];
 
 function existingFiles(scaffold, target) {
