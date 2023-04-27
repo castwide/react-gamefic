@@ -3,8 +3,13 @@ import sanitizeHtml from 'sanitize-html';
 import { IOptions } from 'sanitize-html';
 
 const sanitizeOptions: IOptions = {
+  allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
   disallowedTagsMode: 'escape',
-  allowedAttributes: {...sanitizeHtml.defaults.allowedAttributes, a: ['href', 'name', 'target', 'data-command']}
+  allowedAttributes: {
+    ...sanitizeHtml.defaults.allowedAttributes,
+    a: ['href', 'name', 'target', 'data-command'],
+    '*': ['style', 'class', 'id']
+  }
 }
 
 interface HtmlTextProps {
