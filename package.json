@@ -1,12 +1,12 @@
 {
   "name": "react-gamefic",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "React components for Gamefic",
   "main": "build/index.js",
   "files": [
     "build/",
     "scaffold/",
-    "src/create-react-gamefic",
+    "src/create-react-gamefic/",
     "styles/",
     "LICENSE",
     "README.md"

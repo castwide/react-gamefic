@@ -13,11 +13,11 @@ This project requires Node, Ruby, and the Gamefic SDK. The SDK is available as a
 Run the following commands to create a new Gamefic project that targets the React platform:
 
     $ gamefic init my-game
-	$ cd my-game
-	$ rake web:generate
+    $ cd my-game
+    $ rake web:generate
     $ rake web:build
 
-The `web:generate` task creates the React application in the web directory. The `web:build` task compiles the application in builds/web.
+The `web:generate` task creates the React application in the web directory. The `web:build` task compiles the application in the `web/build` directory.
 
 ## The Basics
 
@@ -61,7 +61,7 @@ for a named scene component is a minigame that the player must complete before p
 
 The react-gamefic package includes several styles that can be imported into projects. To import the `terminal` style, for example:
 
-```
+```javascript
 import 'react-gamefic/styles/terminal'; // Import the built-in style first
 import './style.css';                   // Import your own style second to add your customizations
 ```
@@ -81,12 +81,12 @@ If you're working on the react-gamefic library itself and need to link to a loca
 invalid hook errors. One solution is to add the following aliases to the test app's webpack config, as mentioned in
 [this Stack Overflow discussion](https://stackoverflow.com/questions/66488492/solve-having-more-than-one-copy-of-react-in-the-same-app/66497721):
 
-```
+```javascript
 resolve: {
-    alias: {
-        'react': path.resolve('./node_modules/react'),
-        'react-dom': path.resolve('./node_modules/react-dom')
-    }
+  alias: {
+    'react': path.resolve('./node_modules/react'),
+    'react-dom': path.resolve('./node_modules/react-dom')
+  }
 }
 ```
 
