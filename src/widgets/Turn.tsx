@@ -10,7 +10,7 @@ interface TurnProps {
 }
 
 export default function Turn({output, handleInput, className}: TurnProps) {
-	const lastInput = output.last_input ? (
+	const lastInput = (output.last_prompt || output.last_input) ? (
 		<p>
 			<kbd>{output.last_prompt} {output.last_input}</kbd>
 		</p>
