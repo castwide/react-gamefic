@@ -10,23 +10,35 @@ interface OptionListProps {
 
 export default function OptionList({ options, handleInput, className }: OptionListProps) {
   const renderOptions = () => {
-  const listItems = options.map((opt: string, index: number) => {
-    return (
-    <li key={index}>
-      <CommandLink command={opt} handleInput={handleInput}>{opt}</CommandLink>
-    </li>
-    );
-  });
+    const linkOrSpan = (text: string) => {
+      if (handleInput) {
+        return (
+          <CommandLink command={text} handleInput={handleInput}>{text}</CommandLink>
+        )
+      } else {
+        return (
+          <span>{text}</span>
+        )
+      }
+    }
 
-  return (
-    <div>
-      <nav>
-        <ol>
-          {listItems}
-        </ol>
-      </nav>
-    </div>
-  )
+    const listItems = options.map((opt: string, index: number) => {
+      return (
+      <li key={index}>
+        {linkOrSpan(opt)}
+      </li>
+      );
+    });
+
+    return (
+      <div>
+        <nav>
+          <ol>
+            {listItems}
+          </ol>
+        </nav>
+      </div>
+    )
   };
 
   return (
