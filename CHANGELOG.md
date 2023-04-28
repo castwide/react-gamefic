@@ -1,3 +1,6 @@
+## 0.8.1 - April 28, 2023
+- Missing bin folder
+
 ## 0.8.0 - April 28, 2023
 - Add Default to scenes
 - Improved snapshot handling
