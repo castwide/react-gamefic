@@ -12,7 +12,7 @@ interface CommandLinkProps {
 export default function CommandLink({command, handleInput, className = '', children}: CommandLinkProps) {
 	const linkRef = useRef<HTMLAnchorElement | null>(null);
 
-	const handleSubmit = (event: any) => {
+	const handleSubmit = (event: React.MouseEvent) => {
 		event.preventDefault();
 		handleInput && handleInput(linkRef.current?.getAttribute('data-command') || '');
 	}

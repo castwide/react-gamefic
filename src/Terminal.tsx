@@ -1,44 +1,24 @@
 import React from "react";
 import GameContext from "./GameContext";
-import { GameContextType } from "./types";
+import { ScenePropsType, TerminalPropsType } from "./types";
 
-interface TerminalProps {
-  namedScenes: {
-    [key: string]: React.Component
-  },
-  typedScenes: {
-    [key: string]: React.Component
-  },
-  className?: string
-}
-
-// const GameContext = React.createContext<GameContextType>({
-//   output: {},
-//   history: [],
-//   handleInput: null,
-//   handleSave: null,
-//   handleRestore: null,
-//   handleNew: null,
-//   handleGetSavedFiles: null
-// });
-
-export default function Terminal({namedScenes, typedScenes, className = ''}: TerminalProps) {
-  const selectScene = (scene: any) => {
-    const name = scene?.name;
-    const type = scene?.type || scene;
-    const available = namedScenes[name] || typedScenes[type];
+export default function Terminal({namedScenes, typedScenes, className = ''}: TerminalPropsType) {
+  const selectScene = (scene: {name: string, type: string} | undefined): React.FunctionComponent<ScenePropsType> => {
+    const available = namedScenes[scene?.name || ''] || typedScenes[scene?.type || ''];
     if (available) {
       return available;
     } else {
-      throw(`Scene name "${name}" and type "${type}" are not assigned to a component`);
+      throw new Error(`Scene name "${scene?.name}" and type "${scene?.type}" are not assigned to a component`);
     }
   }
 
   return (
       <div className={className}>
         <GameContext.Consumer>
-          {/* @ts-ignore */}
-          {(context) => React.createElement<React.Component>(selectScene(context.output.scene), {output: context.output, history: context.history, handleInput: context.handleInput}, null)}
+          {(context) => {
+            const sceneComponent = selectScene(context.output?.scene);
+            return React.createElement(sceneComponent, {output: context.output, history: context.history, handleInput: context.handleInput}, null)
+          }}
         </GameContext.Consumer>
       </div>
   );

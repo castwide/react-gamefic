@@ -15,11 +15,10 @@ export default function CommandForm({prompt, handleInput, className= ''}: Comman
 		inputRef.current?.focus();
 	});
 
-	const handleSubmit = (event: any) => {
+	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
 		handleInput(inputRef.current?.value || '');
-		// @ts-ignore
-		inputRef.current.value = '';
+		if (inputRef.current) inputRef.current.value = '';
 	}
 
 	return (

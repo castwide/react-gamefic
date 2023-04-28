@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
+import { SaveFileType } from 'react-gamefic';
 
-export default function RestoreForm({handleGetSavedFiles, handleRestore, handleDelete}) {
+interface RestoreFormProps {
+  handleGetSavedFiles: () => SaveFileType[],
+  handleRestore: (name: string) => void,
+  handleDelete: (name: string) => void
+}
+
+export default function RestoreForm({handleGetSavedFiles, handleRestore, handleDelete}: RestoreFormProps) {
   const [savedFiles, setSavedFiles] = useState(handleGetSavedFiles());
 
   const confirmRestore = (name) => {
@@ -25,7 +32,7 @@ export default function RestoreForm({handleGetSavedFiles, handleRestore, handleD
       );
     }
 
-    const list = savedFiles.map((file, key) => {
+    const list = savedFiles.map((file: SaveFileType, key: number) => {
       return (
         <p key={key}>
           <a onClick={(event => { event.preventDefault(); confirmRestore(file.name); })}><strong>{file.name}</strong> <small>({file.date})</small></a>

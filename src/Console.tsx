@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import GameContext from './GameContext';
-import { ConsolePropsType, GameContextType, HandleInputType, SaveFileType } from './types';
+import { ConsolePropsType, GameContextType, HandleInputType, OutputType, SaveFileType } from './types';
 
 let started = false;
 
@@ -10,7 +10,7 @@ export default function Console({
 	children
 }: ConsolePropsType) {
 	const [isLoading, setIsLoading] = useState(true);
-	const [outputs, setOutputs] = useState<Array<any>>([]);
+	const [outputs, setOutputs] = useState<Array<OutputType>>([]);
 	const [error, setError] = useState<string | null>(null);
 
 	const bottomRef = useRef<HTMLDivElement>(null);
@@ -18,8 +18,7 @@ export default function Console({
 	const startNew = () => {
 		setIsLoading(true);
 		setOutputs([]);
-		driver.start().then(() => {
-		}).catch((error) => {
+		driver.start().catch((error) => {
 			setError(error.toString());
 		});
 	};
@@ -27,7 +26,7 @@ export default function Console({
 	useEffect(() => {
 		if (!started) {
 			started = true;
-			driver.onUpdate((output: any) => {
+			driver.onUpdate((output: OutputType) => {
 				setOutputs(history => [...history, output]);
 				setIsLoading(false);
 				if (output.queue?.length > 0) {
@@ -80,11 +79,11 @@ export default function Console({
 		});
 	};
 
-	const getOutput = (): any => {
+	const getOutput = (): OutputType => {
 		return outputs[outputs.length - 1] || {};
 	};
 
-	const getHistory = (): Array<any> => {
+	const getHistory = (): Array<OutputType> => {
 		return outputs.slice(0, -1) || [];
 	}
 
@@ -118,7 +117,7 @@ export default function Console({
 
 	const handleGetSavedFiles = () => {
 		const files = [];
-		for (var i = 0; i < window.localStorage.length; i++) {
+		for (let i = 0; i < window.localStorage.length; i++) {
 			const key = window.localStorage.key(i)
 			if (key?.startsWith('saved:')) {
 				const name = key.substring(6);

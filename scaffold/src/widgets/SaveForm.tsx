@@ -1,19 +1,25 @@
 import React, { useRef, useState } from 'react';
+import { SaveFileType } from 'react-gamefic';
 
-export default function SaveForm({handleGetSavedFiles, handleSave, handleDelete}) {
+interface SaveFormProps {
+  handleGetSavedFiles: () => SaveFileType[],
+  handleSave: (name: string) => void,
+  handleDelete: (name: string) => void
+}
+
+export default function SaveForm({handleGetSavedFiles, handleSave, handleDelete}: SaveFormProps) {
   const [savedFiles, setSavedFiles] = useState(handleGetSavedFiles());
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const confirmOverwrite = (name) => {
+  const confirmOverwrite = (name: string) => {
     if (confirm(`Overwrite ${name}?`)) {
       handleSave(name);
     }
   }
 
-  const handleNewSaveSubmit = (event) => {
+  const handleNewSaveSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // @ts-ignore
-    handleSave(inputRef.current.value);
+    handleSave(inputRef.current?.value || '(unnamed)');
   }
 
   const confirmDelete = (name: string) => {

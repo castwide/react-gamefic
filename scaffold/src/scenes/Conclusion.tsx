@@ -1,7 +1,7 @@
 import React from 'react';
-import { History, Turn, SceneProps } from 'react-gamefic';
+import { History, Turn, ScenePropsType } from 'react-gamefic';
 
-export default function Conclusion({output, history}: SceneProps) {
+export default function Conclusion({output, history}: ScenePropsType) {
 	return (
 		<div>
 			<History turns={history} />

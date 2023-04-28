@@ -1,7 +1,7 @@
 import React from 'react';
-import { History, Turn, CommandForm, SceneProps } from 'react-gamefic';
+import { History, Turn, CommandForm, ScenePropsType } from 'react-gamefic';
 
-export default function MultipleChoice({output, history, handleInput}: SceneProps) {
+export default function MultipleChoice({output, history, handleInput}: ScenePropsType) {
 	return (
 		<div>
 			<History turns={history} />

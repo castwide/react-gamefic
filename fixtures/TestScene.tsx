@@ -1,8 +1,8 @@
 import React from "react";
-import type SceneProps from "../src/SceneProps";
+import { ScenePropsType } from "../src/types";
 import CommandForm from '../src/widgets/CommandForm';
 
-export default function TestScene ({output, history, handleInput}: SceneProps) {
+export default function TestScene ({output, history, handleInput}: ScenePropsType) {
   return (
       <div>
           <div data-testid="output">{JSON.stringify(output)}</div>
