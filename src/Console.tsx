@@ -1,29 +1,14 @@
-import React, { ReactFragment } from 'react';
-import { useEffect, useRef, useState } from 'react';
-import { Driver } from 'gamefic-driver';
-// import type SceneProps from './SceneProps';
+import React, { useEffect, useRef, useState } from 'react';
 import GameContext from './GameContext';
-import { GameContextType, HandleInputType } from './types';
+import { ConsolePropsType, GameContextType, HandleInputType, SaveFileType } from './types';
 
 let started = false;
-
-interface ConsoleProps {
-	driver: Driver,
-	className: string,
-	children: ReactFragment
-}
-
-interface SaveFile {
-	name: string,
-	date: string | null,
-	timestamp: number
-}
 
 export default function Console({
 	driver,
 	className = 'console',
 	children
-}: ConsoleProps) {
+}: ConsolePropsType) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [outputs, setOutputs] = useState<Array<any>>([]);
 	const [error, setError] = useState<string | null>(null);
@@ -138,7 +123,7 @@ export default function Console({
 			if (key?.startsWith('saved:')) {
 				const name = key.substring(6);
 				const date = window.localStorage.getItem(`timestamp:${name}`);
-				const file: SaveFile = {
+				const file: SaveFileType = {
 					name: name,
 					date: date ? (new Date(Number.parseInt(date)).toLocaleString()) : 'n/a',
 					timestamp: date ? Number.parseInt(date) : 0

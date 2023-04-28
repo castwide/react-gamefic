@@ -1,4 +1,13 @@
+import { Driver } from 'gamefic-driver';
+import { ReactFragment } from 'react';
+
 type HandleInputType = (command: string | null) => void
+
+interface ConsolePropsType {
+	driver: Driver,
+	className: string,
+	children: ReactFragment
+}
 
 interface GameContextType {
   output?: any,
@@ -11,7 +20,15 @@ interface GameContextType {
   handleGetSavedFiles?: () => any
 }
 
+interface SaveFileType {
+	name: string,
+	date: string | null,
+	timestamp: number
+}
+
 export {
+  ConsolePropsType,
   HandleInputType,
-  GameContextType
+  GameContextType,
+  SaveFileType
 }
