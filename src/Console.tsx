@@ -18,9 +18,7 @@ export default function Console({
 	const startNew = () => {
 		setIsLoading(true);
 		setOutputs([]);
-		driver.start().catch((error) => {
-			setError(error.toString());
-		});
+		driver.start().catch((error) => setError(error.toString()));
 	};
 
 	useEffect(() => {
@@ -30,7 +28,7 @@ export default function Console({
 				setOutputs(history => [...history, output]);
 				setIsLoading(false);
 				if (output.queue?.length > 0) {
-					driver.update();
+					driver.update().catch((error) => setError(error.toString()));
 				}
 			});
 			const snapshot = window.localStorage.getItem('snapshot');
@@ -75,7 +73,7 @@ export default function Console({
 
 	const handleInput: HandleInputType = (command: string | null) => {
 		driver.receive(command || '').then(() => {
-			driver.update();
+			driver.update().catch((error) => setError(error.toString()));
 		});
 	};
 
@@ -158,7 +156,7 @@ export default function Console({
 			<GameContext.Provider value={context}>
 				<div className={className}>
 					{children}
-					<div ref={bottomRef} />
+					<div ref={bottomRef} data-scene-name={context.output?.scene.name} data-scene-type={context.output?.scene.type} />
 				</div>
 			</GameContext.Provider>
 		)
