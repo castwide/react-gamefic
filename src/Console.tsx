@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import GameContext from './GameContext';
 import { ConsolePropsType, GameContextType, HandleInputType, OutputType, SaveFileType } from './types';
+import { History } from './widgets';
 
 let started = false;
 
@@ -11,14 +12,14 @@ export default function Console({
 }: ConsolePropsType) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [outputs, setOutputs] = useState<Array<OutputType>>([]);
-	const [error, setError] = useState<string | null>(null);
+	const [error, setError] = useState<Error | null>(null);
 
 	const bottomRef = useRef<HTMLDivElement>(null);
 
 	const startNew = () => {
 		setIsLoading(true);
 		setOutputs([]);
-		driver.start().catch((error) => setError(error.toString()));
+		driver.start().catch((error) => setError(error));
 	};
 
 	useEffect(() => {
@@ -28,7 +29,7 @@ export default function Console({
 				setOutputs(history => [...history, output]);
 				setIsLoading(false);
 				if (output.queue?.length > 0) {
-					driver.update().catch((error) => setError(error.toString()));
+					driver.update().catch((error) => setError(error));
 				}
 			});
 			const snapshot = window.localStorage.getItem('snapshot');
@@ -73,7 +74,7 @@ export default function Console({
 
 	const handleInput: HandleInputType = (command: string | null) => {
 		driver.receive(command || '').then(() => {
-			driver.update().catch((error) => setError(error.toString()));
+			driver.update().catch((error) => setError(error));
 		});
 	};
 
@@ -134,7 +135,12 @@ export default function Console({
 
 	if (error) {
 		return (
-			<div className={className}>{error}</div>
+			<div className={className}>
+				<History turns={getHistory()} />
+				<div>{error.message}</div>
+				<div>{error.name}</div>
+				<div>{error.stack}</div>
+			</div>
 		)
 		} else if (isLoading) {
 		return (
