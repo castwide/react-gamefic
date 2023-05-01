@@ -6,7 +6,8 @@ type JSONValue =
     | number
     | boolean
     | JSONObject
-    | JSONArray;
+    | JSONArray
+    | null;
 
 interface JSONObject {
     [x: string]: JSONValue;
@@ -24,8 +25,8 @@ interface ConsolePropsType {
 }
 
 interface OutputType {
-  last_input: string,
-  last_prompt: string,
+  last_input: string | null,
+  last_prompt: string | null,
   messages: string,
   options: string[],
   queue: string[],
@@ -42,17 +43,24 @@ interface SaveFileType {
 	timestamp: number
 }
 
+enum ConsoleMode {
+  Game = 'game',
+  Save = 'save',
+  Restore = 'restore'
+}
+
 interface GameContextType {
-  output?: OutputType,
-  history?: OutputType[],
-  metaState?: string | null,
-  handleInput?: HandleInputType,
-  handleSave?: (name: string) => void,
-  handleRestore?: (name: string) => void,
-  handleNew?: () => void,
-  handleDelete?: (name: string) => void,
-  handleGetSavedFiles?: () => SaveFileType[],
-  handleUndo?: () => void
+  consoleMode: ConsoleMode,
+  output: OutputType,
+  history: OutputType[],
+  setConsoleMode: (mode: ConsoleMode) => void,
+  handleInput: HandleInputType,
+  handleSave: (name: string) => void,
+  handleRestore: (name: string) => void,
+  handleNew: () => void,
+  handleDelete: (name: string) => void,
+  handleGetSavedFiles: () => SaveFileType[],
+  handleUndo: () => void
 }
 
 interface ScenePropsType {
@@ -73,6 +81,7 @@ interface TerminalPropsType {
 }
 
 export {
+  ConsoleMode,
   ConsolePropsType,
   GameContextType,
   HandleInputType,

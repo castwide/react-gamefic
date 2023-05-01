@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import GameContext from './GameContext';
-import { ConsolePropsType, GameContextType, HandleInputType, OutputType, SaveFileType } from './types';
+import Modals from './widgets/Modals';
+import { ConsoleMode, ConsolePropsType, GameContextType, HandleInputType, OutputType, SaveFileType } from './types';
 import { History } from './widgets';
 
 let started = false;
@@ -11,9 +12,9 @@ export default function Console({
 	className = 'console',
 	children
 }: ConsolePropsType) {
-	const [metaState, setMetaState] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [outputs, setOutputs] = useState<Array<OutputType>>([]);
+	const [consoleMode, setConsoleMode] = useState<ConsoleMode>(ConsoleMode.Game);
 	const [error, setError] = useState<Error | null>(null);
 
 	const bottomRef = useRef<HTMLDivElement>(null);
@@ -116,10 +117,11 @@ export default function Console({
 	}
 
 	const handleInput: HandleInputType = (command: string | null) => {
-		let nextMetaState: string | null = null;
-		if (withConsoleCommands && (command == 'save' || command == 'restore')) {
-			nextMetaState = command;
-		} else if (command == 'restart') {
+		if (withConsoleCommands && command?.toLowerCase() == 'save') {
+			setConsoleMode(ConsoleMode.Save);
+		} else if (withConsoleCommands && command?.toLowerCase() == 'restore') {
+			setConsoleMode(ConsoleMode.Restore);
+		} else if (command?.toLowerCase() == 'restart') {
 			if (confirm('Discard unsaved changes and start a new game?')) {
 				handleNew();
 			}
@@ -130,7 +132,6 @@ export default function Console({
 				driver.update().catch((error) => setError(error));
 			});
 		}
-		setMetaState(nextMetaState);
 	};
 
 	const getOutput = (): OutputType => {
@@ -204,9 +205,10 @@ export default function Console({
 		);
 	} else {
 		const context: GameContextType = {
+			consoleMode,
 			output: getOutput(),
 			history: getHistory(),
-			metaState: metaState,
+			setConsoleMode,
 			handleInput,
 			handleNew,
 			handleRestore,

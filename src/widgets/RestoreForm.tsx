@@ -10,7 +10,7 @@ interface RestoreFormProps {
 export default function RestoreForm({handleGetSavedFiles, handleRestore, handleDelete}: RestoreFormProps) {
   const [savedFiles, setSavedFiles] = useState(handleGetSavedFiles());
 
-  const confirmRestore = (name) => {
+  const confirmRestore = (name: string) => {
     if (confirm(`Discard unsaved changes and restore ${name}?`)) {
       handleRestore(name);
     }
@@ -34,15 +34,15 @@ export default function RestoreForm({handleGetSavedFiles, handleRestore, handleD
 
     const list = savedFiles.map((file: SaveFileType, key: number) => {
       return (
-        <p key={key}>
-          <a onClick={(event => { event.preventDefault(); confirmRestore(file.name); })}><strong>{file.name}</strong> <small>({file.date})</small></a>
-          <a onClick={(event) => { event.preventDefault(); confirmDelete(file.name); }}>[delete]</a>
-        </p>
+        <li key={key}>
+          <button onClick={(event => { event.preventDefault(); confirmRestore(file.name); })}><strong>{file.name}</strong> <small>({file.date})</small></button>
+          <button onClick={(event) => { event.preventDefault(); confirmDelete(file.name); }}>[delete]</button>
+        </li>
       );
     })
 
     return (
-      <nav>{list}</nav>
+      <nav><ol>{list}</ol></nav>
     );
   };
 

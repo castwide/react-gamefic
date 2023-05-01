@@ -33,27 +33,25 @@
   overflow: auto;
 }
 
-.modal nav p {
+.modal nav li {
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding: 0.4em 0 0.4em 0;
+  margin: 0;
+  padding: 0.1em 0 0.1em 0;
 }
 
-.modal nav p a {
+.modal nav li button {
+  text-align: left;
   cursor: pointer;
   display: inline-block;
 }
 
-.modal nav p:hover {
-  background-color: #EFEFEF;
-}
-
-.modal nav p a:first-child {
+.modal nav li button:first-child {
   flex-grow: 100;
 }
 
-.modal nav p a:nth-child(2) {
+.modal nav li button:nth-child(2) {
   text-align: right;
   color: red;
 }
