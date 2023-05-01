@@ -7,6 +7,7 @@ let started = false;
 
 export default function Console({
 	driver,
+	withConsoleCommands = true,
 	className = 'console',
 	children
 }: ConsolePropsType) {
@@ -59,6 +60,7 @@ export default function Console({
 			} else {
 				const lastSnapshot = window.localStorage.getItem('snapshot');
 				if (lastSnapshot && !getOutput()._metaFromConsole) {
+					console.log(`Snapshot size: ${lastSnapshot.length} bytes`);
 					const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem('undo_save_points') || '[]');
 					undoSavePoints.push(lastSnapshot);
 					window.sessionStorage.setItem('undo_save_points', JSON.stringify(undoSavePoints));
@@ -79,46 +81,50 @@ export default function Console({
 		return getOutput().scene.type == 'Conclusion';
 	}
 
+	const handleUndo = () => {
+		window.localStorage.removeItem('snapshot');
+		const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem('undo_save_points') || '[]');
+		if (undoSavePoints.length == 0) {
+			const output: OutputType = Object.assign(
+				JSON.parse(JSON.stringify(getOutput())),
+				{
+					last_prompt: '>',
+					last_input: 'undo',
+					messages: '<p><code>Undo is not available here.</code></p>',
+					_metaFromConsole: true
+				}					
+			)
+			setOutputs(previous => [...previous, output]);
+		} else {
+			const snapshot = undoSavePoints.pop();
+			const history = getHistory();
+			const last = history[history.length - 1];
+			const output: OutputType = Object.assign(
+				JSON.parse(JSON.stringify(last)),
+				{
+					last_prompt: '>',
+					last_input: 'undo',
+					messages: `<p><code>Previous turn undone.</code></p>`,
+					_metaFromConsole: true
+				}
+			)
+			window.sessionStorage.setItem('undo_save_points', JSON.stringify(undoSavePoints));
+			driver.restore(snapshot).then(() => {
+				setOutputs(previous => [...previous.slice(0, previous.length - 1), output]);
+			});
+		}
+	}
+
 	const handleInput: HandleInputType = (command: string | null) => {
 		let nextMetaState: string | null = null;
-		if (command == 'save' || command == 'restore') {
+		if (withConsoleCommands && (command == 'save' || command == 'restore')) {
 			nextMetaState = command;
 		} else if (command == 'restart') {
 			if (confirm('Discard unsaved changes and start a new game?')) {
 				handleNew();
 			}
-		} else if (command == 'undo') {
-			window.localStorage.removeItem('snapshot');
-			const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem('undo_save_points') || '[]');
-			if (undoSavePoints.length == 0) {
-				const output: OutputType = Object.assign(
-					JSON.parse(JSON.stringify(getOutput())),
-					{
-						last_prompt: '>',
-						last_input: 'undo',
-						messages: '<p><code>Undo is not available here.</code></p>',
-						_metaFromConsole: true
-					}					
-				)
-				setOutputs(previous => [...previous, output]);
-			} else {
-				const snapshot = undoSavePoints.pop();
-				const history = getHistory();
-				const last = history[history.length - 1];
-				const output: OutputType = Object.assign(
-					JSON.parse(JSON.stringify(last)),
-					{
-						last_prompt: '>',
-						last_input: 'undo',
-						messages: `<p><code>Previous turn undone.</code></p>`,
-						_metaFromConsole: true
-					}
-				)
-				window.sessionStorage.setItem('undo_save_points', JSON.stringify(undoSavePoints));
-				driver.restore(snapshot).then(() => {
-					setOutputs(previous => [...previous.slice(0, previous.length - 1), output]);
-				});
-			}
+		} else if (withConsoleCommands && command == 'undo') {
+			handleUndo();
 		} else {
 			driver.receive(command || '').then(() => {
 				driver.update().catch((error) => setError(error));
@@ -192,7 +198,7 @@ export default function Console({
 				<div>{error.stack}</div>
 			</div>
 		)
-		} else if (isLoading) {
+	} else if (isLoading) {
 		return (
 			<div className={className}>loading</div>
 		);
@@ -206,7 +212,8 @@ export default function Console({
 			handleRestore,
 			handleSave,
 			handleDelete,
-			handleGetSavedFiles
+			handleGetSavedFiles,
+			handleUndo
 		}
 
 		return (

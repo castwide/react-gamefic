@@ -18,6 +18,7 @@ type HandleInputType = (command: string | null) => void
 
 interface ConsolePropsType {
 	driver: Driver,
+  withConsoleCommands: boolean,
 	className: string,
 	children: ReactFragment
 }
