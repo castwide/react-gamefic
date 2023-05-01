@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import GameContext from './GameContext';
-import Modals from './widgets/Modals';
 import { ConsoleMode, ConsolePropsType, GameContextType, HandleInputType, OutputType, SaveFileType } from './types';
 import { History } from './widgets';
 

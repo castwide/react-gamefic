@@ -38,8 +38,8 @@ export default function Menu({title}: MenuProps) {
       <nav>
         <button onClick={handleSaveClick}>Save</button>
         <button onClick={handleRestoreClick}>Restore</button>
-        <button onClick={handleNewClick}>Restart</button>
         <button onClick={handleUndoClick}>Undo</button>
+        <button onClick={handleNewClick}>Restart</button>
       </nav>
     </header>
   )
