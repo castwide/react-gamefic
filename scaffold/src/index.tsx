@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 import driver from './driver';
 
-import { Console, Terminal } from 'react-gamefic';
+import { Console, Modals, Terminal } from 'react-gamefic';
 import { Activity, Conclusion, Default, MultipleChoice, Pause, YesOrNo } from './scenes';
 import { Menu } from './widgets';
 
@@ -27,5 +27,6 @@ root.render(
 	<Console className="console" driver={driver} withConsoleCommands={true}>
 		<Menu title="%(name)" />
 		<Terminal className="terminal" namedScenes={namedScenes} typedScenes={typedScenes} />
+		<Modals modalClassName="modal" overlayClassName="overlay" />
 	</Console>
 );
