@@ -1,11 +1,11 @@
-import React, { ReactFragment } from 'react';
+import React, { ReactNode } from 'react';
 import { useRef } from 'react';
 import { HandleInputType } from '../types';
 
 interface CommandLinkProps {
 	command: string,
 	handleInput?: HandleInputType,
-	children: ReactFragment,
+	children: ReactNode,
 	className?: string
 }
 

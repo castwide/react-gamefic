@@ -11,7 +11,7 @@ export default function RestoreForm({handleGetSavedFiles, handleRestore, handleD
   const [savedFiles, setSavedFiles] = useState(handleGetSavedFiles());
 
   const confirmRestore = (name) => {
-    if (confirm(`Discard unsaved changes and load ${name}?`)) {
+    if (confirm(`Discard unsaved changes and restore ${name}?`)) {
       handleRestore(name);
     }
   }

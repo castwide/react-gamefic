@@ -10,6 +10,7 @@ export default function Console({
 	className = 'console',
 	children
 }: ConsolePropsType) {
+	const [metaState, setMetaState] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [outputs, setOutputs] = useState<Array<OutputType>>([]);
 	const [error, setError] = useState<Error | null>(null);
@@ -56,13 +57,19 @@ export default function Console({
 				window.localStorage.removeItem('snapshot');
 				window.sessionStorage.removeItem('history');
 			} else {
+				const lastSnapshot = window.localStorage.getItem('snapshot');
+				if (lastSnapshot && !getOutput()._metaFromConsole) {
+					const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem('undo_save_points') || '[]');
+					undoSavePoints.push(lastSnapshot);
+					window.sessionStorage.setItem('undo_save_points', JSON.stringify(undoSavePoints));
+				}
 				driver.snapshot().then((result) => {
 					window.localStorage.setItem('snapshot', result);
 					window.sessionStorage.setItem('history', JSON.stringify(getHistory()));
 				});
 			}
 		}
-	}, [driver, outputs]);
+	}, [outputs]);
 
 	useEffect(() => {
 		bottomRef.current?.scrollIntoView({ block: 'end', behavior: 'smooth' });
@@ -73,9 +80,51 @@ export default function Console({
 	}
 
 	const handleInput: HandleInputType = (command: string | null) => {
-		driver.receive(command || '').then(() => {
-			driver.update().catch((error) => setError(error));
-		});
+		let nextMetaState: string | null = null;
+		if (command == 'save' || command == 'restore') {
+			nextMetaState = command;
+		} else if (command == 'restart') {
+			if (confirm('Discard unsaved changes and start a new game?')) {
+				handleNew();
+			}
+		} else if (command == 'undo') {
+			window.localStorage.removeItem('snapshot');
+			const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem('undo_save_points') || '[]');
+			if (undoSavePoints.length == 0) {
+				const output: OutputType = Object.assign(
+					JSON.parse(JSON.stringify(getOutput())),
+					{
+						last_prompt: '>',
+						last_input: 'undo',
+						messages: '<p><code>Undo is not available here.</code></p>',
+						_metaFromConsole: true
+					}					
+				)
+				setOutputs(previous => [...previous, output]);
+			} else {
+				const snapshot = undoSavePoints.pop();
+				const history = getHistory();
+				const last = history[history.length - 1];
+				const output: OutputType = Object.assign(
+					JSON.parse(JSON.stringify(last)),
+					{
+						last_prompt: '>',
+						last_input: 'undo',
+						messages: `<p><code>Previous turn undone.</code></p>`,
+						_metaFromConsole: true
+					}
+				)
+				window.sessionStorage.setItem('undo_save_points', JSON.stringify(undoSavePoints));
+				driver.restore(snapshot).then(() => {
+					setOutputs(previous => [...previous.slice(0, previous.length - 1), output]);
+				});
+			}
+		} else {
+			driver.receive(command || '').then(() => {
+				driver.update().catch((error) => setError(error));
+			});
+		}
+		setMetaState(nextMetaState);
 	};
 
 	const getOutput = (): OutputType => {
@@ -89,6 +138,7 @@ export default function Console({
 	const handleNew = () => {
 		window.localStorage.removeItem('snapshot');
 		window.sessionStorage.removeItem('history');
+		window.sessionStorage.removeItem('undo_save_points');
 		startNew();
 	}
 
@@ -150,6 +200,7 @@ export default function Console({
 		const context: GameContextType = {
 			output: getOutput(),
 			history: getHistory(),
+			metaState: metaState,
 			handleInput,
 			handleNew,
 			handleRestore,

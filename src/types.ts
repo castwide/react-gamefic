@@ -44,12 +44,14 @@ interface SaveFileType {
 interface GameContextType {
   output?: OutputType,
   history?: OutputType[],
+  metaState?: string | null,
   handleInput?: HandleInputType,
   handleSave?: (name: string) => void,
   handleRestore?: (name: string) => void,
   handleNew?: () => void,
   handleDelete?: (name: string) => void,
-  handleGetSavedFiles?: () => SaveFileType[]
+  handleGetSavedFiles?: () => SaveFileType[],
+  handleUndo?: () => void
 }
 
 interface ScenePropsType {
