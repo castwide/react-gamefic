@@ -1,3 +1,8 @@
+## 0.9.0 - May 1, 2023
+- Enhanced error handling
+- Save/restore/undo features
+- Modals widget
+
 ## 0.8.1 - April 28, 2023
 - Missing bin folder
 

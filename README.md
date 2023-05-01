@@ -31,7 +31,9 @@ The `Console` is the top-level game container. It accepts a `driver` prop and pr
 
 The `driver` prop accepts a Driver object as defined in the [gamefic-driver](https://github.com/castwide/gamefic-driver) package.
 
-The `Terminal` provides a common component for rendering scenes.
+The `Terminal` component provides a common component for rendering scenes.
+
+The `Modals` component provides modal dialogs for saving and restoring games.
 
 ### Scenes
 
