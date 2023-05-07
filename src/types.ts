@@ -1,5 +1,5 @@
 import { Driver } from 'gamefic-driver';
-import { ReactFragment } from 'react';
+import { ReactFragment, ReactNode, PropsWithChildren } from 'react';
 
 type JSONValue =
     | string
@@ -17,12 +17,13 @@ interface JSONArray extends Array<JSONValue> { }
 
 type HandleInputType = (command: string | null) => void
 
-interface ConsolePropsType {
+interface ConsoleProps {
 	driver: Driver,
-  withConsoleCommands: boolean,
-	className: string,
-	children: ReactFragment
+  withConsoleCommands?: boolean,
+	className?: string
 }
+
+type ConsolePropsType = PropsWithChildren<ConsoleProps>;
 
 interface OutputType {
   last_input: string | null,

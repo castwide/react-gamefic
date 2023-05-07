@@ -5,8 +5,6 @@ import SaveForm from './SaveForm';
 import RestoreForm from './RestoreForm';
 import { ConsoleMode } from '../types';
 
-Modal.setAppElement('#root');
-
 interface ModalsProps {
   modalClassName?: string,
   overlayClassName?: string

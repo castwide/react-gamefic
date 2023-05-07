@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { SaveFileType } from 'react-gamefic';
+import { SaveFileType } from '../types';
 
 interface SaveFormProps {
   handleGetSavedFiles: () => SaveFileType[],
