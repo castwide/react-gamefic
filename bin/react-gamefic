@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
 require = require('esm')(module /*, options*/);
-require('../src/create-react-gamefic/cli').cli(process.argv);
+require('../src/react-gamefic/cli').cli(process.argv);

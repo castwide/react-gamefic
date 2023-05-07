@@ -7,14 +7,14 @@
     "bin/",
     "build/",
     "scaffold/",
-    "src/create-react-gamefic/",
+    "src/react-gamefic/",
     "styles/",
     "LICENSE",
     "README.md"
   ],
   "bin": {
-    "@castwide/create-react-gamefic": "bin/create-react-gamefic",
-    "create-react-gamefic": "bin/create-react-gamefic"
+    "@castwide/react-gamefic": "bin/react-gamefic",
+    "react-gamefic": "bin/react-gamefic"
   },
   "keywords": [
     "React",
