@@ -1,3 +1,8 @@
+## 0.10.0 - May 7, 2023
+- Rearrange menu buttons
+- Type fixes
+- CLI issues
+
 ## 0.9.0 - May 1, 2023
 - Enhanced error handling
 - Save/restore/undo features
