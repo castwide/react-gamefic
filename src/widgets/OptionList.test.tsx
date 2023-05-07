@@ -8,7 +8,7 @@ const options = [
   'second'
 ]
 
-const handleInput = (command: string | null) => {};
+const handleInput = (command: string | null) => { `${command}` };
 
 describe('<OptionList />', () => {
     it('adds options to a list of command links', async () => {

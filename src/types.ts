@@ -65,9 +65,9 @@ interface GameContextType {
 }
 
 interface ScenePropsType {
-  output?: OutputType,
-  history?: OutputType[],
-  handleInput?: HandleInputType,
+  output: OutputType,
+  history: OutputType[],
+  handleInput: HandleInputType,
   className?: string
 }
 
