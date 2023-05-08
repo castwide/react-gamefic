@@ -1,3 +1,6 @@
+## 0.10.1 - May 8, 2023
+- React aliases in webpack
+
 ## 0.10.0 - May 7, 2023
 - Rearrange menu buttons
 - Type fixes
