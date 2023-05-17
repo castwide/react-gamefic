@@ -3,13 +3,15 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (arg, env) => {
   process.env.NODE_ENV = env.NODE_ENV || arg.mode || 'development';
+  const inDevelopment = (process.env.NODE_ENV == 'development');
+
   return {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     output: {
       filename: 'bundle.js',
       path: path.resolve(__dirname, "build")
     },
-    devtool: 'inline-source-map',
+    devtool: inDevelopment ? 'inline-source-map' : false,
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx", ".cjs", ".rb"],
       alias: {
