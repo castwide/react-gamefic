@@ -34,8 +34,7 @@ export default function HtmlText({text, handleInput, className}: HtmlTextProps) 
   const clickEvent = function(this: HTMLElement, event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    // handleInput?.call(null, this.getAttribute('data-command'));
-    context.handleInput(this.getAttribute('data-command'));
+    (handleInput || context.handleInput)(this.getAttribute('data-command') || '');
   }
 
   return (
