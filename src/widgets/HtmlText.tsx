@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import sanitizeHtml from 'sanitize-html';
 import { IOptions } from 'sanitize-html';
 import { HandleInputType } from '../types';
+import GameContext from '../GameContext';
 
 const sanitizeOptions: IOptions = {
   allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
@@ -20,6 +21,7 @@ interface HtmlTextProps {
 }
 
 export default function HtmlText({text, handleInput, className}: HtmlTextProps) {
+  const context = useContext(GameContext);
   const htmlRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -32,7 +34,8 @@ export default function HtmlText({text, handleInput, className}: HtmlTextProps) 
   const clickEvent = function(this: HTMLElement, event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    handleInput?.call(null, this.getAttribute('data-command'));
+    // handleInput?.call(null, this.getAttribute('data-command'));
+    context.handleInput(this.getAttribute('data-command'));
   }
 
   return (
