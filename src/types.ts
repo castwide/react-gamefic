@@ -20,7 +20,9 @@ type HandleInputType = (command: string | null) => void
 interface ConsoleProps {
 	driver: Driver,
   withConsoleCommands?: boolean,
-	className?: string
+	className?: string,
+  historySize?: number,
+  undoSize?: number
 }
 
 type ConsolePropsType = PropsWithChildren<ConsoleProps>;

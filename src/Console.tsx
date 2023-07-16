@@ -9,6 +9,8 @@ export default function Console({
 	driver,
 	withConsoleCommands = true,
 	className = 'console',
+	historySize = 1000,
+	undoSize = 100,
 	children
 }: ConsolePropsType) {
 	const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +30,7 @@ export default function Console({
 		if (!started) {
 			started = true;
 			driver.onUpdate((output: OutputType) => {
-				setOutputs(history => [...history, output]);
+				setOutputs(history => [...history.slice(history.length + 1 - historySize), output]);
 				setIsLoading(false);
 				if (output.queue?.length > 0) {
 					driver.update().catch((error) => setError(error));
@@ -38,7 +40,7 @@ export default function Console({
 			const history = JSON.parse(window.sessionStorage.getItem('history') || '[]');
 			if (snapshot) {
 				driver.restore(snapshot).then(() => {
-					setOutputs(previous => [...history, previous[previous.length - 1]]);
+					setOutputs(previous => [...history.slice(history.length + 1 - historySize), previous[previous.length - 1]]);
 				}).catch((error) => {
 					console.log(error);
 					console.log('Discarding snapshot and starting new game');
@@ -53,6 +55,15 @@ export default function Console({
 	});
 
 	useEffect(() => {
+		if (outputs.length > 0) {
+			driver.snapshot().then((result) => {
+				window.localStorage.setItem('snapshot', result);
+				window.sessionStorage.setItem('history', JSON.stringify(getHistory()));
+			});
+		}
+	}, [outputs])
+
+	useEffect(() => {
 		if (outputs.length > 1) {
 			if (concluded()) {
 				window.localStorage.removeItem('snapshot');
@@ -60,15 +71,10 @@ export default function Console({
 			} else {
 				const lastSnapshot = window.localStorage.getItem('snapshot');
 				if (lastSnapshot && !getOutput()._metaFromConsole) {
-					console.log(`Snapshot size: ${lastSnapshot.length} bytes`);
 					const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem('undo_save_points') || '[]');
 					undoSavePoints.push(lastSnapshot);
-					window.sessionStorage.setItem('undo_save_points', JSON.stringify(undoSavePoints));
+					window.sessionStorage.setItem('undo_save_points', JSON.stringify(undoSavePoints.slice(undoSavePoints.length + 1 -undoSize)));
 				}
-				driver.snapshot().then((result) => {
-					window.localStorage.setItem('snapshot', result);
-					window.sessionStorage.setItem('history', JSON.stringify(getHistory()));
-				});
 			}
 		}
 	}, [outputs]);
