@@ -196,12 +196,17 @@ export default function Console({
 	}
 
 	if (error) {
+		console.error("An error occurred in the game driver:", error);
 		return (
 			<div className={className}>
 				<History turns={getHistory()} />
-				<div>{error.message}</div>
-				<div>{error.name}</div>
-				<div>{error.stack}</div>
+				<div>
+					<p>
+						An error occurred in the game driver: <code>{error.message}</code>
+					</p>
+				</div>
+				<div>Stack:</div>
+				<pre>{error.stack}</pre>
 			</div>
 		)
 	} else if (isLoading) {
