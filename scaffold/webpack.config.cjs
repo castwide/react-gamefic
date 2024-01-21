@@ -2,7 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (arg, env) => {
-  process.env.NODE_ENV = env.NODE_ENV || arg.mode || 'development';
+  process.env.NODE_ENV = arg.mode || env.mode || 'development';
   const inDevelopment = (process.env.NODE_ENV == 'development');
 
   return {

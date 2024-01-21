@@ -27,9 +27,9 @@ async function copyScaffold(scaffold, target) {
 }
 
 async function updateFiles(target, options) {
-  ['package.json', 'public/index.html', 'public/manifest.json', 'src/index.tsx'].forEach((file) => {
+  ['package.json', 'public/index.html', 'public/manifest.json', 'src/index.tsx', 'src/opal.rb'].forEach((file) => {
     const filePath = path.join(target, file);
-    const buffer = fse.readFileSync(filePath, 'utf-8').replace('%(name)', options.name);
+    const buffer = fse.readFileSync(filePath, 'utf-8').replace('%(name)', options.name).replace('%(className)', options.className);
     fse.writeFileSync(filePath, buffer);
   })
 }
@@ -40,7 +40,7 @@ module.exports = async function create(options) {
   existing = existingFiles(scaffold, target);
   if (existing.found.length == existing.total) {
     console.log(`All project files already exist in ${target}.`)
-  } else  {
+  } else {
     if (existing.found.length > 0) {
       console.log(`The following files already exist and will not be overwritten:\n  ${existing.found.join("\n  ")}`)
     }

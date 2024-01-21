@@ -6,6 +6,8 @@ function parseArgumentsIntoOptions(rawArgs) {
     {
       '--name': String,
       '-n': '--name',
+      '--class': String,
+      '-c': '--class'
     },
     {
       argv: rawArgs.slice(2)
@@ -13,6 +15,7 @@ function parseArgumentsIntoOptions(rawArgs) {
   )
   return {
     name: args['--name'] || 'react-gamefic',
+    className: args['--class'] || 'Gamefic::Plot',
     directory: args._[0] || '.'
   };
 }

@@ -1,3 +1,9 @@
+## 1.0.0
+- GameContext for common state properties
+- History and undo sizes
+- Log and display driver errors
+- Updates for Gamefic v3
+
 ## 0.10.1 - May 8, 2023
 - React aliases in webpack
 
