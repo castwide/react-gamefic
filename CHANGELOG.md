@@ -1,4 +1,4 @@
-## 1.0.0
+## 1.0.0 - January 27, 2024
 - GameContext for common state properties
 - History and undo sizes
 - Log and display driver errors
