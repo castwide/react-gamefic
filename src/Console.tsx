@@ -188,7 +188,7 @@ export default function Console({
 		for (let i = 0; i < window.localStorage.length; i++) {
 			const key = window.localStorage.key(i)
 			if (key?.startsWith(savedPrefix)) {
-				const name = key.substring(6);
+				const name = key.substring(savedPrefix.length);
 				const date = window.localStorage.getItem(`${timestampPrefix}${name}`);
 				const file: SaveFileType = {
 					name: name,
