@@ -20,6 +20,13 @@ export default function Console({
 
 	const bottomRef = useRef<HTMLDivElement>(null);
 
+	const uniqueKey = location.pathname.replace(/\/+/, '/');
+	const snapshotKey = `snapshot-${uniqueKey}`;
+	const historyKey = `history-${uniqueKey}`;
+	const undoSavePointsKey = `undo-save-points-${uniqueKey}`;
+	const savedPrefix = `saved-${uniqueKey}:`
+	const timestampPrefix = `timestamp-${uniqueKey}:`
+
 	const startNew = () => {
 		setIsLoading(true);
 		setOutputs([]);
@@ -36,16 +43,16 @@ export default function Console({
 					driver.update().catch((error) => setError(error));
 				}
 			});
-			const snapshot = window.localStorage.getItem('snapshot');
-			const history = JSON.parse(window.sessionStorage.getItem('history') || '[]');
+			const snapshot = window.localStorage.getItem(snapshotKey);
+			const history = JSON.parse(window.sessionStorage.getItem(historyKey) || '[]');
 			if (snapshot) {
 				driver.restore(snapshot).then(() => {
 					setOutputs(previous => [...history.slice(history.length + 1 - historySize), previous[previous.length - 1]]);
 				}).catch((error) => {
 					console.log(error);
 					console.log('Discarding snapshot and starting new game');
-					window.localStorage.removeItem('snapshot');
-					window.sessionStorage.removeItem('history');
+					window.localStorage.removeItem(snapshotKey);
+					window.sessionStorage.removeItem(historyKey);
 					startNew();
 				});
 			} else {
@@ -57,8 +64,8 @@ export default function Console({
 	useEffect(() => {
 		if (outputs.length > 0) {
 			driver.snapshot().then((result) => {
-				window.localStorage.setItem('snapshot', result);
-				window.sessionStorage.setItem('history', JSON.stringify(getHistory()));
+				window.localStorage.setItem(snapshotKey, result);
+				window.sessionStorage.setItem(historyKey, JSON.stringify(getHistory()));
 			});
 		}
 	}, [outputs])
@@ -66,14 +73,14 @@ export default function Console({
 	useEffect(() => {
 		if (outputs.length > 1) {
 			if (concluded()) {
-				window.localStorage.removeItem('snapshot');
-				window.sessionStorage.removeItem('history');
+				window.localStorage.removeItem(snapshotKey);
+				window.sessionStorage.removeItem(historyKey);
 			} else {
-				const lastSnapshot = window.localStorage.getItem('snapshot');
+				const lastSnapshot = window.localStorage.getItem(snapshotKey);
 				if (lastSnapshot && !getOutput()._metaFromConsole) {
-					const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem('undo_save_points') || '[]');
+					const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem(undoSavePointsKey) || '[]');
 					undoSavePoints.push(lastSnapshot);
-					window.sessionStorage.setItem('undo_save_points', JSON.stringify(undoSavePoints.slice(undoSavePoints.length + 1 -undoSize)));
+					window.sessionStorage.setItem(undoSavePointsKey, JSON.stringify(undoSavePoints.slice(undoSavePoints.length + 1 -undoSize)));
 				}
 			}
 		}
@@ -88,8 +95,8 @@ export default function Console({
 	}
 
 	const handleUndo = () => {
-		window.localStorage.removeItem('snapshot');
-		const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem('undo_save_points') || '[]');
+		window.localStorage.removeItem(snapshotKey);
+		const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem(undoSavePointsKey) || '[]');
 		if (undoSavePoints.length == 0) {
 			const output: OutputType = Object.assign(
 				JSON.parse(JSON.stringify(getOutput())),
@@ -114,7 +121,7 @@ export default function Console({
 					_metaFromConsole: true
 				}
 			)
-			window.sessionStorage.setItem('undo_save_points', JSON.stringify(undoSavePoints));
+			window.sessionStorage.setItem(undoSavePointsKey, JSON.stringify(undoSavePoints));
 			driver.restore(snapshot).then(() => {
 				setOutputs(previous => [...previous.slice(0, previous.length - 1), output]);
 			});
@@ -130,7 +137,7 @@ export default function Console({
 			if (confirm('Discard unsaved changes and start a new game?')) {
 				handleNew();
 			}
-		} else if (withConsoleCommands && command == 'undo') {
+		} else if (withConsoleCommands && command?.toLowerCase() == 'undo') {
 			handleUndo();
 		} else {
 			driver.receive(command || '').then(() => {
@@ -148,22 +155,22 @@ export default function Console({
 	}
 
 	const handleNew = () => {
-		window.localStorage.removeItem('snapshot');
-		window.sessionStorage.removeItem('history');
-		window.sessionStorage.removeItem('undo_save_points');
+		window.localStorage.removeItem(snapshotKey);
+		window.sessionStorage.removeItem(historyKey);
+		window.sessionStorage.removeItem(undoSavePointsKey);
 		startNew();
 	}
 
 	const handleSave = (name: string) => {
 		const trimmed = name.trim();
 		driver.snapshot().then((result) => {
-			window.localStorage.setItem(`saved:${trimmed}`, result);
-			window.localStorage.setItem(`timestamp:${trimmed}`, Date.now().toString())
+			window.localStorage.setItem(`${savedPrefix}${trimmed}`, result);
+			window.localStorage.setItem(`${timestampPrefix}${trimmed}`, Date.now().toString())
 		});
 	}
 
 	const handleRestore = (name: string) => {
-		const snapshot = window.localStorage.getItem(`saved:${name}`);
+		const snapshot = window.localStorage.getItem(`${savedPrefix}${name}`);
 		if (snapshot) {
 			setOutputs([]);
 			driver.restore(snapshot);
@@ -173,16 +180,16 @@ export default function Console({
 	}
 
 	const handleDelete = (name: string) => {
-		window.localStorage.removeItem(`saved:${name}`)
+		window.localStorage.removeItem(`${savedPrefix}${name}`)
 	}
 
 	const handleGetSavedFiles = () => {
 		const files = [];
 		for (let i = 0; i < window.localStorage.length; i++) {
 			const key = window.localStorage.key(i)
-			if (key?.startsWith('saved:')) {
+			if (key?.startsWith(savedPrefix)) {
 				const name = key.substring(6);
-				const date = window.localStorage.getItem(`timestamp:${name}`);
+				const date = window.localStorage.getItem(`${timestampPrefix}${name}`);
 				const file: SaveFileType = {
 					name: name,
 					date: date ? (new Date(Number.parseInt(date)).toLocaleString()) : 'n/a',
