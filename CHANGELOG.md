@@ -1,3 +1,6 @@
+## 1.1.0
+- CommandLink uses button for ARIA
+
 ## 1.0.1 - January 30, 2024
 - Storage keys are unique by URL
 

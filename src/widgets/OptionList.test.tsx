@@ -14,7 +14,7 @@ describe('<OptionList />', () => {
     it('adds options to a list of command links', async () => {
         render(<OptionList options={options} handleInput={handleInput} />);
 
-        const links = screen.getAllByRole('link').map((lnk) => lnk.textContent);
+        const links = screen.getAllByRole('button').map((lnk) => lnk.textContent);
         expect(links).toEqual(['first', 'second']);
     });
 
