@@ -1,4 +1,4 @@
-## 1.1.0
+## 1.1.0 - March 30, 2024
 - CommandLink uses button for ARIA
 - HtmlText sanitation rules
 - Dpendency updates
