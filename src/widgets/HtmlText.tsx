@@ -9,8 +9,7 @@ const sanitizeOptions: IOptions = {
   disallowedTagsMode: 'escape',
   allowedAttributes: {
     ...sanitizeHtml.defaults.allowedAttributes,
-    a: ['href', 'name', 'target', 'data-command'],
-    '*': ['style', 'class', 'id']
+    '*': ['style', 'class', 'id', 'data-*']
   }
 }
 
