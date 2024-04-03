@@ -7,7 +7,7 @@ interface TurnProps {
 	output?: OutputType,
 	handleInput?: HandleInputType,
 	className?: string,
-	linkCommands: boolean
+	linkCommands?: boolean
 }
 
 export default function Turn({output, handleInput, className, linkCommands = true}: TurnProps) {

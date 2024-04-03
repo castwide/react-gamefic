@@ -17,7 +17,7 @@ interface HtmlTextProps {
   text: string,
   handleInput?: HandleInputType,
   className?: string,
-  linkCommands: boolean
+  linkCommands?: boolean
 }
 
 export default function HtmlText({text, handleInput, className, linkCommands = true}: HtmlTextProps) {
