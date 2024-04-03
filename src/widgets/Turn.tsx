@@ -6,10 +6,11 @@ import { HandleInputType, OutputType } from '../types';
 interface TurnProps {
 	output?: OutputType,
 	handleInput?: HandleInputType,
-	className?: string
+	className?: string,
+	linkCommands: boolean
 }
 
-export default function Turn({output, handleInput, className}: TurnProps) {
+export default function Turn({output, handleInput, className, linkCommands = true}: TurnProps) {
 	const lastInput = (output?.last_prompt || output?.last_input) ? (
 		<p>
 			<kbd>{output?.last_prompt} {output?.last_input}</kbd>
@@ -21,7 +22,7 @@ export default function Turn({output, handleInput, className}: TurnProps) {
 	return (
 		<div className={className}>
 			{lastInput}
-			<HtmlText text={output?.messages || ''} handleInput={handleInput} />
+			<HtmlText text={output?.messages || ''} handleInput={handleInput} linkCommands={linkCommands} />
 			<OptionList options={output?.options || []} handleInput={handleInput} />
 		</div>
 	)

@@ -9,8 +9,14 @@ const history = [
     },
     {
         messages: 'second'
+    },
+    {
+        messages: '<button data-command="test">Test</button>'
     }
 ]
+
+let executed = false;
+const handleInput = (_text) => { executed = true; }
 
 describe('<History />', () => {
     it('renders turns', () => {
@@ -18,5 +24,13 @@ describe('<History />', () => {
 
         expect(screen.getByText(/first/)).toBeInTheDocument();
         expect(screen.getByText(/second/)).toBeInTheDocument();
-    })
+    });
+
+    it('disabled command links', () => {
+        render(<History turns={history} handleInput={handleInput} />);
+
+        const button = screen.getByRole('button');
+        button.click();
+        expect(executed).toBe(false);
+    });
 });

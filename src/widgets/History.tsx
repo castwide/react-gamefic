@@ -11,7 +11,7 @@ export default function History({turns, className}: HistoryProps) {
 	const renderHistory = () => {
 		const renderTurns = turns.map((turn: OutputType, index: number) => {
 			return (
-				<Turn key={index} output={turn} />
+				<Turn key={index} output={turn} linkCommands={false} />
 			);
 		});
 	

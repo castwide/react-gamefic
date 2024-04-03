@@ -5,7 +5,7 @@ import { HandleInputType } from '../types';
 import GameContext from '../GameContext';
 
 const sanitizeOptions: IOptions = {
-  allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
+  allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'button']),
   disallowedTagsMode: 'escape',
   allowedAttributes: {
     ...sanitizeHtml.defaults.allowedAttributes,
@@ -16,25 +16,28 @@ const sanitizeOptions: IOptions = {
 interface HtmlTextProps {
   text: string,
   handleInput?: HandleInputType,
-  className?: string
+  className?: string,
+  linkCommands: boolean
 }
 
-export default function HtmlText({text, handleInput, className}: HtmlTextProps) {
+export default function HtmlText({text, handleInput, className, linkCommands = true}: HtmlTextProps) {
   const context = useContext(GameContext);
   const htmlRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const html = htmlRef.current;
-    html?.querySelectorAll('a[data-command], button[data-command]').forEach((element) => {
-      element.addEventListener('click', clickEvent);
-    });
-  });
 
   const clickEvent = function(this: HTMLElement, event: Event) {
     event.preventDefault();
     event.stopPropagation();
     (handleInput || context.handleInput)(this.getAttribute('data-command') || '');
   }
+
+  useEffect(() => {
+    if (linkCommands) {
+      const html = htmlRef.current;
+      html?.querySelectorAll('a[data-command], button[data-command]').forEach((element) => {
+        element.addEventListener('click', clickEvent);
+      });
+    }
+  });
 
   return (
     <div className={className} dangerouslySetInnerHTML={{ __html: sanitizeHtml(text, sanitizeOptions) }} ref={htmlRef}></div>
