@@ -7,7 +7,9 @@ function parseArgumentsIntoOptions(rawArgs) {
       '--name': String,
       '-n': '--name',
       '--class': String,
-      '-c': '--class'
+      '-c': '--class',
+      '--path': [String],
+      '-p': '--path'
     },
     {
       argv: rawArgs.slice(2)
@@ -15,7 +17,8 @@ function parseArgumentsIntoOptions(rawArgs) {
   )
   return {
     name: args['--name'] || 'react-gamefic',
-    className: args['--class'] || 'Gamefic::Plot',
+    className: args['--class'] || 'GAMEFIC_PLOT_CLASS',
+    paths: args['--path'] || [],
     directory: args._[0] || '.'
   };
 }
@@ -23,4 +26,4 @@ function parseArgumentsIntoOptions(rawArgs) {
 export async function cli(args) {
   const options = parseArgumentsIntoOptions(args);
   await create(options);
- }
+}

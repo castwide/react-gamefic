@@ -4,6 +4,7 @@ const klawSync = require('klaw-sync');
 const spawnSync = require('child_process').spawnSync;
 
 const dependencies = ["gamefic-driver", "react", "react-dom", "react-gamefic"];
+
 const devDependencies = [
   "@babel/core", "@babel/plugin-proposal-private-property-in-object", "@babel/plugin-transform-modules-commonjs",
   "@babel/preset-env", "@types/react", "@types/react-dom", "babel-loader", "babel-preset-react-app",
@@ -26,10 +27,23 @@ async function copyScaffold(scaffold, target) {
   });
 }
 
+function encodePaths(paths) {
+  const encoded = paths.map((path) => {
+    return `path.resolve(__dirname, ${JSON.stringify(path)})`
+  });
+  encoded.unshift(`path.resolve(__dirname, "../")`)
+  return `[${encoded.join(', ')}]`
+}
+
+const updateableFiles = ['package.json', 'public/index.html', 'public/manifest.json', 'src/driver.tsx', 'src/index.tsx', 'src/opal.rb', 'webpack.config.cjs'];
+
 async function updateFiles(target, options) {
-  ['package.json', 'public/index.html', 'public/manifest.json', 'src/index.tsx', 'src/opal.rb'].forEach((file) => {
+  updateableFiles.forEach((file) => {
     const filePath = path.join(target, file);
-    const buffer = fse.readFileSync(filePath, 'utf-8').replace('%(name)', options.name).replace('%(className)', options.className);
+    const buffer = fse.readFileSync(filePath, 'utf-8')
+                      .replace('%(name)', options.name)
+                      .replace('%(className)', options.className)
+                      .replace('%(paths)', encodePaths(options.paths));
     fse.writeFileSync(filePath, buffer);
   })
 }
@@ -37,7 +51,8 @@ async function updateFiles(target, options) {
 module.exports = async function create(options) {
   const scaffold = path.resolve(__dirname, '../../scaffold');
   const target = path.resolve(process.cwd(), options.directory);
-  existing = existingFiles(scaffold, target);
+  const existing = existingFiles(scaffold, target);
+  console.log(`Creating react-gamefic project in ${target}...`)
   if (existing.found.length == existing.total) {
     console.log(`All project files already exist in ${target}.`)
   } else {
@@ -47,10 +62,10 @@ module.exports = async function create(options) {
     console.log('Copying project files...');
     await copyScaffold(scaffold, target);
     console.log('Updating files...');
-    updateFiles(target, options);
+    await updateFiles(target, options);
     console.log('Installing dependencies...');
-    spawnSync('npm', ['install', '--save-dev', ...devDependencies], { shell: true, stdio: 'inherit' });
-    spawnSync('npm', ['install', '--save', ...dependencies], { shell: true, stdio: 'inherit' });
+    spawnSync('npm', ['install', '--save-dev', ...devDependencies], { shell: true, stdio: 'inherit', cwd: target });
+    spawnSync('npm', ['install', '--save', ...dependencies], { shell: true, stdio: 'inherit', cwd: target });
     console.log('Done.');
   }
   return true;

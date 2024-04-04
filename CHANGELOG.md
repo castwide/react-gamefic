@@ -1,5 +1,6 @@
 ## 1.1.1
 - Disable command links in history
+- Minor create() fixes
 
 ## 1.1.0 - March 30, 2024
 - CommandLink uses button for ARIA

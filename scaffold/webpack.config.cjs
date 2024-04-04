@@ -75,7 +75,7 @@ module.exports = (arg, env) => {
               loader: 'opal-webpack-bundler',
               options: {
                 useBundler: true,
-                paths: [path.resolve(__dirname, '../')],
+                paths: %(paths),
                 sourceMap: false,
                 root: path.resolve(__dirname, '../')
               }
