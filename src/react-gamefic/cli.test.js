@@ -1,9 +1,7 @@
 const {cli} = require('./cli');
 const fs = require('fs');
-const path = require('path');
 
 let directory;
-let options;
 
 beforeAll(() => {
   directory = fs.mkdtempSync('react-gamefic-test');
