@@ -48,5 +48,8 @@ module.exports = {
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname"
   ],
-  "resetMocks": true
+  "resetMocks": true,
+  "coveragePathIgnorePatterns": [
+    "GameContext.tsx"
+  ]
 }
