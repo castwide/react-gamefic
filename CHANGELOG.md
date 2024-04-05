@@ -1,4 +1,4 @@
-## 1.1.1
+## 1.1.1 - April 5, 2024
 - Disable command links in history
 - Minor create() fixes
 
