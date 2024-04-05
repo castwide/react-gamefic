@@ -37,6 +37,7 @@ interface OutputType {
     name: string,
     type: string
   },
+  prompt: string,
   [key: string]: JSONValue
 }
 

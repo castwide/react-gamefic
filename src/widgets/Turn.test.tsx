@@ -10,7 +10,7 @@ const output = {
 }
 
 let executed = false;
-const handleInput = (_text) => { executed = true; }
+const handleInput = () => { executed = true; }
 
 describe('<Turn />', () => {
     it('renders messages', () => {

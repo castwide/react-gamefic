@@ -13,6 +13,7 @@ const GameContext = React.createContext<GameContextType>({
       name: '',
       type: 'Default'
     },
+    prompt: '>'
   },
   history: [],
   setConsoleMode: (mode: ConsoleMode) => `setConsoleMode '${mode}'`,
