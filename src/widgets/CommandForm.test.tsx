@@ -20,7 +20,7 @@ describe('<CommandForm />', () => {
     it('handles input from the button', async () => {
         render(<CommandForm prompt=">" handleInput={handleInput} />)
 
-        const input = screen.getByRole('input');
+        const input = screen.getByRole('textbox');
         await user.type(input, 'command');
         const button = screen.getByRole('button');
         await user.click(button);
@@ -31,7 +31,7 @@ describe('<CommandForm />', () => {
     it('handles input from the enter key', async () => {
         render(<CommandForm prompt=">" handleInput={handleInput} />)
 
-        const input = screen.getByRole('input');
+        const input = screen.getByRole('textbox');
         await user.type(input, 'command{Enter}');
 
         expect(received).toEqual('command');

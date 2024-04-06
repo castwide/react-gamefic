@@ -24,7 +24,7 @@ export default function CommandForm({prompt, handleInput, className= ''}: Comman
 	return (
 		<form className={className} onSubmit={handleSubmit}>
 			<label>{prompt}</label>
-			<input role="input" type="text" ref={inputRef} />
+			<input type="text" ref={inputRef} />
 			<button type="submit">Enter</button>
 		</form>
 	);

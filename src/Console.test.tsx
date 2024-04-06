@@ -26,14 +26,14 @@ describe('<Console />', () => {
         );
         await screen.findByText(/introduction/);
         act(() => {
-            const input = screen.getByRole('input');
+            const input = screen.getByRole('textbox');
             user.type(input, 'command{Enter}');
         });
         await waitFor(() => {
             expect(screen.getByText(/turn 1/)).toBeInTheDocument()
         });
         act(() => {
-            const input = screen.getByRole('input');
+            const input = screen.getByRole('textbox');
             user.type(input, 'command{Enter}')
         })
         await waitFor(() => {
