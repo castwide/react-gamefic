@@ -53,7 +53,8 @@ for a named scene component is a minigame that the player must complete before p
 ### Scene Components
 
 * `CommandForm` - A form with a text input for accepting typed commands.
-* `CommandLink` - A link that triggers a command.
+* `CommandButton` - A button that triggers a command.
+* `CommandLink` - A button styled as a link that triggers a command.
 * `Turn` - The display for a single turn's output.
 * `History` - A collection of previous Turns.
 * `HtmlText` - A display container for messages.
