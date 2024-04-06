@@ -1,3 +1,6 @@
+## 1.2.0
+- Separate command links and buttons
+
 ## 1.1.1 - April 5, 2024
 - Disable command links in history
 - Minor create() fixes

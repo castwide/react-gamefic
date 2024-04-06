@@ -84,7 +84,16 @@ interface TerminalPropsType {
   className?: string
 }
 
+interface CommandButtonProps {
+	command: string,
+	handleInput?: HandleInputType,
+	className?: string,
+	disabled?: boolean,
+	children: ReactNode
+}
+
 export {
+  CommandButtonProps,
   ConsoleMode,
   ConsolePropsType,
   GameContextType,

@@ -1,15 +1,7 @@
-import React, { ReactNode, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useRef } from 'react';
-import { HandleInputType } from '../types';
+import { CommandButtonProps } from '../types';
 import GameContext from '../GameContext';
-
-interface CommandButtonProps {
-	command: string,
-	handleInput?: HandleInputType,
-	className?: string,
-	disabled?: boolean,
-	children: ReactNode
-}
 
 export default function CommandButton({ command, handleInput, className = '', disabled = false, children }: CommandButtonProps) {
 	const context = useContext(GameContext);
