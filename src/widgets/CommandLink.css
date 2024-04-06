@@ -1,0 +1,11 @@
+.__react_gamefic_commandlink {
+	display: inline;
+	border: none;
+	margin: 0;
+	padding: 0;
+	text-decoration: underline;
+	background-color: transparent;
+	color: #0000FF;
+	cursor: pointer;
+	font-size: inherit;
+}

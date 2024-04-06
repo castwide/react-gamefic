@@ -30,7 +30,8 @@ module.exports = {
   "moduleNameMapper": {
     "^react-native$": "react-native-web",
     "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
-    "^axios$": "axios/dist/node/axios.cjs"
+    "^axios$": "axios/dist/node/axios.cjs",
+    "\\.(scss|sass|css)$": "identity-obj-proxy"
   },
   "moduleFileExtensions": [
     "web.js",

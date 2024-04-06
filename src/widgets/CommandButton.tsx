@@ -2,9 +2,8 @@ import React, { ReactNode, useContext } from 'react';
 import { useRef } from 'react';
 import { HandleInputType } from '../types';
 import GameContext from '../GameContext';
-import './CommandLink.css';
 
-interface CommandLinkProps {
+interface CommandButtonProps {
 	command: string,
 	handleInput?: HandleInputType,
 	className?: string,
@@ -12,7 +11,7 @@ interface CommandLinkProps {
 	children: ReactNode
 }
 
-export default function CommandLink({ command, handleInput, className = '', disabled = false, children }: CommandLinkProps) {
+export default function CommandButton({ command, handleInput, className = '', disabled = false, children }: CommandButtonProps) {
 	const context = useContext(GameContext);
 	const linkRef = useRef<HTMLButtonElement | null>(null);
 
@@ -24,6 +23,6 @@ export default function CommandLink({ command, handleInput, className = '', disa
 	}
 
 	return (
-		<button className={`__react_gamefic_commandlink ${className}`} disabled={disabled} data-command={command} ref={linkRef} onClick={handleSubmit}>{children || command}</button>
+		<button className={className} disabled={disabled} data-command={command} ref={linkRef} onClick={handleSubmit}>{children || command}</button>
 	);
 }
