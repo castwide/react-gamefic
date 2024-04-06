@@ -24,7 +24,7 @@ module.exports = {
   },
   "transformIgnorePatterns": [
     "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
-    "^.+\\.module\\.(css|sass|scss)$"
+    // "^.+\\.module\\.(css|sass|scss)$"
   ],
   "modulePaths": [],
   "moduleNameMapper": {
