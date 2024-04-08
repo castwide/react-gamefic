@@ -1,4 +1,4 @@
-## 1.2.0
+## 1.2.0 - April 8, 2024
 - Separate command links and buttons
 
 ## 1.1.1 - April 5, 2024
