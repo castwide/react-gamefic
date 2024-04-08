@@ -89,7 +89,7 @@ interface CommandButtonProps {
 	handleInput?: HandleInputType,
 	className?: string,
 	disabled?: boolean,
-	children: ReactNode
+	children?: ReactNode
 }
 
 export {
