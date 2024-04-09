@@ -30,25 +30,25 @@ export default function Console({
 	const startNew = () => {
 		setIsLoading(true);
 		setOutputs([]);
-		driver.start().catch((error) => setError(error));
+		driver.start().catch((error: any) => setError(error));
 	};
 
 	useEffect(() => {
 		if (!started) {
 			started = true;
 			driver.onUpdate((output: OutputType) => {
-				setOutputs(history => [...history.slice(history.length + 1 - historySize), output]);
+				setOutputs((history: OutputType[]) => [...history.slice(history.length + 1 - historySize), output]);
 				setIsLoading(false);
 				if (output.queue?.length > 0) {
-					driver.update().catch((error) => setError(error));
+					driver.update().catch((error: any) => setError(error));
 				}
 			});
 			const snapshot = window.localStorage.getItem(snapshotKey);
 			const history = JSON.parse(window.sessionStorage.getItem(historyKey) || '[]');
 			if (snapshot) {
 				driver.restore(snapshot).then(() => {
-					setOutputs(previous => [...history.slice(history.length + 1 - historySize), previous[previous.length - 1]]);
-				}).catch((error) => {
+					setOutputs((previous: OutputType[]) => [...history.slice(history.length + 1 - historySize), previous[previous.length - 1]]);
+				}).catch((error: any) => {
 					console.log(error);
 					console.log('Discarding snapshot and starting new game');
 					window.localStorage.removeItem(snapshotKey);
@@ -63,7 +63,7 @@ export default function Console({
 
 	useEffect(() => {
 		if (outputs.length > 0) {
-			driver.snapshot().then((result) => {
+			driver.snapshot().then((result: string) => {
 				window.localStorage.setItem(snapshotKey, result);
 				window.sessionStorage.setItem(historyKey, JSON.stringify(getHistory()));
 			});
@@ -107,7 +107,7 @@ export default function Console({
 					_metaFromConsole: true
 				}					
 			)
-			setOutputs(previous => [...previous, output]);
+			setOutputs((previous: OutputType[]) => [...previous, output]);
 		} else {
 			const snapshot = undoSavePoints.pop();
 			const history = getHistory();
@@ -123,7 +123,7 @@ export default function Console({
 			)
 			window.sessionStorage.setItem(undoSavePointsKey, JSON.stringify(undoSavePoints));
 			driver.restore(snapshot).then(() => {
-				setOutputs(previous => [...previous.slice(0, previous.length - 1), output]);
+				setOutputs((previous: OutputType[]) => [...previous.slice(0, previous.length - 1), output]);
 			});
 		}
 	}
@@ -141,7 +141,7 @@ export default function Console({
 			handleUndo();
 		} else {
 			driver.receive(command || '').then(() => {
-				driver.update().catch((error) => setError(error));
+				driver.update().catch((error: any) => setError(error));
 			});
 		}
 	};
@@ -163,7 +163,7 @@ export default function Console({
 
 	const handleSave = (name: string) => {
 		const trimmed = name.trim();
-		driver.snapshot().then((result) => {
+		driver.snapshot().then((result: string) => {
 			window.localStorage.setItem(`${savedPrefix}${trimmed}`, result);
 			window.localStorage.setItem(`${timestampPrefix}${trimmed}`, Date.now().toString())
 		});
