@@ -1,4 +1,4 @@
-## 1.3.0
+## 1.3.0 - April 9, 2024
 - Modal component
 
 ## 1.2.0 - April 8, 2024
