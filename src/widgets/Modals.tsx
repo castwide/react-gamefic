@@ -5,6 +5,8 @@ import SaveForm from './SaveForm';
 import RestoreForm from './RestoreForm';
 import { ConsoleMode } from '../types';
 
+import modalStyles from './Modals.module.css';
+
 interface ModalsProps {
   modalClassName?: string,
   overlayClassName?: string
@@ -32,8 +34,8 @@ export default function Modals({modalClassName, overlayClassName}: ModalsProps) 
       <Modal
         isOpen={context.consoleMode == 'save'}
         onRequestClose={closeModal}
-        className={modalClassName}
-        overlayClassName={overlayClassName}
+        className={`${modalStyles.modal} ${modalClassName}`}
+        overlayClassName={`${modalStyles.overlay} ${overlayClassName}`}
       >
         <h1>Save Game</h1>
         <SaveForm handleGetSavedFiles={context?.handleGetSavedFiles} handleSave={saveAndCloseModal} handleDelete={context?.handleDelete} />

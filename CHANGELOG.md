@@ -1,3 +1,6 @@
+## 1.2.1
+- Modals CSS module
+
 ## 1.2.0 - April 8, 2024
 - Separate command links and buttons
 

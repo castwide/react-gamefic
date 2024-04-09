@@ -9,7 +9,6 @@ import { Menu } from './widgets';
 
 import 'react-gamefic/styles/ebook';
 import './style.css';
-import './modal.css';
 
 const namedScenes = {}
 
@@ -27,6 +26,6 @@ root.render(
 	<Console className="console" driver={driver} withConsoleCommands={true}>
 		<Menu title="%(name)" />
 		<Terminal className="terminal" namedScenes={namedScenes} typedScenes={typedScenes} />
-		<Modals modalClassName="modal" overlayClassName="overlay" />
+		<Modals />
 	</Console>
 );
