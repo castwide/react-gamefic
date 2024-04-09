@@ -60,6 +60,11 @@ for a named scene component is a minigame that the player must complete before p
 * `HtmlText` - A display container for messages.
 * `OptionList` - A list of command links, such as the options in a Multiple Choice scene.
 
+### Modals
+
+The `Modals` component provides modal dialogs for saving and restoring game snapshots. There is also a `Modal` component based
+on [react-modal](http://reactcommunity.org/react-modal/) that can be used to create custom modals with the same default style.
+
 ## Built-in Styles
 
 The react-gamefic package includes several styles that can be imported into projects. To import the `terminal` style, for example:
