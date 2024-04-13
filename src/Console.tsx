@@ -30,7 +30,7 @@ export default function Console({
 	const startNew = () => {
 		setIsLoading(true);
 		setOutputs([]);
-		driver.start().catch((error: any) => setError(error));
+		driver.start().catch((error) => setError(error));
 	};
 
 	useEffect(() => {
@@ -40,7 +40,7 @@ export default function Console({
 				setOutputs((history: OutputType[]) => [...history.slice(history.length + 1 - historySize), output]);
 				setIsLoading(false);
 				if (output.queue?.length > 0) {
-					driver.update().catch((error: any) => setError(error));
+					driver.update().catch((error) => setError(error));
 				}
 			});
 			const snapshot = window.localStorage.getItem(snapshotKey);
@@ -48,7 +48,7 @@ export default function Console({
 			if (snapshot) {
 				driver.restore(snapshot).then(() => {
 					setOutputs((previous: OutputType[]) => [...history.slice(history.length + 1 - historySize), previous[previous.length - 1]]);
-				}).catch((error: any) => {
+				}).catch((error) => {
 					console.log(error);
 					console.log('Discarding snapshot and starting new game');
 					window.localStorage.removeItem(snapshotKey);
@@ -141,7 +141,7 @@ export default function Console({
 			handleUndo();
 		} else {
 			driver.receive(command || '').then(() => {
-				driver.update().catch((error: any) => setError(error));
+				driver.update().catch((error) => setError(error));
 			});
 		}
 	};
