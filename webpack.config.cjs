@@ -23,38 +23,10 @@ module.exports = (env, args) => {
         },
         {
           test: /\.(tsx?)$/,
-          
           use: [
-            // { loader: 'babel-loader' },
             { loader: 'ts-loader' },
           ]
-          // options: {
-          //   configFile: path.resolve(__dirname, 'tsconfig.json'),
-          //   compilerOptions: {
-          //     outDir: path.join(__dirname, 'build')
-          //   }
-          // }
         },
-        // {
-        //   test: /\.(jsx?|tsx?)$/,
-        //   loader: 'babel-loader',
-        //   // options: {
-        //   //   customize: require.resolve(
-        //   //     'babel-preset-react-app/webpack-overrides'
-        //   //   ),
-        //   //   presets: [
-        //   //     [
-        //   //       require.resolve('babel-preset-react-app'),
-        //   //       {
-        //   //         // runtime: hasJsxRuntime ? 'automatic' : 'classic',
-        //   //         absoluteRuntime: false
-        //   //       },
-        //   //     ],
-        //   //   ],
-        //   //   include: path.resolve(__dirname, 'src'),
-        //   //   exclude: /(node_modules|bower_components|build)/,
-        //   // },
-        // },
       ]
     },
     externals: {
