@@ -5,7 +5,7 @@ import { HandleInputType } from '../types';
 interface CommandFormProps {
 	prompt: string,
 	handleInput: HandleInputType,
-	history?: string[],
+	history?: Array<string | null>,
 	className?: string
 }
 
@@ -45,7 +45,7 @@ export default function CommandForm({ prompt, handleInput, history = [], classNa
 				index = history.length - 1;
 			} else {
 				if (inputRef.current) {
-					inputRef.current.value = history[index];
+					inputRef.current.value = history[index] || '';
 					inputRef.current.selectionStart = inputRef.current.value.length;
 					event.preventDefault();
 				}
