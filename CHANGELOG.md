@@ -1,4 +1,4 @@
-## 1.3.1 - July 10, 2024
+## 1.4.0 - July 10, 2024
 - Preserve restored output from undo
 - CommandForm history
 

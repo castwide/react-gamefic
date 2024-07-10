@@ -12,9 +12,11 @@ interface CommandFormProps {
 export default function CommandForm({ prompt, handleInput, history = [], className = '' }: CommandFormProps) {
 	const inputRef = useRef<HTMLInputElement>(null);
 	let index = -1;
+	let currentInput = '';
 
 	useEffect(() => {
 		index = -1;
+		currentInput = '';
 		inputRef.current?.focus();
 	});
 
@@ -40,7 +42,7 @@ export default function CommandForm({ prompt, handleInput, history = [], classNa
 			index += change;
 			if (index < 0) {
 				index = -1;
-				if (inputRef.current) inputRef.current.value = '';
+				if (inputRef.current) inputRef.current.value = currentInput;
 			} else if (index >= history.length) {
 				index = history.length - 1;
 			} else {
@@ -53,10 +55,16 @@ export default function CommandForm({ prompt, handleInput, history = [], classNa
 		}
 	}
 
+	const handleChange = () => {
+		if (index == -1) {
+			currentInput = inputRef.current?.value || '';
+		}
+	}
+
 	return (
 		<form className={className} onSubmit={handleSubmit}>
 			<label>{prompt}</label>
-			<input type="text" ref={inputRef} onKeyDown={handleKeyDown} />
+			<input type="text" ref={inputRef} onKeyDown={handleKeyDown} onChange={handleChange} />
 			<button type="submit">Enter</button>
 		</form>
 	);

@@ -43,10 +43,12 @@ describe('<CommandForm />', () => {
 
         const input = screen.getByRole('textbox');
 
+        await user.type(input, 'x');
+
         await user.type(input, '{ArrowUp}');
         expect(input).toHaveValue('last');
 
         await user.type(input, '{ArrowDown}');
-        expect(input).toHaveValue('');
+        expect(input).toHaveValue('x');
     });
 });
