@@ -72,16 +72,11 @@ export default function Console({
 
 	useEffect(() => {
 		if (outputs.length > 1) {
-			if (concluded()) {
-				window.localStorage.removeItem(snapshotKey);
-				window.sessionStorage.removeItem(historyKey);
-			} else {
-				const lastSnapshot = window.localStorage.getItem(snapshotKey);
-				if (lastSnapshot && !getOutput()._metaFromConsole) {
-					const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem(undoSavePointsKey) || '[]');
-					undoSavePoints.push(lastSnapshot);
-					window.sessionStorage.setItem(undoSavePointsKey, JSON.stringify(undoSavePoints.slice(undoSavePoints.length + 1 -undoSize)));
-				}
+			const lastSnapshot = window.localStorage.getItem(snapshotKey);
+			if (lastSnapshot && !getOutput()._metaFromConsole) {
+				const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem(undoSavePointsKey) || '[]');
+				undoSavePoints.push(lastSnapshot);
+				window.sessionStorage.setItem(undoSavePointsKey, JSON.stringify(undoSavePoints.slice(undoSavePoints.length + 1 -undoSize)));
 			}
 		}
 	}, [outputs]);
@@ -110,21 +105,19 @@ export default function Console({
 			setOutputs((previous: OutputType[]) => [...previous, output]);
 		} else {
 			const snapshot = undoSavePoints.pop();
-			const history = getHistory();
-			const last = history[history.length - 1];
-			const output: OutputType = Object.assign(
-				JSON.parse(JSON.stringify(last)),
-				{
-					last_prompt: '>',
-					last_input: 'undo',
-					messages: `<p><code>Previous turn undone.</code></p>`,
-					_metaFromConsole: true
-				}
-			)
 			window.sessionStorage.setItem(undoSavePointsKey, JSON.stringify(undoSavePoints));
-			driver.restore(snapshot).then(() => {
+			driver.restore(snapshot).then((restored) => {
+				const output: OutputType = Object.assign(
+					restored,
+					{
+						last_prompt: '>',
+						last_input: 'undo',
+						messages: `<p><code>Previous turn undone.</code></p>`,
+						_metaFromConsole: true
+					}
+				);
 				setOutputs((previous: OutputType[]) => [...previous.slice(0, previous.length - 1), output]);
-			});
+			});		
 		}
 	}
 
