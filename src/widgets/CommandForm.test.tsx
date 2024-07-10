@@ -3,12 +3,13 @@ import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import { render, screen } from '@testing-library/react'
 import CommandForm from './CommandForm';
+import { HandleInputType } from '../types';
 
 const user = userEvent.setup();
 
 let received: string | null = null;
 
-const handleInput = (input: string) => {
+const handleInput: HandleInputType = (input: string | null) => {
     received = input;
 };
 
@@ -35,5 +36,17 @@ describe('<CommandForm />', () => {
         await user.type(input, 'command{Enter}');
 
         expect(received).toEqual('command');
+    });
+
+    it('browses history with arrows', async () => {
+        render(<CommandForm prompt=">" handleInput={handleInput} history={['last']} />)
+
+        const input = screen.getByRole('textbox');
+
+        await user.type(input, '{ArrowUp}');
+        expect(input).toHaveValue('last');
+
+        await user.type(input, '{ArrowDown}');
+        expect(input).toHaveValue('');
     });
 });

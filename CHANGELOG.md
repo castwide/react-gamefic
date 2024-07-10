@@ -1,3 +1,7 @@
+## 1.3.1 - July 10, 2024
+- Preserve restored output from undo
+- CommandForm history
+
 ## 1.3.0 - April 9, 2024
 - Modal component
 
