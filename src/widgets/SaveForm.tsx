@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { SaveFileType } from '../types';
+import modalConfirm from './modalConfirm';
 
 interface SaveFormProps {
   handleGetSavedFiles: () => SaveFileType[],
@@ -11,8 +12,8 @@ export default function SaveForm({handleGetSavedFiles, handleSave, handleDelete}
   const [savedFiles, setSavedFiles] = useState(handleGetSavedFiles());
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const confirmOverwrite = (name: string) => {
-    if (confirm(`Overwrite ${name}?`)) {
+  const confirmOverwrite = async (name: string) => {
+    if (await modalConfirm(`Overwrite ${name}?`)) {
       handleSave(name);
     }
   }
@@ -22,8 +23,8 @@ export default function SaveForm({handleGetSavedFiles, handleSave, handleDelete}
     handleSave(inputRef.current?.value || '(unnamed)');
   }
 
-  const confirmDelete = (name: string) => {
-    if (confirm(`Delete ${name}?`)) {
+  const confirmDelete = async (name: string) => {
+    if (await modalConfirm(`Delete ${name}?`)) {
       handleDelete(name);
       setSavedFiles(handleGetSavedFiles());
     }

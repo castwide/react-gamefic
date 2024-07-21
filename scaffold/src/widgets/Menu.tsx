@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ConsoleMode, GameContext, GameContextType } from 'react-gamefic';
+import { ConsoleMode, GameContext, GameContextType, modalConfirm } from 'react-gamefic';
 
 interface MenuProps {
   title?: string,
@@ -19,9 +19,9 @@ export default function Menu({title, className = ''}: MenuProps) {
     context.setConsoleMode(ConsoleMode.Restore);
   }
 
-  const handleNewClick = (event: React.MouseEvent) => {
+  const handleNewClick = async (event: React.MouseEvent) => {
     event.preventDefault();
-    if (confirm('Discard unsaved changes and start a new game?')) {
+    if (modalConfirm('Discard unsaved changes and start a new game?')) {
       context.handleNew();
     }
   }

@@ -36,6 +36,7 @@
     "gamefic-driver": "^1.0.1",
     "klaw-sync": "^6.0.0",
     "normalize.css": "^8.0.1",
+    "react-confirm": "^0.3.0-7",
     "react-modal": "^3.16.1",
     "sanitize-html": "^2.10.0"
   },
