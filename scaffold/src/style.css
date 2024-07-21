@@ -1,12 +1,18 @@
-header {
+.menu {
   margin: 0;
   padding: 0.5em 1em 1em 1em;
   position: sticky;
   top: 0;
   background-color: inherit;
+  background-color: #F9F9F9;
   border-bottom: 1px solid currentColor;
+}
+
+header {
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
+  max-width: 1200px;
 }
 
 header h1 {

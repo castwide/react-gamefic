@@ -24,7 +24,7 @@ const typedScenes = {
 const root = createRoot(document.getElementById('root'));
 root.render(
 	<Console className="console" driver={driver} withConsoleCommands={true}>
-		<Menu title="%(name)" />
+		<Menu className="menu" title="%(name)" />
 		<Terminal className="terminal" namedScenes={namedScenes} typedScenes={typedScenes} />
 		<Modals />
 	</Console>

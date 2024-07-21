@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import { ConsoleMode, GameContext } from 'react-gamefic';
+import { ConsoleMode, GameContext, GameContextType } from 'react-gamefic';
 
 interface MenuProps {
-  title?: string
+  title?: string,
+  className?: string
 }
 
-export default function Menu({title}: MenuProps) {
-  const context = useContext(GameContext);
+export default function Menu({title, className = ''}: MenuProps) {
+  const context: GameContextType = useContext(GameContext);
 
   const handleSaveClick = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -31,16 +32,18 @@ export default function Menu({title}: MenuProps) {
   }
 
   return (
-    <header>
-      <h1>
-        {title}
-      </h1>
-      <nav>
-        <button onClick={handleSaveClick}>Save</button>
-        <button onClick={handleRestoreClick}>Load</button>
-        <button onClick={handleUndoClick}>Undo</button>
-        <button onClick={handleNewClick}>Restart</button>
-      </nav>
-    </header>
+    <div className={className}>
+      <header>
+        <h1>
+          {title}
+        </h1>
+        <nav>
+          <button onClick={handleSaveClick}>Save</button>
+          <button onClick={handleRestoreClick}>Load</button>
+          <button onClick={handleUndoClick}>Undo</button>
+          <button onClick={handleNewClick}>Restart</button>
+        </nav>
+      </header>
+    </div>
   )
 }
