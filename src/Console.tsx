@@ -85,10 +85,6 @@ export default function Console({
 		bottomRef.current?.scrollIntoView({ block: 'end', behavior: 'smooth' });
 	}, [outputs]);
 
-	const concluded = () => {
-		return getOutput().scene.type == 'Conclusion';
-	}
-
 	const handleUndo = () => {
 		window.localStorage.removeItem(snapshotKey);
 		const undoSavePoints: string[] = JSON.parse(window.sessionStorage.getItem(undoSavePointsKey) || '[]');
