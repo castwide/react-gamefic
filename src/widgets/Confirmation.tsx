@@ -15,6 +15,7 @@ const Confirmation: React.FC<ConfirmDialogProps<ConfirmationProps, Response>> = 
     isOpen={show}
     className={confirmationStyles.modal}
     overlayClassName={modalStyles.overlay}
+    shouldCloseOnOverlayClick={false}
     shouldCloseOnEsc={true}
     onRequestClose={() => proceed(false)}
   >
