@@ -1,4 +1,4 @@
-## 1.5.0
+## 1.5.0 - July 21, 2024
 - Add className to Menu
 - Custom confirmation modal
 
