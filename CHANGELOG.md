@@ -1,5 +1,6 @@
-## 1.4.1
+## 1.5.0
 - Add className to Menu
+- Custom confirmation modal
 
 ## 1.4.0 - July 10, 2024
 - Preserve restored output from undo
