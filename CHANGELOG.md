@@ -1,3 +1,6 @@
+## 1.5.2
+- Dependency updates
+
 ## 1.5.1 - August 5, 2024
 - Remove create-react-app artifacts
 - Add --version option to CLI
