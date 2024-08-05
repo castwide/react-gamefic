@@ -4,6 +4,7 @@ const create = require('./create');
 function parseArgumentsIntoOptions(rawArgs) {
   const args = arg(
     {
+      '--version': Boolean,
       '--name': String,
       '-n': '--name',
       '--class': String,
@@ -16,6 +17,7 @@ function parseArgumentsIntoOptions(rawArgs) {
     }
   )
   return {
+    version: args['--version'],
     name: args['--name'] || 'react-gamefic',
     className: args['--class'] || 'GAMEFIC_PLOT_CLASS',
     paths: args['--path'] || [],
@@ -23,7 +25,16 @@ function parseArgumentsIntoOptions(rawArgs) {
   };
 }
 
+function outputVersion() {
+  const pjson = require('../../package.json');
+  console.log(pjson.version);
+}
+
 export async function cli(args) {
   const options = parseArgumentsIntoOptions(args);
-  await create(options);
+  if (options.version) {
+    outputVersion();
+  } else {
+    await create(options);
+  }
 }
