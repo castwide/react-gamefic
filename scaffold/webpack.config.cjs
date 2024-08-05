@@ -56,12 +56,8 @@ module.exports = (arg, env) => {
             options: {
               presets: [
                 '@babel/preset-env',
-                [
-                  require.resolve('babel-preset-react-app'),
-                  {
-                    absoluteRuntime: false
-                  },
-                ],
+                '@babel/preset-typescript',
+                '@babel/preset-react'
               ],
               include: path.resolve(__dirname, 'src'),
               exclude: /(node_modules|bower_components|build)/,

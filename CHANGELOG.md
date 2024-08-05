@@ -1,3 +1,6 @@
+## 1.5.1 - August 5, 2024
+- Remove create-react-app artifacts
+
 ## 1.5.0 - July 21, 2024
 - Add className to Menu
 - Custom confirmation modal
