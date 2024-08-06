@@ -21,7 +21,7 @@ export default function Menu({title, className = ''}: MenuProps) {
 
   const handleNewClick = async (event: React.MouseEvent) => {
     event.preventDefault();
-    if (modalConfirm('Discard unsaved changes and start a new game?')) {
+    if (await modalConfirm('Discard unsaved changes and start a new game?')) {
       context.handleNew();
     }
   }

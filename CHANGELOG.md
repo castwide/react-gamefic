@@ -1,5 +1,6 @@
-## 1.5.2
+## 1.5.2 - August 6, 2024
 - Dependency updates
+- Async modalConfirm in Menu
 
 ## 1.5.1 - August 5, 2024
 - Remove create-react-app artifacts
