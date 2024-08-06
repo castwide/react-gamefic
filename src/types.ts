@@ -1,5 +1,5 @@
 import { Driver } from 'gamefic-driver';
-import { ReactFragment, ReactNode, PropsWithChildren } from 'react';
+import { ReactNode, PropsWithChildren } from 'react';
 
 type JSONValue =
     | string
@@ -13,7 +13,7 @@ interface JSONObject {
     [x: string]: JSONValue;
 }
 
-interface JSONArray extends Array<JSONValue> { }
+type JSONArray = Array<JSONValue>;
 
 type HandleInputType = (command: string | null) => void
 

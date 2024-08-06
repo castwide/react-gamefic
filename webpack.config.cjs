@@ -1,4 +1,5 @@
 const path = require('path');
+
 module.exports = (env, args) => {
   process.env.NODE_ENV = env.NODE_ENV || args.mode || 'development';
 
