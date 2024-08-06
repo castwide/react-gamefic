@@ -20,8 +20,7 @@ export default [
     ignores: [
       "**/node_modules",
       "**/build",
-      "**/*.test.{tsx,js}",
-      "scaffold",
+      "scaffold/webpack.config.cjs",
       "coverage",
     ],
   },

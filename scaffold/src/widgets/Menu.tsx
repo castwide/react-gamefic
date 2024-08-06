@@ -1,42 +1,45 @@
-import React, { useContext } from 'react';
-import { ConsoleMode, GameContext, GameContextType, modalConfirm } from 'react-gamefic';
+import React, { useContext } from "react";
+import {
+  ConsoleMode,
+  GameContext,
+  GameContextType,
+  modalConfirm,
+} from "react-gamefic";
 
 interface MenuProps {
-  title?: string,
-  className?: string
+  title?: string;
+  className?: string;
 }
 
-export default function Menu({title, className = ''}: MenuProps) {
+export default function Menu({ title, className = "" }: MenuProps) {
   const context: GameContextType = useContext(GameContext);
 
   const handleSaveClick = (event: React.MouseEvent) => {
     event.preventDefault();
     context.setConsoleMode(ConsoleMode.Save);
-  }
+  };
 
   const handleRestoreClick = (event: React.MouseEvent) => {
     event.preventDefault();
     context.setConsoleMode(ConsoleMode.Restore);
-  }
+  };
 
   const handleNewClick = async (event: React.MouseEvent) => {
     event.preventDefault();
-    if (await modalConfirm('Discard unsaved changes and start a new game?')) {
+    if (await modalConfirm("Discard unsaved changes and start a new game?")) {
       context.handleNew();
     }
-  }
+  };
 
   const handleUndoClick = (event: React.MouseEvent) => {
     event.preventDefault();
     context.handleUndo();
-  }
+  };
 
   return (
     <div className={className}>
       <header>
-        <h1>
-          {title}
-        </h1>
+        <h1>{title}</h1>
         <nav>
           <button onClick={handleSaveClick}>Save</button>
           <button onClick={handleRestoreClick}>Load</button>
@@ -45,5 +48,5 @@ export default function Menu({title, className = ''}: MenuProps) {
         </nav>
       </header>
     </div>
-  )
+  );
 }
