@@ -1,5 +1,5 @@
-import { createConfirmation } from 'react-confirm';
-import Confirmation from './Confirmation';
+import { createConfirmation } from "react-confirm";
+import Confirmation from "./Confirmation";
 
 const confirmFunction = createConfirmation(Confirmation);
 

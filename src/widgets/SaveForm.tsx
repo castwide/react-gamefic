@@ -1,14 +1,18 @@
-import React, { useRef, useState } from 'react';
-import { SaveFileType } from '../types';
-import modalConfirm from './modalConfirm';
+import React, { useRef, useState } from "react";
+import { SaveFileType } from "../types";
+import modalConfirm from "./modalConfirm";
 
 interface SaveFormProps {
-  handleGetSavedFiles: () => SaveFileType[],
-  handleSave: (name: string) => void,
-  handleDelete: (name: string) => void
+  handleGetSavedFiles: () => SaveFileType[];
+  handleSave: (name: string) => void;
+  handleDelete: (name: string) => void;
 }
 
-export default function SaveForm({handleGetSavedFiles, handleSave, handleDelete}: SaveFormProps) {
+export default function SaveForm({
+  handleGetSavedFiles,
+  handleSave,
+  handleDelete,
+}: SaveFormProps) {
   const [savedFiles, setSavedFiles] = useState(handleGetSavedFiles());
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -16,38 +20,55 @@ export default function SaveForm({handleGetSavedFiles, handleSave, handleDelete}
     if (await modalConfirm(`Overwrite ${name}?`)) {
       handleSave(name);
     }
-  }
+  };
 
   const handleNewSaveSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    handleSave(inputRef.current?.value || '(unnamed)');
-  }
+    handleSave(inputRef.current?.value || "(unnamed)");
+  };
 
   const confirmDelete = async (name: string) => {
     if (await modalConfirm(`Delete ${name}?`)) {
       handleDelete(name);
       setSavedFiles(handleGetSavedFiles());
     }
-  }
+  };
 
   const renderSaves = () => {
-    if (savedFiles.length == 0) return (
-      <nav>
-        <p>No saved games.</p>
-      </nav>
-    );
+    if (savedFiles.length == 0)
+      return (
+        <nav>
+          <p>No saved games.</p>
+        </nav>
+      );
 
     const list = savedFiles.map((file, key) => {
       return (
         <li key={key}>
-          <button onClick={(event) => { event.preventDefault(); confirmOverwrite(file.name); }}><strong>{file.name}</strong> <small>({file.date})</small></button>
-          <button onClick={(event) => { event.preventDefault(); confirmDelete(file.name); }}>[delete]</button>
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              confirmOverwrite(file.name);
+            }}
+          >
+            <strong>{file.name}</strong> <small>({file.date})</small>
+          </button>
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              confirmDelete(file.name);
+            }}
+          >
+            [delete]
+          </button>
         </li>
       );
-    })
+    });
 
     return (
-      <nav><ol>{list}</ol></nav>
+      <nav>
+        <ol>{list}</ol>
+      </nav>
     );
   };
 
@@ -59,5 +80,5 @@ export default function SaveForm({handleGetSavedFiles, handleSave, handleDelete}
         <button type="submit">Save</button>
       </form>
     </>
-  )
+  );
 }

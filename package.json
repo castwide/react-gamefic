@@ -47,6 +47,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "lint": "eslint",
+    "prettify": "eslint --fix",
     "test": "jest --coverage"
   },
   "browserslist": {

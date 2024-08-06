@@ -6,14 +6,14 @@ const GameContext = React.createContext<GameContextType>({
   output: {
     last_input: null,
     last_prompt: null,
-    messages: '',
+    messages: "",
     options: [],
     queue: [],
     scene: {
-      name: '',
-      type: 'Default'
+      name: "",
+      type: "Default",
     },
-    prompt: '>'
+    prompt: ">",
   },
   history: [],
   setConsoleMode: (mode: ConsoleMode) => `setConsoleMode '${mode}'`,
@@ -23,7 +23,7 @@ const GameContext = React.createContext<GameContextType>({
   handleNew: () => `new`,
   handleDelete: (name: string) => `handleDelete '${name}'`,
   handleGetSavedFiles: () => [],
-  handleUndo: () => `handleUndo`
+  handleUndo: () => `handleUndo`,
 });
 
 export default GameContext;

@@ -1,31 +1,22 @@
-import React from 'react';
-import { Turn } from '.';
-import { OutputType } from '../types';
+import React from "react";
+import { Turn } from ".";
+import { OutputType } from "../types";
 
 interface HistoryProps {
-	turns: OutputType[],
-	className?: string
+  turns: OutputType[];
+  className?: string;
 }
 
-export default function History({turns, className}: HistoryProps) {
-	const renderHistory = () => {
-		const renderTurns = turns.map((turn: OutputType, index: number) => {
-			return (
-				<Turn key={index} output={turn} linkCommands={false} />
-			);
-		});
-	
-		return (
-			<div>
-				{renderTurns}
-			</div>
-		)
-	}
+export default function History({ turns, className }: HistoryProps) {
+  const renderHistory = () => {
+    const renderTurns = turns.map((turn: OutputType, index: number) => {
+      return <Turn key={index} output={turn} linkCommands={false} />;
+    });
 
-	return (turns?.length > 0 ? 
-		<div className={className}>
-			{renderHistory()}
-		</div>
-		: null
-	);
+    return <div>{renderTurns}</div>;
+  };
+
+  return turns?.length > 0 ? (
+    <div className={className}>{renderHistory()}</div>
+  ) : null;
 }

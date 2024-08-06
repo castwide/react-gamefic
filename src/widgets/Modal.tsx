@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactModal, { Props as ReactModalProps } from 'react-modal';
-import modalStyles from './Modal.module.css';
+import React from "react";
+import ReactModal, { Props as ReactModalProps } from "react-modal";
+import modalStyles from "./Modal.module.css";
 
 export default function Modal(props: ReactModalProps) {
-  return(
+  return (
     <ReactModal
       {...props}
       className={`${modalStyles.modal} ${props.className}`}
