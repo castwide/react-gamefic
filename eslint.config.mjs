@@ -1,5 +1,6 @@
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import prettierEslint from "eslint-plugin-prettier";
+import jestEslint from "eslint-plugin-jest";
 import tsParser from "@typescript-eslint/parser";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -21,6 +22,7 @@ export default [
       "**/node_modules",
       "**/build",
       "scaffold/webpack.config.cjs",
+      "src/react-gamefic/*.test.js",
       "coverage",
     ],
   },
@@ -34,6 +36,7 @@ export default [
     plugins: {
       "@typescript-eslint": typescriptEslint,
       prettier: prettierEslint,
+      jest: jestEslint,
     },
 
     languageOptions: {

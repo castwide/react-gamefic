@@ -6,7 +6,7 @@ import OptionList from "./OptionList";
 const options = ["first", "second"];
 
 const handleInput = (command: string | null) => {
-  `${command}`;
+  return `${command}`;
 };
 
 describe("<OptionList />", () => {

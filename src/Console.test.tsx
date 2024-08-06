@@ -11,7 +11,7 @@ const user = userEvent.setup();
 
 // @todo Apparently not available in the testing-library screen
 window.HTMLElement.prototype.scrollIntoView = function () {
-  null;
+  return null;
 };
 
 beforeEach(cleanup);
