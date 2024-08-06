@@ -1,3 +1,6 @@
+## 1.6.0
+- Wide menu style
+
 ## 1.5.2 - August 6, 2024
 - Dependency updates
 - Async modalConfirm in Menu

@@ -48,7 +48,6 @@ li {
 
 .console {
   height: 100%;
-  max-width: 1200px;
 }
 
 .console form button {
@@ -57,4 +56,6 @@ li {
 
 .terminal {
   padding: 1em;
+  max-width: 1200px;
+  margin: 0 auto;
 }

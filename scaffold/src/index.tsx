@@ -26,6 +26,6 @@ root.render(
 	<Console className="console" driver={driver} withConsoleCommands={true}>
 		<Menu className="menu" title="%(name)" />
 		<Terminal className="terminal" namedScenes={namedScenes} typedScenes={typedScenes} />
-		<Modals />
+		<Modals modalClassName="modal" overlayClassName="overlay" />
 	</Console>
 );
