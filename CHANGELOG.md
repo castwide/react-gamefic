@@ -1,4 +1,4 @@
-## 1.6.0
+## 1.6.0 - August 20, 2024
 - Wide menu style
 
 ## 1.5.2 - August 6, 2024
