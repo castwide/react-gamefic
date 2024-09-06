@@ -136,7 +136,7 @@ export default function Console({
         const output: OutputType = Object.assign(restored, {
           last_prompt: ">",
           last_input: "undo",
-          messages: `<p><code>Previous turn undone.</code></p>`,
+          messages: `<p><code>Previous turn undone.</code></p>${restored.messages}`,
           _metaFromConsole: true,
         });
         setOutputs((previous: OutputType[]) => [

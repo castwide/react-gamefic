@@ -1,3 +1,6 @@
+## 1.6.1
+- Repeat previous messages in undo
+
 ## 1.6.0 - August 20, 2024
 - Wide menu style
 
