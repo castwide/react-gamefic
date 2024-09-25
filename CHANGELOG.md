@@ -1,4 +1,4 @@
-## 1.6.1
+## 1.6.1 - September 25, 2024
 - Repeat previous messages in undo
 - Console scrolling
 
