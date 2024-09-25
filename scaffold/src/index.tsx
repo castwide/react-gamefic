@@ -38,5 +38,5 @@ root.render(
       typedScenes={typedScenes}
     />
     <Modals modalClassName="modal" overlayClassName="overlay" />
-  </Console>,
+  </Console>
 );
