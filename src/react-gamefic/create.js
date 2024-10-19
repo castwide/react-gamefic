@@ -3,7 +3,7 @@ const path = require("path");
 const klawSync = require("klaw-sync");
 const spawnSync = require("child_process").spawnSync;
 
-const dependencies = ["gamefic-driver", "react", "react-dom", "react-gamefic"];
+const dependencies = ["gamefic-driver@1.0.1", "react", "react-dom", "react-gamefic"];
 
 const devDependencies = [
   "@babel/core",

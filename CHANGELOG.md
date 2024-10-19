@@ -1,3 +1,6 @@
+## 1.6.2 - October 19, 2024
+- Lock react-gamefic-1 to gamefic-driver-1
+
 ## 1.6.1 - September 25, 2024
 - Repeat previous messages in undo
 - Console scrolling
