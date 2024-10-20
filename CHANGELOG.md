@@ -1,3 +1,6 @@
+## 2.0.0
+- Update for Gamefic 4.0
+
 ## 1.6.2 - October 19, 2024
 - Lock react-gamefic-1 to gamefic-driver-1
 
