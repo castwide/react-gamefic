@@ -1,6 +1,6 @@
 {
   "name": "react-gamefic",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "React components for Gamefic",
   "main": "build/index.js",
   "files": [
@@ -34,6 +34,7 @@
     "esm": "^3.2.25",
     "fs-extra": "^10.1.0",
     "gamefic-driver": "^2.0.0",
+    "html-to-text": "^9.0.5",
     "klaw-sync": "^6.0.0",
     "normalize.css": "^8.0.1",
     "react-confirm": "^0.3.0-7",
@@ -69,6 +70,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/html-to-text": "^9.0.4",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.23",
     "@types/react": "^18.0.34",
