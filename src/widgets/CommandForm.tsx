@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import { HandleInputType } from "../types";
 
 interface CommandFormProps {
@@ -18,6 +18,8 @@ export default function CommandForm({
   const inputRef = useRef<HTMLInputElement>(null);
   let index = -1;
   let currentInput = "";
+
+  const commandFormInputId = useId();
 
   useEffect(() => {
     index = -1;
@@ -68,8 +70,9 @@ export default function CommandForm({
 
   return (
     <form className={className} onSubmit={handleSubmit}>
-      <label>{prompt}</label>
+      <label htmlFor={commandFormInputId}>{prompt}</label>
       <input
+        id={commandFormInputId}
         type="text"
         ref={inputRef}
         onKeyDown={handleKeyDown}
