@@ -7,7 +7,6 @@ import { Console, Modals, Terminal } from "react-gamefic";
 import {
   Activity,
   Conclusion,
-  Default,
   MultipleChoice,
   Pause,
   YesOrNo,
@@ -21,8 +20,8 @@ const namedScenes = {};
 
 const typedScenes = {
   Activity: Activity,
+  ActiveChoice: Activity,
   Conclusion: Conclusion,
-  Default: Default,
   MultipleChoice: MultipleChoice,
   Pause: Pause,
   YesOrNo: YesOrNo,
