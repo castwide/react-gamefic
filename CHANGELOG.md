@@ -1,5 +1,8 @@
 ## 2.1.0
 - saveTranscript function
+- Disable autocomplete in command input
+- Console skips first snapshot
+- MultipleChoice key and mouse events
 
 ## 2.0.0 - October 20, 2024
 - Update for Gamefic 4.0
