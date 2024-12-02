@@ -36,6 +36,13 @@ li {
   margin: 0.4rem 0;
 }
 
+ol li button:focus::after {
+  position: relative;
+  content: '(Press enter to confirm)';
+  margin-left: 1em;
+  font-size: 80%;
+}
+
 .console {
   height: 100%;
 }
