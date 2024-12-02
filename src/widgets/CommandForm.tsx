@@ -77,6 +77,7 @@ export default function CommandForm({
         ref={inputRef}
         onKeyDown={handleKeyDown}
         onChange={handleChange}
+        autoComplete="off"
       />
       <button type="submit">Enter</button>
     </form>
