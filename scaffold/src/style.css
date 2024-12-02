@@ -43,6 +43,10 @@ ol li button:focus::after {
   font-size: 80%;
 }
 
+ol li button.clicked:focus::after {
+  content: '';
+}
+
 .console {
   height: 100%;
 }

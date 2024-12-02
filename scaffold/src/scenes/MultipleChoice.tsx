@@ -6,9 +6,14 @@ export default function MultipleChoice({ output, history, handleInput }: ScenePr
 
   useEffect(() => {
     let button: HTMLElement | null = null;
+    const buttons = sceneRef.current?.querySelectorAll<HTMLElement>('ol li button');
+
+    buttons?.forEach((btn) => {
+      btn.addEventListener('mousedown', () => btn.classList.add('clicked'));
+      btn.addEventListener('mouseup', () => btn.classList.remove('clicked'));
+    });
 
     const handleKey = (event: KeyboardEvent) => {
-      const buttons = sceneRef.current?.querySelectorAll<HTMLElement>('ol li button');
       if (event.key.match(/[1-9]/)) {
         const selected = parseInt(event.key);
         button?.blur();
