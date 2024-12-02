@@ -80,7 +80,7 @@ export default function Console({
   });
 
   useEffect(() => {
-    if (outputs.length > 0) {
+    if (outputs.length > 1) {
       driver.snapshot().then((result: string) => {
         window.localStorage.setItem(snapshotKey, result);
         window.sessionStorage.setItem(historyKey, JSON.stringify(getHistory()));
