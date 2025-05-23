@@ -1,4 +1,4 @@
-## 2.1.0 - May 22, 2025
+## 2.2.0 - May 22, 2025
 - saveTranscript function
 - Disable autocomplete in command input
 - MultipleChoice key and mouse events
