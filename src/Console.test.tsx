@@ -1,6 +1,6 @@
-import React from "react";
+import React, { act } from "react";
 import "@testing-library/jest-dom";
-import { act, cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import Console from "./Console";
 import Terminal from "./Terminal";
 import TestDriver from "../fixtures/TestDriver";
