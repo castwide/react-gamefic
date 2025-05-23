@@ -8,7 +8,7 @@ import {
   modalConfirm,
 } from "react-gamefic";
 import { saveTranscript } from "react-gamefic";
-import gearIcon from './gear-icon.svg';
+import gearIcon from "./gear-icon.svg";
 
 interface MenuProps {
   title?: string;
@@ -59,7 +59,9 @@ export default function Menu({ title, className = "" }: MenuProps) {
       <header>
         <h1>{title}</h1>
         <div>
-          <button onClick={toggleMenu}><img src={gearIcon} alt="Menu" /></button>
+          <button onClick={toggleMenu}>
+            <img src={gearIcon} alt="Menu" />
+          </button>
           <Modal
             isOpen={menuOpen}
             onRequestClose={() => setMenuOpen(false)}

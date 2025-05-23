@@ -1,5 +1,15 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { WatchIgnorePlugin } = require('webpack');
+const { execSync } = require('child_process');
+
+class RakeWebAutoloadPlugin {
+  apply(compiler) {
+    compiler.hooks.watchRun.tap('RakeWebAutoloadPlugin', () => {
+      execSync('rake web:autoload', { stdio: 'inherit' });
+    });
+  }
+}
 
 module.exports = (arg, env) => {
   process.env.NODE_ENV = arg.mode || env.mode || 'development';
@@ -28,6 +38,10 @@ module.exports = (arg, env) => {
             from: path.resolve(__dirname, 'public'),
           }
         ]
+      }),
+      new RakeWebAutoloadPlugin(),
+      new WatchIgnorePlugin({
+        paths: [path.resolve(__dirname, '../autoload.rb')]
       })
     ],
     module: {

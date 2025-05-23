@@ -4,13 +4,7 @@ import { createRoot } from "react-dom/client";
 import driver from "./driver";
 
 import { Console, Modals, Terminal } from "react-gamefic";
-import {
-  Activity,
-  Conclusion,
-  MultipleChoice,
-  Pause,
-  YesOrNo,
-} from "./scenes";
+import { Activity, Conclusion, MultipleChoice, Pause, YesOrNo } from "./scenes";
 import { Menu } from "./widgets";
 
 import "react-gamefic/styles/ebook";
@@ -37,5 +31,5 @@ root.render(
       typedScenes={typedScenes}
     />
     <Modals modalClassName="modal" overlayClassName="overlay" />
-  </Console>
+  </Console>,
 );

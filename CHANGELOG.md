@@ -1,7 +1,8 @@
-## 2.1.0
+## 2.1.0 - May 22, 2025
 - saveTranscript function
 - Disable autocomplete in command input
 - MultipleChoice key and mouse events
+- Run rake web:autoload on watchRun
 
 ## 2.0.0 - October 20, 2024
 - Update for Gamefic 4.0

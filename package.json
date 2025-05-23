@@ -1,6 +1,6 @@
 {
   "name": "react-gamefic",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "React components for Gamefic",
   "main": "build/index.js",
   "files": [

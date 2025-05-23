@@ -1,16 +1,21 @@
-import React, { useEffect, useRef } from 'react';
-import { History, Turn, ScenePropsType } from 'react-gamefic';
+import React, { useEffect, useRef } from "react";
+import { History, Turn, ScenePropsType } from "react-gamefic";
 
-export default function MultipleChoice({ output, history, handleInput }: ScenePropsType) {
+export default function MultipleChoice({
+  output,
+  history,
+  handleInput,
+}: ScenePropsType) {
   const sceneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let button: HTMLElement | null = null;
-    const buttons = sceneRef.current?.querySelectorAll<HTMLElement>('ol li button');
+    const buttons =
+      sceneRef.current?.querySelectorAll<HTMLElement>("ol li button");
 
     buttons?.forEach((btn) => {
-      btn.addEventListener('mousedown', () => btn.classList.add('clicked'));
-      btn.addEventListener('mouseup', () => btn.classList.remove('clicked'));
+      btn.addEventListener("mousedown", () => btn.classList.add("clicked"));
+      btn.addEventListener("mouseup", () => btn.classList.remove("clicked"));
     });
 
     const handleKey = (event: KeyboardEvent) => {
@@ -19,15 +24,15 @@ export default function MultipleChoice({ output, history, handleInput }: ScenePr
         button?.blur();
         button = buttons?.item(selected - 1) || null;
         button?.focus();
-      } else if (event.code == 'Escape') {
+      } else if (event.code == "Escape") {
         buttons?.forEach((btn) => btn.blur());
       }
-    }
-    window.addEventListener('keydown', handleKey);
+    };
+    window.addEventListener("keydown", handleKey);
 
     return () => {
-      window.removeEventListener('keydown', handleKey);
-    }
+      window.removeEventListener("keydown", handleKey);
+    };
   });
 
   return (
