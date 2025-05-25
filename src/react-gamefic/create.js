@@ -62,12 +62,19 @@ const updateableFiles = [
   "webpack.config.cjs",
 ];
 
+function titleCase(str) {
+  return str
+    .replace(/[-_]/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
 async function updateFiles(target, options) {
   updateableFiles.forEach((file) => {
     const filePath = path.join(target, file);
     const buffer = fse
       .readFileSync(filePath, "utf-8")
       .replace("%(name)", options.name)
+      .replace("%(title)", titleCase(options.name))
       .replace("%(className)", options.className)
       .replace("%(paths)", encodePaths(options.paths));
     fse.writeFileSync(filePath, buffer);

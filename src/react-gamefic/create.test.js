@@ -34,7 +34,7 @@ describe("create", () => {
     const index = fs
       .readFileSync(path.join(directory, "public", "index.html"))
       .toString();
-    expect(index.includes(options.name)).toBeTruthy();
+    expect(index.includes("React Gamefic Test Project")).toBeTruthy();
   });
 
   it("configures manifest.json", () => {
