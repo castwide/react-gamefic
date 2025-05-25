@@ -57,7 +57,7 @@ describe("create", () => {
     const index = fs
       .readFileSync(path.join(directory, "src", "index.tsx"))
       .toString();
-    expect(index.includes(options.name)).toBeTruthy();
+    expect(index.includes("React Gamefic Test Project")).toBeTruthy();
   });
 
   it("configures driver.tsx", () => {
