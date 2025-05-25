@@ -1,3 +1,6 @@
+## 2.2.1 - May 25, 2025
+- Limit confirmation pseudo-element to terminal option buttons
+
 ## 2.2.0 - May 22, 2025
 - saveTranscript function
 - Disable autocomplete in command input
