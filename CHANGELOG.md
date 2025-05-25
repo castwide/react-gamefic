@@ -1,5 +1,7 @@
 ## 2.2.2 - May 26, 2025
 - Format title in public/index.html
+- Use title in Menu
+- Remove text input from Pause
 
 ## 2.2.1 - May 25, 2025
 - Limit confirmation pseudo-element to terminal option buttons
