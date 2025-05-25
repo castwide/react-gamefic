@@ -1,16 +1,13 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
 import { History } from "./widgets";
 import { OutputType } from "./types";
 import { htmlToText } from "html-to-text";
+import renderTranscript from "./renderTranscript";
 
 export default function saveTranscript(
   turns: OutputType[],
   component = History,
 ): HTMLDivElement {
-  const div = document.createElement("div");
-  const root = createRoot(div);
-  root.render(React.createElement(component, { turns: turns }));
+  const div = renderTranscript(turns, component);
   requestIdleCallback(() => {
     const text = htmlToText(div.innerHTML);
     const link = document.createElement("a");
