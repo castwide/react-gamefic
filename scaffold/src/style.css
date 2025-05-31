@@ -102,8 +102,36 @@ li {
   white-space: nowrap;
 }
 
+.menu-modal nav hr {
+  color: #F0F0F0;
+}
+
 .menu-modal nav button {
   display: block;
   width: calc(100% - 2em);
   margin: 1em;
+}
+
+.transcript-modal {
+  width: 60%;
+  max-width: 1200px;
+  max-height: 80%;
+}
+
+.transcript-modal nav {
+  display: block;
+  text-align: right;
+  width: auto;
+  height: min-content;
+  padding-top: 0.5em;
+}
+
+.transcript-modal button {
+  display: inline-block;
+  width: min-content;
+}
+
+.transcript {
+  overflow: auto;
+  height: calc(100% - 2em);
 }

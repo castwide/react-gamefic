@@ -1,3 +1,7 @@
+## 2.3.0 - June 1, 2025
+- Undo/restore/restart in Conclusion
+- View and save transcripts
+
 ## 2.2.2 - May 26, 2025
 - Format title in public/index.html
 - Use title in Menu

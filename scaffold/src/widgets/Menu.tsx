@@ -9,6 +9,7 @@ import {
 } from "react-gamefic";
 import { saveTranscript } from "react-gamefic";
 import gearIcon from "./gear-icon.svg";
+import downloadIcon from "./download-icon.svg";
 
 interface MenuProps {
   title?: string;
@@ -17,6 +18,8 @@ interface MenuProps {
 
 export default function Menu({ title, className = "" }: MenuProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [historyOpen, setHistoryOpen] = useState(false);
+
   const context: GameContextType = useContext(GameContext);
 
   const toggleMenu = () => {
@@ -49,6 +52,11 @@ export default function Menu({ title, className = "" }: MenuProps) {
     context.handleUndo();
   };
 
+  const handleTranscript = () => {
+    setMenuOpen(false);
+    setHistoryOpen(true);
+  };
+
   const handleSaveTranscript = () => {
     setMenuOpen(false);
     saveTranscript([...context.history, context.output], History);
@@ -68,11 +76,25 @@ export default function Menu({ title, className = "" }: MenuProps) {
             className="menu-modal"
           >
             <nav>
-              <button onClick={handleSaveClick}>Save</button>
-              <button onClick={handleRestoreClick}>Load</button>
-              <button onClick={handleUndoClick}>Undo</button>
-              <button onClick={handleNewClick}>Restart</button>
-              <button onClick={handleSaveTranscript}>Transcribe</button>
+              <button onClick={handleSaveClick}>Save Game</button>
+              <button onClick={handleRestoreClick}>Load Game</button>
+              <hr />
+              <button onClick={handleUndoClick}>Undo Last Turn</button>
+              <button onClick={handleNewClick}>Start New Game</button>
+              <hr />
+              <button onClick={handleTranscript}>Transcript</button>
+            </nav>
+          </Modal>
+          <Modal
+            isOpen={historyOpen}
+            onRequestClose={() => setHistoryOpen(false)}
+            className="transcript-modal"
+          >
+            <History className="transcript" turns={[...context.history, context.output]} />
+            <nav>
+              <button onClick={handleSaveTranscript}>
+                <img src={downloadIcon} alt="Save" />
+              </button>
             </nav>
           </Modal>
         </div>
