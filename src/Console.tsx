@@ -8,7 +8,7 @@ import {
   OutputType,
   SaveFileType,
 } from "./types";
-import { History } from "./widgets";
+import { History, modalConfirm } from "./widgets";
 
 let started = false;
 
@@ -147,13 +147,13 @@ export default function Console({
     }
   };
 
-  const handleInput: HandleInputType = (command: string | null) => {
+  const handleInput: HandleInputType = async (command: string | null) => {
     if (withConsoleCommands && command?.toLowerCase() == "save") {
       setConsoleMode(ConsoleMode.Save);
     } else if (withConsoleCommands && command?.toLowerCase() == "restore") {
       setConsoleMode(ConsoleMode.Restore);
     } else if (command?.toLowerCase() == "restart") {
-      if (confirm("Discard unsaved changes and start a new game?")) {
+      if (await modalConfirm("Discard unsaved changes and start a new game?")) {
         handleNew();
       }
     } else if (withConsoleCommands && command?.toLowerCase() == "undo") {
