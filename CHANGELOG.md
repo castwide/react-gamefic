@@ -1,3 +1,6 @@
+## 2.3.1
+- MultipleChoice and Pause check for dialogs
+
 ## 2.3.0 - June 1, 2025
 - Undo/restore/restart in Conclusion
 - View and save transcripts

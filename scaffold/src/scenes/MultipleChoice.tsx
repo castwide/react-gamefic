@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { History, Turn, ScenePropsType } from "react-gamefic";
+import inDialog from "./inDialog";
 
 export default function MultipleChoice({
   output,
@@ -19,6 +20,7 @@ export default function MultipleChoice({
     });
 
     const handleKey = (event: KeyboardEvent) => {
+      if (inDialog()) return;
       if (event.key.match(/[1-9]/)) {
         const selected = parseInt(event.key);
         button?.blur();

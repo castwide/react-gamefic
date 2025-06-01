@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { History, Turn, CommandLink, ScenePropsType } from "react-gamefic";
+import inDialog from "./inDialog";
 
 export default function Pause({
   output,
@@ -8,11 +9,13 @@ export default function Pause({
 }: ScenePropsType) {
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
+      if (inDialog()) return;
       if (handleInput && event.code == "Enter") {
         event.preventDefault();
         handleInput("");
       }
     };
+
     window.addEventListener("keydown", handleKey);
 
     return () => {

@@ -94,10 +94,16 @@ export default function Menu({ title, className = "" }: MenuProps) {
             onRequestClose={() => setHistoryOpen(false)}
             className="transcript-modal"
           >
-            <button className="close-button" onClick={() => setHistoryOpen(false)}>
+            <button
+              className="close-button"
+              onClick={() => setHistoryOpen(false)}
+            >
               <img src={closeIcon} alt="Close" />
             </button>
-            <History className="transcript" turns={[...context.history, context.output]} />
+            <History
+              className="transcript"
+              turns={[...context.history, context.output]}
+            />
             <nav>
               <button onClick={handleSaveTranscript}>
                 <img src={downloadIcon} alt="Save" />
