@@ -86,6 +86,7 @@ li {
 .menu-modal {
   width: auto;
   min-width: 100px;
+  width: calc(80% - 32px);
   max-width: 400px;
   height: auto;
   min-height: 100px;
@@ -123,15 +124,39 @@ li {
   text-align: right;
   width: auto;
   height: min-content;
-  padding-top: 0.5em;
+  padding-top: 16px;
 }
 
-.transcript-modal button {
+.transcript-modal nav button {
   display: inline-block;
   width: min-content;
 }
 
+.transcript-modal nav button img {
+  width: 16px;
+  height: 16px;
+}
+
 .transcript {
   overflow: auto;
-  height: calc(100% - 2em);
+  height: calc(100% - 48px);
+}
+
+.close-button {
+  width: 28px;
+  height: 28px;
+  margin-left: calc(100% - 14px);
+  margin-top: -14px;
+  border: none;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.close-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.transcript-modal .close-button {
+  margin-left: calc(100% + 4px);
 }

@@ -10,6 +10,7 @@ import {
 import { saveTranscript } from "react-gamefic";
 import gearIcon from "./gear-icon.svg";
 import downloadIcon from "./download-icon.svg";
+import closeIcon from "./close-icon.svg";
 
 interface MenuProps {
   title?: string;
@@ -75,6 +76,9 @@ export default function Menu({ title, className = "" }: MenuProps) {
             onRequestClose={() => setMenuOpen(false)}
             className="menu-modal"
           >
+            <button className="close-button" onClick={() => setMenuOpen(false)}>
+              <img src={closeIcon} alt="Close" />
+            </button>
             <nav>
               <button onClick={handleSaveClick}>Save Game</button>
               <button onClick={handleRestoreClick}>Load Game</button>
@@ -90,6 +94,9 @@ export default function Menu({ title, className = "" }: MenuProps) {
             onRequestClose={() => setHistoryOpen(false)}
             className="transcript-modal"
           >
+            <button className="close-button" onClick={() => setHistoryOpen(false)}>
+              <img src={closeIcon} alt="Close" />
+            </button>
             <History className="transcript" turns={[...context.history, context.output]} />
             <nav>
               <button onClick={handleSaveTranscript}>
