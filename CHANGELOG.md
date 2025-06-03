@@ -1,5 +1,6 @@
 ## 2.3.1
 - MultipleChoice and Pause check for dialogs
+- Modal layouts
 
 ## 2.3.0 - June 1, 2025
 - Undo/restore/restart in Conclusion

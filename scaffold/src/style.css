@@ -91,6 +91,7 @@ li {
   height: auto;
   min-height: 100px;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .menu-modal nav {
@@ -117,6 +118,8 @@ li {
   width: 60%;
   max-width: 1200px;
   max-height: 80%;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .transcript-modal nav {
@@ -124,7 +127,7 @@ li {
   text-align: right;
   width: auto;
   height: min-content;
-  padding-top: 16px;
+  padding: 4px;
 }
 
 .transcript-modal nav button {
@@ -140,6 +143,8 @@ li {
 .transcript {
   overflow: auto;
   height: calc(100% - 48px);
+  box-sizing: border-box;
+  padding: 1em;
 }
 
 .close-button {
@@ -155,8 +160,4 @@ li {
 .close-button img {
   width: 24px;
   height: 24px;
-}
-
-.transcript-modal .close-button {
-  margin-left: calc(100% + 4px);
 }
