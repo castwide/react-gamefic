@@ -1,4 +1,4 @@
-## 2.3.1 - July 22, 2026
+## 2.4.0 - July 22, 2026
 - MultipleChoice and Pause check for dialogs
 - Modal layouts
 - Dependency updates
