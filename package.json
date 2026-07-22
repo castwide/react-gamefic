@@ -13,7 +13,6 @@
     "README.md"
   ],
   "bin": {
-    "@castwide/react-gamefic": "bin/react-gamefic",
     "react-gamefic": "bin/react-gamefic"
   },
   "keywords": [
