@@ -1,5 +1,6 @@
 ## 2.4.1 - July 23, 2026
 - Fix cli imports
+- Dependency updates
 
 ## 2.4.0 - July 22, 2026
 - MultipleChoice and Pause check for dialogs
