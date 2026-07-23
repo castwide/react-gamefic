@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
-require = require('esm')(module /*, options*/);
-require('../src/react-gamefic/cli').cli(process.argv);
+import { cli } from "../src/react-gamefic/cli.js";
+cli(process.argv);

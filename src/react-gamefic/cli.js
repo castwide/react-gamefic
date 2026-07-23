@@ -1,4 +1,4 @@
-import arg from "arg";
+const arg = require('arg');
 const create = require("./create");
 
 function parseArgumentsIntoOptions(rawArgs) {
@@ -30,7 +30,7 @@ function outputVersion() {
   console.log(pjson.version);
 }
 
-export async function cli(args) {
+async function cli(args) {
   const options = parseArgumentsIntoOptions(args);
   if (options.version) {
     outputVersion();
@@ -38,3 +38,5 @@ export async function cli(args) {
     await create(options);
   }
 }
+
+module.exports = { cli: cli };
